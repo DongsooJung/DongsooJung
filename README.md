@@ -4,6 +4,9 @@
 **DongsooJung/DongsooJung** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
+Welcome! I am an Ph. D candidate in the Graduate School of Civil & Urban Engineering at Seoul National University. 
+
+I received a B.A. in Civil & Urban & Geosystem Engineering  from Seoul National University and a M.A. in North Korean economics from the University of North Korean Studies Grauduate School and in Public Administration from SNU. 
 
 - 🔭 I’m currently working on ...
 - 🌱 I’m currently learning ...
