@@ -32,20 +32,30 @@
 
 ---
 
-### 🚀 Featured Projects
+### 🚀 Featured Projects — Business & AI
 
 | Project | Description | Stack |
 |---------|-------------|-------|
-| [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 스마트도시 연구 — 공간계량모형 · 헤도닉 가격모형 · DID 분석 | Python, GIS |
 | [**youtube-gemini-pipeline**](https://github.com/DongsooJung/youtube-gemini-pipeline) | YouTube 분석 플랫폼 + Gemini 2.5 Flash AI 한국 트렌딩 대시보드 | HTML, Gemini API |
 | [**sora-video-app**](https://github.com/DongsooJung/sora-video-app) | OpenAI Sora + Supabase + Next.js 영상 생성 플랫폼 | TypeScript, Next.js |
 | [**daechi-monitor**](https://github.com/DongsooJung/daechi-monitor) | 대치동 학원가 모니터링 시스템 | HTML |
 | [**cowork-dashboard**](https://github.com/DongsooJung/cowork-dashboard) | Claude 협업 세션 분석 대시보드 | HTML |
 | [**dongsoojung.github.io**](https://dongsoojung.github.io) | 학술 포트폴리오 & 기업 소개 | HTML |
 
+### 🔬 Research Repositories — Spatial Econometrics & Urban Analytics
+
+| Repository | Domain | Methods |
+|------------|--------|---------|
+| [**urban-spatial-analysis**](https://github.com/DongsooJung/urban-spatial-analysis) | 공간계량경제학 | SLM, SEM, SDM, GWR, Moran's I |
+| [**smart-city-gis**](https://github.com/DongsooJung/smart-city-gis) | 스마트도시 GIS | 접근성지수, 보행성, 토지이용 엔트로피 |
+| [**airport-infrastructure-analytics**](https://github.com/DongsooJung/airport-infrastructure-analytics) | 군공항 이전 정책 | DID, 공간 헤도닉, 네트워크 분석 |
+| [**credit-survival-analysis**](https://github.com/DongsooJung/credit-survival-analysis) | 기업신용 리스크 | Cox PH, Random Survival Forest |
+| [**real-estate-hedonic**](https://github.com/DongsooJung/real-estate-hedonic) | 부동산 가격모형 | 헤도닉 가격, MOLIT API, 공간적 자기상관 |
+| [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 스마트도시 연구 | 공간계량모형 · 헤도닉 · DID 분석 코드 |
+
 ---
 
-### 🔬 Research Interests
+### 📐 Research Interests
 
 ```
 📐 공간계량모형 (Spatial Econometrics)     📊 헤도닉 가격모형 (Hedonic Pricing)
@@ -55,23 +65,6 @@
 
 **주요 연구 프로젝트:**  
 수원 군공항 종전부지 미래전략 · 김포 스마트재생 예비타당성조사(KDI) · 부천 역세권 종합운동장 개발
-
----
-
-### ⚡ Recent Activity
-
-<!--START_SECTION:activity-->
-<!--END_SECTION:activity-->
-
----
-
-### 🐍 Contribution Graph
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/DongsooJung/DongsooJung/output/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/DongsooJung/DongsooJung/output/github-contribution-grid-snake.svg" />
-  <img alt="github-snake" src="https://raw.githubusercontent.com/DongsooJung/DongsooJung/output/github-contribution-grid-snake.svg" />
-</picture>
 
 ---
 
@@ -86,11 +79,6 @@
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=DongsooJung&theme=tokyonight&hide_border=true" />
 </p>
 
-<!-- GitHub Metrics (자동 생성) -->
-<p align="center">
-  <img src="github-metrics.svg" />
-</p>
-
 ---
 
 ### 🏢 Organizations
@@ -102,11 +90,6 @@
 | **SNU Smart City Lab** | 건설환경공학부 스마트도시공학 연구 |
 
 ---
-
-<!-- 블로그 RSS 자동 반영 (블로그 운영 시 주석 해제) -->
-<!-- ### 📝 Latest Blog Posts -->
-<!-- BLOG-POST-LIST:START -->
-<!-- BLOG-POST-LIST:END -->
 
 ### 📫 Contact
 
