@@ -1,19 +1,120 @@
-## Hi there 👋
+# 정동수 (Dongsoo Jung) 👋
 
-<!--
-**DongsooJung/DongsooJung** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+> **AI Software CEO** · **대치동 수학/KOI 강사** · **SNU 스마트도시 박사**
 
-Here are some ideas to get you started:
-Welcome! I am an Ph. D candidate in the Graduate School of Civil & Urban Engineering at Seoul National University. 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FDongsooJung&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visitors&edge_flat=false)](https://github.com/DongsooJung)
 
-I received a B.A. in Civil & Urban & Geosystem Engineering  from Seoul National University and a M.A. in North Korean economics from the University of North Korean Studies Grauduate School and in Public Administration from SNU. 
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### 🏢 About Me
+
+**주식회사 별의문 (Stargate Corp)** CEO이자 **대치동 수학·정보올림피아드(KOI) 전문 강사**입니다.  
+서울대 건설환경공학부 스마트도시공학 박사 수료, 공간계량경제학과 AI를 결합한 도시 분석 연구를 수행합니다.
+
+```text
+🏆 시도 정보올림피아드 대상 | 대구과학고 17기 | 만 17세 SNU 최연소 입학
+🎖️ 공군참모총장상 수상 | 토목기사
+🎓 SNU 지구환경시스템공학 학사 → 북한대학원대 석사(경제/IT) → SNU 행정학 석사 → SNU 박사 수료
+```
+
+---
+
+### 🔧 Tech Stack
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
+![n8n](https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white)
+![GIS](https://img.shields.io/badge/GIS-4CAF50?style=flat-square&logo=qgis&logoColor=white)
+![AI/ML](https://img.shields.io/badge/AI%2FML-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
+
+---
+
+### 🚀 Featured Projects
+
+| Project | Description | Stack |
+|---------|-------------|-------|
+| [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 스마트도시 연구 — 공간계량모형 · 헤도닉 가격모형 · DID 분석 | Python, GIS |
+| [**youtube-gemini-pipeline**](https://github.com/DongsooJung/youtube-gemini-pipeline) | YouTube 분석 플랫폼 + Gemini 2.5 Flash AI 한국 트렌딩 대시보드 | HTML, Gemini API |
+| [**sora-video-app**](https://github.com/DongsooJung/sora-video-app) | OpenAI Sora + Supabase + Next.js 영상 생성 플랫폼 | TypeScript, Next.js |
+| [**daechi-monitor**](https://github.com/DongsooJung/daechi-monitor) | 대치동 학원가 모니터링 시스템 | HTML |
+| [**cowork-dashboard**](https://github.com/DongsooJung/cowork-dashboard) | Claude 협업 세션 분석 대시보드 | HTML |
+| [**dongsoojung.github.io**](https://dongsoojung.github.io) | 학술 포트폴리오 & 기업 소개 | HTML |
+
+---
+
+### 🔬 Research Interests
+
+```
+📐 공간계량모형 (Spatial Econometrics)     📊 헤도닉 가격모형 (Hedonic Pricing)
+🔄 이중차분법 (Difference-in-Differences)  🏙️ 스마트도시 (Smart City)
+🛡️ 사이버보안 (Cybersecurity)             🤖 AI 기반 도시공간 분석
+```
+
+**주요 연구 프로젝트:**  
+수원 군공항 종전부지 미래전략 · 김포 스마트재생 예비타당성조사(KDI) · 부천 역세권 종합운동장 개발
+
+---
+
+### ⚡ Recent Activity
+
+<!--START_SECTION:activity-->
+<!--END_SECTION:activity-->
+
+---
+
+### 🐍 Contribution Graph
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/DongsooJung/DongsooJung/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/DongsooJung/DongsooJung/output/github-contribution-grid-snake.svg" />
+  <img alt="github-snake" src="https://raw.githubusercontent.com/DongsooJung/DongsooJung/output/github-contribution-grid-snake.svg" />
+</picture>
+
+---
+
+### 📊 GitHub Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=DongsooJung&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="165" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DongsooJung&layout=compact&theme=tokyonight&hide_border=true" height="165" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=DongsooJung&theme=tokyonight&hide_border=true" />
+</p>
+
+<!-- GitHub Metrics (자동 생성) -->
+<p align="center">
+  <img src="github-metrics.svg" />
+</p>
+
+---
+
+### 🏢 Organizations
+
+| | |
+|---|---|
+| **주식회사 별의문** | AI 소프트웨어 기업 · [stargate11.com](https://dongsoojung.github.io) |
+| **대치동 수학/KOI** | 정보올림피아드 · 경시대회 · 알고리즘 전문 강의 |
+| **SNU Smart City Lab** | 건설환경공학부 스마트도시공학 연구 |
+
+---
+
+<!-- 블로그 RSS 자동 반영 (블로그 운영 시 주석 해제) -->
+<!-- ### 📝 Latest Blog Posts -->
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
+
+### 📫 Contact
+
+[![Email](https://img.shields.io/badge/Email-jds068888@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:jds068888@gmail.com)
+[![GitHub](https://img.shields.io/badge/Research-STARGATE8224-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/STARGATE8224)
+
+---
+
+<p align="center">
+  <i>"알고리즘으로 시작해서, 도시를 분석하고, AI로 미래를 만든다."</i>
+</p>
