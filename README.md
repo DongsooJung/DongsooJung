@@ -1,6 +1,6 @@
-# 정동수 (Dongsoo Jung) 👋
+# 우주인 (Dongsoo Jung) 👋
 
-> **AI Software CEO** · **대치동 수학/KOI 강사** · **SNU 스마트도시 박사**
+> **AI Software CEO** · **대치동 수학/KOI 강사** · **스마트도시 박사**
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FDongsooJung&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visitors&edge_flat=false)](https://github.com/DongsooJung)
 
@@ -9,7 +9,7 @@
 ### 🏢 About Me
 
 **주식회사 별의문 (Stargate Corp)** CEO이자 **대치동 수학·정보올림피아드(KOI) 전문 강사**입니다.  
-서울대 건설환경공학부 스마트도시공학 박사 수료, 공간계량경제학과 AI를 결합한 도시 분석 연구를 수행합니다.
+스마트도시공학 박사 수료, 공간계량경제학과 AI를 결합한 도시 분석 연구를 수행합니다.
 
 ```text
 🏆 시도 정보올림피아드 대상 | 대구과학고 17기 | 만 17세 SNU 최연소 입학
