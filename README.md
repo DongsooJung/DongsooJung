@@ -93,7 +93,7 @@
 
 ### 📫 Contact
 
-[![Email](https://img.shields.io/badge/Email-jds068888@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:jds068888@gmail.com)
+[![Email](https://img.shields.io/badge/Email-stargate8225@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:stargate8225@gmail.com)
 [![GitHub](https://img.shields.io/badge/Research-STARGATE8224-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/STARGATE8224)
 
 ---
