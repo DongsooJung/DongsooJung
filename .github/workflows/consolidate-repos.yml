@@ -1,0 +1,38 @@
+name: Consolidate Repositories
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (번들 검증만)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  consolidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify bundles
+        run: |
+          for b in consolidation/bundles/*.bundle; do
+            echo "Verifying $b"
+            git bundle verify "$b"
+          done
+
+      - name: Publish merges
+        if: inputs.dry_run == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "GH_PAT secret not configured. Add a PAT with repo scope."
+            exit 1
+          fi
+          chmod +x consolidation/publish-all.sh
+          ./consolidation/publish-all.sh
