@@ -85,7 +85,7 @@
 
 | | |
 |---|---|
-| **주식회사 별의문** | AI 소프트웨어 기업 · [stargateedu.co.kr](https://dongsoojung.github.io) |
+| **주식회사 별의문** | AI 소프트웨어 기업 · [stargateedu.co.kr](https://stargateedu.co.kr) |
 | **대치동 수학/KOI** | 정보올림피아드 · 경시대회 · 알고리즘 전문 강의 |
 | **SNU Smart City Lab** | 건설환경공학부 스마트도시공학 연구 |
 
