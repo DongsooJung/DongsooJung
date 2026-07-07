@@ -42,16 +42,13 @@
 | [**cowork-dashboard**](https://github.com/DongsooJung/cowork-dashboard) | Claude 협업 세션 분석 대시보드 | HTML |
 | [**dongsoojung.github.io**](https://dongsoojung.github.io) | 학술 포트폴리오 & 기업 소개 | HTML |
 
-### 🔬 Research Repositories — Spatial Econometrics & Urban Analytics
+### 🔬 Research — Spatial Econometrics & Urban Analytics
 
-| Repository | Domain | Methods |
-|------------|--------|---------|
-| [**urban-spatial-analysis**](https://github.com/DongsooJung/urban-spatial-analysis) | 공간계량경제학 | SLM, SEM, SDM, GWR, Moran's I |
-| [**smart-city-gis**](https://github.com/DongsooJung/smart-city-gis) | 스마트도시 GIS | 접근성지수, 보행성, 토지이용 엔트로피 |
-| [**airport-infrastructure-analytics**](https://github.com/DongsooJung/airport-infrastructure-analytics) | 군공항 이전 정책 | DID, 공간 헤도닉, 네트워크 분석 |
-| [**credit-survival-analysis**](https://github.com/DongsooJung/credit-survival-analysis) | 기업신용 리스크 | Cox PH, Random Survival Forest |
-| [**real-estate-hedonic**](https://github.com/DongsooJung/real-estate-hedonic) | 부동산 가격모형 | 헤도닉 가격, MOLIT API, 공간적 자기상관 |
-| [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 스마트도시 연구 | 공간계량모형 · 헤도닉 · DID 분석 코드 |
+| Package | Domain | Methods |
+|---------|--------|---------|
+| [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 스마트도시 연구 모노레포 | 공간계량 · 헤도닉 · DID · GIS · 생존분석 |
+
+> 5개 연구 저장소(`urban-spatial-analysis`, `smart-city-gis`, `airport-infrastructure-analytics`, `credit-survival-analysis`, `real-estate-molit-api`)를 `packages/` 아래로 통합했습니다.
 
 ---
 
