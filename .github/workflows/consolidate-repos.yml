@@ -11,6 +11,11 @@ on:
         options:
           - 'true'
           - 'false'
+  push:
+    branches: [main]
+    paths:
+      - 'repos/**'
+      - 'consolidation/**'
 
 jobs:
   consolidate:
@@ -24,9 +29,11 @@ jobs:
             echo "Verifying $b"
             git bundle verify "$b"
           done
+          echo "Staging dirs:"
+          ls -la repos/
 
       - name: Publish merges
-        if: inputs.dry_run == 'false'
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run != 'true')
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
