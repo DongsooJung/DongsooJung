@@ -38,8 +38,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           if [[ -z "$GH_TOKEN" ]]; then
-            echo "GH_PAT secret not configured. Add a PAT with repo scope."
-            exit 1
+            echo "::warning::GH_PAT secret not configured — skipping cross-repo deploy."
+            echo "통합 소스는 repos/ 에 스테이징되어 있습니다."
+            echo "배포: Settings → Secrets → GH_PAT 등록 후 workflow 재실행"
+            exit 0
           fi
           chmod +x consolidation/publish-all.sh
           ./consolidation/publish-all.sh
