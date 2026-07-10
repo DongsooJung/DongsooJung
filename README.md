@@ -47,6 +47,7 @@
 | Package | Domain | Methods |
 |---------|--------|---------|
 | [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 스마트도시 연구 모노레포 | 공간계량 · 헤도닉 · DID · GIS · 생존분석 |
+| [**repos/ds-research-urban-analytics**](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics) | 통합 스테이징 (배포 대기) | `packages/` 5개 연구 레포 |
 
 > 5개 연구 저장소(`urban-spatial-analysis`, `smart-city-gis`, `airport-infrastructure-analytics`, `credit-survival-analysis`, `real-estate-molit-api`)를 `packages/` 아래로 통합했습니다.
 
