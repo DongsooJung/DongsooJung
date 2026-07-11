@@ -23,8 +23,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git config --global user.email "cursor-agent@users.noreply.github.com"
+          git config --global user.name "Cursor Agent"
           chmod +x scripts/sync-mirrors.sh
-          # workflow 내에서는 origin URL을 GITHUB_TOKEN으로 교체
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/DongsooJung/DongsooJung.git"
           ./scripts/sync-mirrors.sh
 
