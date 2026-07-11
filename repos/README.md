@@ -1,19 +1,32 @@
-# 통합 레포 스테이징
+# 통합 레포 허브 (Canonical Source)
 
-Cursor Cloud Agent가 준비한 **병합 완료 소스**입니다.  
-`cursor[bot]` 권한 제한으로 대상 레포에 직접 push하지 못해, 프로필 레포에 스테이징합니다.
+> **DongsooJung/DongsooJung** 프로필 레포가 통합 후 **단일 소스 오브 트루스**입니다.
 
-| 디렉터리 | 통합 대상 레포 | 내용 |
-|----------|---------------|------|
-| [`ds-research-urban-analytics/`](ds-research-urban-analytics/) | `DongsooJung/ds-research-urban-analytics` | 5개 연구 레포 → `packages/` |
-| [`stargateedu-lp/`](stargateedu-lp/) | `DongsooJung/stargateedu` (`lp/`) | `stargate-lp` 랜딩 통합 |
-| [`stargate-main-sites/`](stargate-main-sites/) | `DongsooJung/stargate-main` | blog/shop + shared nav |
+## 구조
 
-## 배포
+| 경로 | 내용 | 원본 레포 |
+|------|------|----------|
+| [`ds-research-urban-analytics/`](ds-research-urban-analytics/) | 5개 연구 패키지 모노레포 | `urban-spatial-analysis` 등 5개 |
+| [`stargateedu-lp/`](stargateedu-lp/) | LP 랜딩 (`lp.stargateedu.co.kr`) | `stargate-lp` |
+| [`stargate-main-sites/`](stargate-main-sites/) | blog/shop + shared nav | `stargate-blog`, `stargate-shop` |
+
+## 미러 브랜치 (배포용)
+
+각 대상 레포 루트에 바로 push 가능한 orphan 브랜치:
+
+| 미러 브랜치 | 대상 레포 |
+|------------|----------|
+| `mirror/ds-research-urban-analytics` | `ds-research-urban-analytics` |
+| `mirror/stargateedu` | `stargateedu` |
+| `mirror/stargate-main` | `stargate-main` |
+| `mirror/stargate-blog` | `stargate-blog` |
+| `mirror/stargate-shop` | `stargate-shop` |
 
 ```bash
-cd consolidation
-GH_TOKEN=<repo권한_PAT> ./publish-all.sh
+# 로컬에서 한 번에 배포 (gh auth 또는 GH_TOKEN 필요)
+./scripts/deploy-mirrors.sh
 ```
 
-`publish-all.sh`는 `repos/` 스테이징 또는 `bundles/`에서 대상 레포로 push합니다.
+## 자동 동기화
+
+`repos/` 변경 시 GitHub Actions **Sync Mirror Branches** 워크플로가 미러 브랜치를 자동 갱신합니다.
