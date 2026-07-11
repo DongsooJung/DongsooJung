@@ -46,10 +46,12 @@
 
 | Package | Domain | Methods |
 |---------|--------|---------|
-| [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 스마트도시 연구 모노레포 | 공간계량 · 헤도닉 · DID · GIS · 생존분석 |
-| [**repos/ds-research-urban-analytics**](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics) | 통합 스테이징 (배포 대기) | `packages/` 5개 연구 레포 |
+| [**ds-research (통합)**](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics) | 스마트도시 연구 모노레포 | 공간계량 · 헤도닉 · DID · GIS · 생존분석 |
+| [urban-spatial-analysis](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics/packages/urban-spatial-analysis) | 공간계량경제학 | SLM, SEM, SDM, GWR |
+| [smart-city-gis](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics/packages/smart-city-gis) | 스마트도시 GIS | 접근성·보행성·엔트로피 |
+| [real-estate-molit-api](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics/packages/real-estate-molit-api) | 부동산 헤도닉 | MOLIT API · 공간자기상관 |
 
-> 5개 연구 저장소(`urban-spatial-analysis`, `smart-city-gis`, `airport-infrastructure-analytics`, `credit-survival-analysis`, `real-estate-molit-api`)를 `packages/` 아래로 통합했습니다.
+> 5개 연구 레포 통합 완료 · 배포 미러: [`mirror/ds-research-urban-analytics`](https://github.com/DongsooJung/DongsooJung/tree/mirror/ds-research-urban-analytics) · [아카이브 안내](ARCHIVED_REPOS.md)
 
 ---
 
