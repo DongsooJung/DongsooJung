@@ -34,6 +34,7 @@ deploy_mirror() {
 }
 
 deploy_mirror ds-research-urban-analytics ds-research-urban-analytics true
+deploy_mirror dongsoojung-github-io dongsoojung.github.io
 deploy_mirror stargateedu stargateedu
 deploy_mirror stargate-main stargate-main
 deploy_mirror stargate-blog stargate-blog

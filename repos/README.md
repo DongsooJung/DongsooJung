@@ -7,6 +7,7 @@
 | 경로 | 내용 | 원본 레포 |
 |------|------|----------|
 | [`ds-research-urban-analytics/`](ds-research-urban-analytics/) | 5개 연구 패키지 모노레포 | `urban-spatial-analysis` 등 5개 |
+| [`dongsoojung-github-io/`](dongsoojung-github-io/) | 메인 포털 (`www.stargateedu.co.kr`) | `dongsoojung.github.io` |
 | [`stargateedu-lp/`](stargateedu-lp/) | LP 랜딩 (`lp.stargateedu.co.kr`) | `stargate-lp` |
 | [`stargate-main-sites/`](stargate-main-sites/) | blog/shop + shared nav | `stargate-blog`, `stargate-shop` |
 
@@ -17,6 +18,7 @@
 | 미러 브랜치 | 대상 레포 |
 |------------|----------|
 | `mirror/ds-research-urban-analytics` | `ds-research-urban-analytics` |
+| `mirror/dongsoojung-github-io` | `dongsoojung.github.io` |
 | `mirror/stargateedu` | `stargateedu` |
 | `mirror/stargate-main` | `stargate-main` |
 | `mirror/stargate-blog` | `stargate-blog` |
