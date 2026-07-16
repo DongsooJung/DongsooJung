@@ -1,0 +1,9 @@
+# Stargate Landing Page (experimental)
+# 공식 쇼핑몰은 https://www.stargateedu.co.kr/ 이며
+# 본 페이지(lp.stargateedu.co.kr)는 실험 · 마케팅 트래킹 목적입니다.
+
+User-agent: *
+Allow: /
+
+# 본 랜딩페이지는 검색 노출을 의도합니다 (쇼핑몰 SEO 보강 목적).
+Sitemap: https://lp.stargateedu.co.kr/sitemap.xml
