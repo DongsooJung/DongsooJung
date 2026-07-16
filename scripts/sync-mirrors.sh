@@ -19,6 +19,7 @@ mkdir -p "$STAGING"
 
 # 소스 준비
 cp -r "$ROOT/repos/ds-research-urban-analytics" "$STAGING/ds-research"
+cp -r "$ROOT/repos/dongsoojung-github-io" "$STAGING/dongsoojung-github-io"
 
 mkdir -p "$STAGING/stargateedu/lp"
 TOKEN_URL="https://x-access-token:${TOKEN}@github.com/DongsooJung"
@@ -59,6 +60,8 @@ build_mirror() {
 
 build_mirror "ds-research-urban-analytics" "$STAGING/ds-research" \
   "mirror: ds-research-urban-analytics monorepo"
+build_mirror "dongsoojung-github-io" "$STAGING/dongsoojung-github-io" \
+  "mirror: dongsoojung.github.io portal (www.stargateedu.co.kr)"
 build_mirror "stargateedu" "$STAGING/stargateedu" \
   "mirror: stargateedu + lp/"
 build_mirror "stargate-main" "$STAGING/stargate-main" \
@@ -71,6 +74,7 @@ build_mirror "stargate-shop" "$STAGING/stargate-shop" \
 git checkout main
 git push origin \
   mirror/ds-research-urban-analytics \
+  mirror/dongsoojung-github-io \
   mirror/stargateedu \
   mirror/stargate-main \
   mirror/stargate-blog \

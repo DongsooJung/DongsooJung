@@ -12,5 +12,6 @@
 | `stargate-lp` | `repos/stargateedu-lp/` | `mirror/stargateedu` |
 | `stargate-blog` | `repos/stargate-main-sites/sites/blog/` | `mirror/stargate-blog` |
 | `stargate-shop` | `repos/stargate-main-sites/sites/shop/` | `mirror/stargate-shop` |
+| `dongsoojung.github.io` | `repos/dongsoojung-github-io/` | `mirror/dongsoojung-github-io` |
 
 **Canonical URL:** https://github.com/DongsooJung/DongsooJung/tree/main/repos
