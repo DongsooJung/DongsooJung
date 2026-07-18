@@ -36,11 +36,12 @@
 
 | Project | Description | Stack |
 |---------|-------------|-------|
+| [**daechi-monitor**](https://github.com/DongsooJung/daechi-monitor) | 대치동 학원가 모니터링 시스템 | HTML |
+| [**dongsoojung.github.io**](https://dongsoojung.github.io) | 학술 포트폴리오 & 기업 소개 | HTML |
+
+| [**cowork-dashboard**](https://github.com/DongsooJung/cowork-dashboard) | Claude 협업 세션 분석 대시보드 | HTML |
 | [**youtube-gemini-pipeline**](https://github.com/DongsooJung/youtube-gemini-pipeline) | YouTube 분석 플랫폼 + Gemini 2.5 Flash AI 한국 트렌딩 대시보드 | HTML, Gemini API |
 | [**sora-video-app**](https://github.com/DongsooJung/sora-video-app) | OpenAI Sora + Supabase + Next.js 영상 생성 플랫폼 | TypeScript, Next.js |
-| [**daechi-monitor**](https://github.com/DongsooJung/daechi-monitor) | 대치동 학원가 모니터링 시스템 | HTML |
-| [**cowork-dashboard**](https://github.com/DongsooJung/cowork-dashboard) | Claude 협업 세션 분석 대시보드 | HTML |
-| [**dongsoojung.github.io**](https://dongsoojung.github.io) | 학술 포트폴리오 & 기업 소개 | HTML |
 
 ### 🔬 Research — Spatial Econometrics & Urban Analytics
 
