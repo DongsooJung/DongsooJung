@@ -2,6 +2,10 @@
 
 > **AI Software CEO** · **대치동 수학/KOI 강사** · **스마트도시 박사**
 
+[![Website](https://img.shields.io/badge/Website-stargateedu.co.kr-3A6FFF?style=flat-square&logo=googlechrome&logoColor=white)](https://stargateedu.co.kr/)
+[![Git](https://img.shields.io/badge/Git-git.stargateedu.co.kr-181717?style=flat-square&logo=github&logoColor=white)](https://git.stargateedu.co.kr/)
+[![Blog](https://img.shields.io/badge/Blog-blog.stargateedu.co.kr-C4A265?style=flat-square&logo=readme&logoColor=white)](https://blog.stargateedu.co.kr/)
+[![Shop](https://img.shields.io/badge/Shop-shop.stargateedu.co.kr-FF8A3D?style=flat-square&logo=shopify&logoColor=white)](https://shop.stargateedu.co.kr/)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FDongsooJung&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visitors&edge_flat=false)](https://github.com/DongsooJung)
 
 ---
@@ -10,12 +14,19 @@
 
 **주식회사 별의문 (Stargate Corp)** CEO이자 **대치동 수학·정보올림피아드(KOI) 전문 강사**입니다.  
 스마트도시공학 박사 수료, 공간계량경제학과 AI를 결합한 도시 분석 연구를 수행합니다.
+교육 서비스와 데이터 대시보드도 개발합니다.
 
 ```text
 🏆 시도 정보올림피아드 대상 | 대구과학고 17기 | 만 17세 SNU 최연소 입학
 🎖️ 공군참모총장상 수상 | 토목기사
 🎓 지구환경시스템공학 학사 → 경제/IT 석사 → 행정학 석사 → 박사 수료
 ```
+
+**Current focus**
+
+- 🤖 AI 기반 교육·콘텐츠·업무 자동화
+- 📊 공공데이터 API와 정적 대시보드 운영
+- 🏙️ 공간계량·부동산·스마트도시 정책 분석
 
 ---
 
@@ -27,38 +38,73 @@
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
 ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
 ![GIS](https://img.shields.io/badge/GIS-4CAF50?style=flat-square&logo=qgis&logoColor=white)
 ![AI/ML](https://img.shields.io/badge/AI%2FML-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
 
 ---
 
-### 🚀 Featured Projects — Business & AI
+### 🚀 Featured Projects
 
-| Project | Description | Stack |
-|---------|-------------|-------|
-| [**daechi-monitor**](https://github.com/DongsooJung/daechi-monitor) | 대치동 학원가 모니터링 시스템 | HTML |
-| [**dongsoojung.github.io**](https://dongsoojung.github.io) | 학술 포트폴리오 & 기업 소개 | HTML |
-
-| [**cowork-dashboard**](https://github.com/DongsooJung/cowork-dashboard) | Claude 협업 세션 분석 대시보드 | HTML |
-| [**youtube-gemini-pipeline**](https://github.com/DongsooJung/youtube-gemini-pipeline) | YouTube 분석 플랫폼 + Gemini 2.5 Flash AI 한국 트렌딩 대시보드 | HTML, Gemini API |
-| [**sora-video-app**](https://github.com/DongsooJung/sora-video-app) | OpenAI Sora + Supabase + Next.js 영상 생성 플랫폼 | TypeScript, Next.js |
-
-### 🔬 Research — Spatial Econometrics & Urban Analytics
-
-| Package | Domain | Methods |
-|---------|--------|---------|
-| [**ds-research (통합)**](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics) | 스마트도시 연구 모노레포 | 공간계량 · 헤도닉 · DID · GIS · 생존분석 |
-| [urban-spatial-analysis](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics/packages/urban-spatial-analysis) | 공간계량경제학 | SLM, SEM, SDM, GWR |
-| [smart-city-gis](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics/packages/smart-city-gis) | 스마트도시 GIS | 접근성·보행성·엔트로피 |
-| [real-estate-molit-api](https://github.com/DongsooJung/DongsooJung/tree/main/repos/ds-research-urban-analytics/packages/real-estate-molit-api) | 부동산 헤도닉 | MOLIT API · 공간자기상관 |
-
-> 5개 연구 레포 통합 완료 · 배포 미러: [`mirror/ds-research-urban-analytics`](https://github.com/DongsooJung/DongsooJung/tree/mirror/ds-research-urban-analytics) · [아카이브 안내](ARCHIVED_REPOS.md)
+| Project | What it does | Stack | Live |
+|---|---|---|---|
+| [**dongsoojung.github.io**](https://github.com/DongsooJung/dongsoojung.github.io) | 개인 포털과 데이터·연구·교육 프로젝트 허브 | HTML · JavaScript · Python | [Open](https://stargateedu.co.kr/) |
+| [**daechi-monitor**](https://github.com/DongsooJung/daechi-monitor) | 대치동 학원가 사이트 변경·키워드 자동 모니터링 | Python · GitHub Actions · Chart.js | [Open](https://stargateedu.co.kr/daechi-monitor/) |
+| [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 공간계량·헤도닉·DID·GIS 연구 통합 프로젝트 | Python · PySAL · GeoPandas | [Open](https://stargateedu.co.kr/ds-research-urban-analytics/) |
+| [**stargate-ai-gallery**](https://github.com/DongsooJung/stargate-ai-gallery) | AI 생성 HTML 결과물 51개·19개 카테고리 갤러리 | HTML · CSS · JavaScript | [Open](https://stargateedu.co.kr/stargate-ai-gallery/) |
+| [**youtube-gemini-pipeline**](https://github.com/DongsooJung/youtube-gemini-pipeline) | YouTube 한국 트렌딩 분석과 Gemini 기반 데이터 파이프라인 | HTML · Gemini API | [Repo](https://github.com/DongsooJung/youtube-gemini-pipeline) |
+| [**cowork-dashboard**](https://github.com/DongsooJung/cowork-dashboard) | Claude Cowork 세션 분석 대시보드 | HTML · JavaScript | [Repo](https://github.com/DongsooJung/cowork-dashboard) |
 
 ---
 
-### 📐 Research Interests
+### 📊 Data & Dashboard Projects
 
-```
+| Project | 분석 내용 | Source | Live |
+|---|---|---|---|
+| **법원경매 부동산 2026** | 주택·상업용 경매 물건 탐색과 엑셀 산출물 | [court-auction](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/court-auction) | [Open](https://stargateedu.co.kr/court-auction/) |
+| **월간 거시경제** | 환율·한국은행 기준금리·소비자물가 추이 | [exchange-rate](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/exchange-rate) | [Open](https://stargateedu.co.kr/exchange-rate/) |
+| **국가별 수출입실적** | 관세청 월별 무역 데이터와 국가별 비교 | [trade](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/trade) | [Open](https://stargateedu.co.kr/trade/) |
+| **방한 관광객** | 중국·대만·베트남 관광객 시계열 | [korea-tourism](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/korea-tourism) | [Open](https://stargateedu.co.kr/korea-tourism/) |
+| **OpenDART Top 100** | 상위 기업 분기 실적 탐색 | [dart-top100](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/dart-top100) | [Open](https://stargateedu.co.kr/dart-top100/) |
+| **밟은 도시** | 방문 도시와 발자취 인터랙티브 지도 | [cities](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/cities) | [Open](https://stargateedu.co.kr/cities/) |
+| **Kmong 리서치** | 크몽 거래액·재무성과 분석 | [kmong-research](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/kmong-research) | [Open](https://stargateedu.co.kr/kmong-research/) |
+| [**digital-asset-atlas**](https://github.com/DongsooJung/digital-asset-atlas) | 디지털 자산 지형도 Observatory | HTML | [Repo](https://github.com/DongsooJung/digital-asset-atlas) |
+| [**stargate-visual**](https://github.com/DongsooJung/stargate-visual) | 공간계량·부동산·교육 시각화 아카이브 | HTML · D3 · Plotly | [Open](https://stargateedu.co.kr/stargate-visual/) |
+| [**viz-dashboard**](https://github.com/DongsooJung/viz-dashboard) | React 기반 지역분석 시각화 실험 | React · TypeScript · Vite | [Open](https://stargateedu.co.kr/viz-dashboard/) |
+
+---
+
+### 🌐 Stargate Web & Education
+
+| Repository | Role | Main technology |
+|---|---|---|
+| [**stargate-main**](https://github.com/DongsooJung/stargate-main) | Stargate Corporation 본사 포털 | HTML · CSS |
+| [**stargateedu**](https://github.com/DongsooJung/stargateedu) | 대치동 수학·KOI 교육 랜딩페이지 | HTML · CSS |
+| [**stargateedu-shop**](https://github.com/DongsooJung/stargateedu-shop) | KOI·KMO 온라인 스쿨 랜딩페이지 | HTML · GitHub Pages |
+| [**stargate-blog-hub**](https://github.com/DongsooJung/stargate-blog-hub) | 다채널 블로그 허브 | HTML · GitHub Pages |
+| [**stargate-blog**](https://github.com/DongsooJung/stargate-blog) | Stargate 블로그 공개본 | HTML · CSS |
+| [**stargate-shop**](https://github.com/DongsooJung/stargate-shop) | Stargate 쇼핑몰 공개본 | HTML · CSS |
+| [**stargate-lp**](https://github.com/DongsooJung/stargate-lp) | 교육 브랜드 쇼핑몰 랜딩페이지 | HTML · CSS |
+| [**stargateedu-mobile**](https://github.com/DongsooJung/stargateedu-mobile) | Stargate EDU 모바일 웹앱 | HTML · CSS |
+
+> 통합·미러 구조와 독립 repo 관계는 [Repository Consolidation](repos/README.md) 및 [아카이브 안내](ARCHIVED_REPOS.md)에 정리되어 있습니다.
+
+---
+
+### 🔬 Research — Spatial Econometrics & Urban Analytics
+
+| Repository / Package | Domain | Methods |
+|---|---|---|
+| [**ds-research-urban-analytics**](https://github.com/DongsooJung/ds-research-urban-analytics) | 스마트도시 연구 통합본 | 공간계량 · 헤도닉 · DID · GIS · 생존분석 |
+| [**urban-spatial-analysis**](https://github.com/DongsooJung/urban-spatial-analysis) | 도시정책 공간계량 | SLM · SEM · SDM · GWR |
+| [**smart-city-gis**](https://github.com/DongsooJung/smart-city-gis) | 스마트도시 GIS | 접근성 · 보행성 · 토지이용 엔트로피 |
+| [**real-estate-molit-api**](https://github.com/DongsooJung/real-estate-molit-api) | 한국 아파트 실거래가 | MOLIT API · 헤도닉 · 공간자기상관 |
+| [**airport-infrastructure-analytics**](https://github.com/DongsooJung/airport-infrastructure-analytics) | 군공항 이전·종전부지 | DID · 인프라 정책 · 헤도닉 |
+| [**credit-survival-analysis**](https://github.com/DongsooJung/credit-survival-analysis) | 기업 신용위험 | Cox · Random Survival Forest · ML |
+
+**Research interests**
+
+```text
 📐 공간계량모형 (Spatial Econometrics)     📊 헤도닉 가격모형 (Hedonic Pricing)
 🔄 이중차분법 (Difference-in-Differences)  🏙️ 스마트도시 (Smart City)
 🛡️ 사이버보안 (Cybersecurity)             🤖 AI 기반 도시공간 분석
@@ -69,15 +115,31 @@
 
 ---
 
+### 🧪 AI Apps, Experiments & Utilities
+
+| Repository | Status / purpose | Stack |
+|---|---|---|
+| [**2026-PLAN**](https://github.com/DongsooJung/2026-PLAN) | 연간 계획 웹앱 | TypeScript · Vercel |
+| [**sora-video-app**](https://github.com/DongsooJung/sora-video-app) | OpenAI Sora 영상 생성 플랫폼 실험 | Next.js · Supabase |
+| [**perplexity-video-app**](https://github.com/DongsooJung/perplexity-video-app) | AI 영상 앱 프로토타입 | Next.js · TypeScript |
+| [**payment-test-app**](https://github.com/DongsooJung/payment-test-app) | 결제 기능 검증용 Next.js 프로젝트 | Next.js · TypeScript |
+| [**git-redirect**](https://github.com/DongsooJung/git-redirect) | Git 프로필 커스텀 도메인 연결 | HTML · GitHub Pages |
+| [**stargate-shop-redirect**](https://github.com/DongsooJung/stargate-shop-redirect) | 쇼핑몰 도메인 리디렉션 | HTML · GitHub Pages |
+| [**stargate.github.io**](https://github.com/DongsooJung/stargate.github.io) | Stargate 포털 공개본 | HTML · GitHub Pages |
+| [**-stargate**](https://github.com/DongsooJung/-stargate) | 초기 Stargate 홈페이지 | HTML |
+| [**vercel**](https://github.com/DongsooJung/vercel) | Stargate Vercel 실험 저장소 | Vercel |
+
+---
+
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=DongsooJung&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="165" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DongsooJung&layout=compact&theme=tokyonight&hide_border=true" height="165" />
+  <img src="https://github-readme-stats.vercel.app/api?username=DongsooJung&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="165" alt="DongsooJung GitHub statistics" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DongsooJung&layout=compact&theme=tokyonight&hide_border=true" height="165" alt="DongsooJung top languages" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=DongsooJung&theme=tokyonight&hide_border=true" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=DongsooJung&theme=tokyonight&hide_border=true" alt="DongsooJung contribution streak" />
 </p>
 
 ---
@@ -86,7 +148,7 @@
 
 | | |
 |---|---|
-| **주식회사 별의문** | AI 소프트웨어 기업 · [stargateedu.co.kr](https://stargateedu.co.kr) |
+| **주식회사 별의문** | AI 소프트웨어 기업 · [stargateedu.co.kr](https://stargateedu.co.kr/) |
 | **대치동 수학/KOI** | 정보올림피아드 · 경시대회 · 알고리즘 전문 강의 |
 | **SNU Smart City Lab** | 건설환경공학부 스마트도시공학 연구 |
 
