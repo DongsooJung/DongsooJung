@@ -61,13 +61,13 @@
 
 | 프로젝트 | 분석 내용 | 소스 | 바로가기 |
 |---|---|---|---|
-| **법원경매 부동산 2026** | 주택·상업용 경매 물건 탐색과 엑셀 산출물 | [법원경매 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/court-auction) | [실행](https://stargateedu.co.kr/court-auction/) |
-| **월간 거시경제** | 환율·한국은행 기준금리·소비자물가 추이 | [거시경제 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/exchange-rate) | [실행](https://stargateedu.co.kr/exchange-rate/) |
-| **국가별 수출입실적** | 관세청 월별 무역 데이터와 국가별 비교 | [무역 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/trade) | [실행](https://stargateedu.co.kr/trade/) |
-| **방한 관광객** | 중국·대만·베트남 관광객 시계열 | [관광 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/korea-tourism) | [실행](https://stargateedu.co.kr/korea-tourism/) |
-| **오픈다트 상위 100** | 상위 기업 분기 실적 탐색 | [오픈다트 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/dart-top100) | [실행](https://stargateedu.co.kr/dart-top100/) |
-| **밟은 도시** | 방문 도시와 발자취 인터랙티브 지도 | [도시 지도 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/cities) | [실행](https://stargateedu.co.kr/cities/) |
-| **크몽 리서치** | 크몽 거래액·재무성과 분석 | [크몽 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/kmong-research) | [실행](https://stargateedu.co.kr/kmong-research/) |
+| [**법원경매 부동산 2026**](https://stargateedu.co.kr/court-auction/) | 주택·상업용 경매 물건 탐색과 엑셀 산출물 | [법원경매 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/court-auction) | [실행](https://stargateedu.co.kr/court-auction/) |
+| [**월간 거시경제**](https://stargateedu.co.kr/exchange-rate/) | 환율·한국은행 기준금리·소비자물가 추이 | [거시경제 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/exchange-rate) | [실행](https://stargateedu.co.kr/exchange-rate/) |
+| [**국가별 수출입실적**](https://stargateedu.co.kr/trade/) | 관세청 월별 무역 데이터와 국가별 비교 | [무역 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/trade) | [실행](https://stargateedu.co.kr/trade/) |
+| [**방한 관광객**](https://stargateedu.co.kr/korea-tourism/) | 중국·대만·베트남 관광객 시계열 | [관광 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/korea-tourism) | [실행](https://stargateedu.co.kr/korea-tourism/) |
+| [**오픈다트 상위 100**](https://stargateedu.co.kr/dart-top100/) | 상위 기업 분기 실적 탐색 | [오픈다트 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/dart-top100) | [실행](https://stargateedu.co.kr/dart-top100/) |
+| [**밟은 도시**](https://stargateedu.co.kr/cities/) | 방문 도시와 발자취 인터랙티브 지도 | [도시 지도 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/cities) | [실행](https://stargateedu.co.kr/cities/) |
+| [**크몽 리서치**](https://stargateedu.co.kr/kmong-research/) | 크몽 거래액·재무성과 분석 | [크몽 소스](https://github.com/DongsooJung/dongsoojung.github.io/tree/main/kmong-research) | [실행](https://stargateedu.co.kr/kmong-research/) |
 | [**디지털 자산 아틀라스**](https://github.com/DongsooJung/digital-asset-atlas) | 디지털 자산 지형도 Observatory | HTML | [저장소](https://github.com/DongsooJung/digital-asset-atlas) |
 | [**스타게이트 비주얼**](https://github.com/DongsooJung/stargate-visual) | 공간계량·부동산·교육 시각화 아카이브 | HTML · D3 · Plotly | [실행](https://stargateedu.co.kr/stargate-visual/) |
 | [**시각화 대시보드**](https://github.com/DongsooJung/viz-dashboard) | React 기반 지역분석 시각화 실험 | React · TypeScript · Vite | [실행](https://stargateedu.co.kr/viz-dashboard/) |
