@@ -15,10 +15,12 @@ API 키 없이 **샘플 데이터**로 바로 실행됩니다. 실 API를 쓰려
 
 ```bash
 cp .env.example .env
-# DATA_GO_KR_KEY / MOLIT_API_KEY / DART_API_KEY / BOK_ECOS_KEY 입력
+# DATA_GO_KR_KEY / MOLIT_API_KEY / DART_API_KEY / BOK_ECOS_KEY / ANTHROPIC_API_KEY 입력
 ```
 
 사이드바에서 **샘플 데이터 사용** 토글을 끄면 `.env` 키로 실호출을 시도하고, 실패 시 샘플로 폴백합니다.
+
+> **보안:** `.env`는 gitignore 대상입니다. `ANTHROPIC_API_KEY` 등 실제 키는 절대 커밋·PR·채팅에 올리지 마세요.
 
 ## 탭 구성
 
@@ -51,9 +53,10 @@ korea-data-hub/
 
 ## Cursor / Claude 연동
 
-1. `.env`에 API 키 설정
-2. (선택) `.cursor/mcp.json`에 MCP 서버로 클라이언트 래핑
-3. Agent에게 "강남 경매 물건 요약해줘" / "USD 환율 추이 차트 수정" 등 요청
+1. `.env`에 API 키 설정 (`cp .env.example .env`)
+2. Anthropic 키는 `ANTHROPIC_API_KEY=` 에만 저장 (gitignore)
+3. Cloud Agent는 [cursor.com/agents](https://cursor.com/agents) → Environment Secrets에 동일 키를 등록
+4. Agent에게 "강남 경매 물건 요약해줘" / "USD 환율 추이 차트 수정" 등 요청
 
 ## 테스트
 
