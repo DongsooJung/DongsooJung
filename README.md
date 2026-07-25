@@ -6,7 +6,6 @@
 [![Git](https://img.shields.io/badge/Git-git.stargateedu.co.kr-181717?style=flat-square&logo=github&logoColor=white)](https://git.stargateedu.co.kr/)
 [![Blog](https://img.shields.io/badge/Blog-blog.stargateedu.co.kr-C4A265?style=flat-square&logo=readme&logoColor=white)](https://blog.stargateedu.co.kr/)
 [![Shop](https://img.shields.io/badge/Shop-shop.stargateedu.co.kr-FF8A3D?style=flat-square&logo=shopify&logoColor=white)](https://shop.stargateedu.co.kr/)
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FDongsooJung&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visitors&edge_flat=false)](https://github.com/DongsooJung)
 
 ---
 
@@ -57,7 +56,10 @@
 
 ---
 
-### 📊 데이터·대시보드 프로젝트
+<details>
+<summary><strong>📊 데이터·대시보드 프로젝트 10개 보기</strong></summary>
+
+<br>
 
 | 프로젝트 | 분석 내용 | 소스 | 바로가기 |
 |---|---|---|---|
@@ -72,9 +74,14 @@
 | [**스타게이트 비주얼**](https://github.com/DongsooJung/stargate-visual) | 공간계량·부동산·교육 시각화 아카이브 | HTML · D3 · Plotly | [실행](https://stargateedu.co.kr/stargate-visual/) |
 | [**시각화 대시보드**](https://github.com/DongsooJung/viz-dashboard) | React 기반 지역분석 시각화 실험 | React · TypeScript · Vite | [실행](https://stargateedu.co.kr/viz-dashboard/) |
 
+</details>
+
 ---
 
-### 🌐 스타게이트 웹·교육
+<details>
+<summary><strong>🌐 스타게이트 웹·교육 프로젝트 8개 보기</strong></summary>
+
+<br>
 
 | 저장소 | 역할 | 주요 기술 |
 |---|---|---|
@@ -89,9 +96,14 @@
 
 > 통합·미러 구조와 독립 repo 관계는 [Repository Consolidation](repos/README.md) 및 [아카이브 안내](ARCHIVED_REPOS.md)에 정리되어 있습니다.
 
+</details>
+
 ---
 
-### 🔬 연구 — 공간계량·도시분석
+<details>
+<summary><strong>🔬 공간계량·도시분석 연구 6개 보기</strong></summary>
+
+<br>
 
 | 저장소·패키지 | 분야 | 방법론 |
 |---|---|---|
@@ -113,9 +125,14 @@
 **주요 연구 프로젝트:**  
 수원 군공항 종전부지 미래전략 · 김포 스마트재생 예비타당성조사(KDI) · 부천 역세권 종합운동장 개발
 
+</details>
+
 ---
 
-### 🧪 AI 앱·실험·유틸리티
+<details>
+<summary><strong>🧪 AI 앱·실험·유틸리티 9개 보기</strong></summary>
+
+<br>
 
 | 저장소 | 상태·용도 | 기술 |
 |---|---|---|
@@ -129,17 +146,18 @@
 | [**스타게이트 초기 홈페이지**](https://github.com/DongsooJung/-stargate) | 초기 Stargate 홈페이지 | HTML |
 | [**스타게이트 버셀랩**](https://github.com/DongsooJung/vercel) | Stargate Vercel 실험 저장소 | Vercel |
 
+</details>
+
 ---
 
-### 📊 GitHub 통계
+### 📊 GitHub 활동
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=DongsooJung&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="165" alt="DongsooJung GitHub statistics" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DongsooJung&layout=compact&theme=tokyonight&hide_border=true" height="165" alt="DongsooJung top languages" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=DongsooJung&theme=tokyonight&hide_border=true" alt="DongsooJung contribution streak" />
+  <a href="https://github.com/DongsooJung?tab=repositories">전체 저장소</a>
+  ·
+  <a href="https://github.com/DongsooJung?tab=overview">기여 활동</a>
+  ·
+  <a href="https://github.com/DongsooJung?tab=stars">Stars</a>
 </p>
 
 ---
