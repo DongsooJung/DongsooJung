@@ -10,6 +10,7 @@
 | [`dongsoojung-github-io/`](dongsoojung-github-io/) | 메인 포털 (`www.stargateedu.co.kr`) | `dongsoojung.github.io` |
 | [`stargateedu-lp/`](stargateedu-lp/) | LP 랜딩 (`lp.stargateedu.co.kr`) | `stargate-lp` |
 | [`stargate-main-sites/`](stargate-main-sites/) | blog/shop + shared nav | `stargate-blog`, `stargate-shop` |
+| [`stargate-blog-hub/`](stargate-blog-hub/) | 다채널 RSS 스크리닝 허브 (`blog.stargateedu.co.kr`) | `stargate-blog-hub` |
 
 ## 미러 브랜치 (배포용)
 
@@ -23,6 +24,7 @@
 | `mirror/stargate-main` | `stargate-main` |
 | `mirror/stargate-blog` | `stargate-blog` |
 | `mirror/stargate-shop` | `stargate-shop` |
+| `mirror/stargate-blog-hub` | `stargate-blog-hub` |
 
 ```bash
 # 로컬에서 한 번에 배포 (gh auth 또는 GH_TOKEN 필요)

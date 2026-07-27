@@ -39,5 +39,6 @@ deploy_mirror stargateedu stargateedu
 deploy_mirror stargate-main stargate-main
 deploy_mirror stargate-blog stargate-blog
 deploy_mirror stargate-shop stargate-shop
+deploy_mirror stargate-blog-hub stargate-blog-hub
 
 echo "✅ 배포 완료"

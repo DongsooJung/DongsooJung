@@ -88,7 +88,7 @@
 | [**스타게이트 본사**](https://github.com/DongsooJung/stargate-main) | Stargate Corporation 본사 포털 | HTML · CSS |
 | [**스타게이트 교육**](https://github.com/DongsooJung/stargateedu) | 대치동 수학·KOI 교육 랜딩페이지 | HTML · CSS |
 | [**스타게이트 교육 쇼핑몰**](https://github.com/DongsooJung/stargateedu-shop) | KOI·KMO 온라인 스쿨 랜딩페이지 | HTML · GitHub Pages |
-| [**스타게이트 블로그 허브**](https://github.com/DongsooJung/stargate-blog-hub) | 다채널 블로그 허브 | HTML · GitHub Pages |
+| [**스타게이트 블로그 허브**](https://github.com/DongsooJung/stargate-blog-hub) | 다채널 RSS 스크리닝 허브 (네이버·티스토리·워드프레스·YouTube) | HTML · GitHub Pages |
 | [**스타게이트 블로그**](https://github.com/DongsooJung/stargate-blog) | Stargate 블로그 공개본 | HTML · CSS |
 | [**스타게이트 쇼핑몰**](https://github.com/DongsooJung/stargate-shop) | Stargate 쇼핑몰 공개본 | HTML · CSS |
 | [**스타게이트 교육 랜딩**](https://github.com/DongsooJung/stargate-lp) | 교육 브랜드 쇼핑몰 랜딩페이지 | HTML · CSS |
