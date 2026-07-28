@@ -40,6 +40,7 @@ cp "$STAGING/stargate-main/shared/"* "$STAGING/stargate-main/" 2>/dev/null || tr
 
 cp -r "$ROOT/repos/stargate-main-sites/sites/blog" "$STAGING/stargate-blog"
 cp -r "$ROOT/repos/stargate-main-sites/sites/shop" "$STAGING/stargate-shop"
+cp -r "$ROOT/repos/stargate-blog-hub" "$STAGING/stargate-blog-hub"
 
 # 작업 클론
 git clone "https://x-access-token:${TOKEN}@github.com/DongsooJung/DongsooJung.git" "$WORK/repo"
@@ -70,6 +71,8 @@ build_mirror "stargate-blog" "$STAGING/stargate-blog" \
   "mirror: stargate-blog"
 build_mirror "stargate-shop" "$STAGING/stargate-shop" \
   "mirror: stargate-shop"
+build_mirror "stargate-blog-hub" "$STAGING/stargate-blog-hub" \
+  "mirror: stargate-blog-hub (blog.stargateedu.co.kr)"
 
 git checkout main
 git push origin \
@@ -79,6 +82,7 @@ git push origin \
   mirror/stargate-main \
   mirror/stargate-blog \
   mirror/stargate-shop \
+  mirror/stargate-blog-hub \
   --force
 
 echo "✅ mirror branches pushed"
