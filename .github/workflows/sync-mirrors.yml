@@ -30,6 +30,7 @@ jobs:
           ./scripts/sync-mirrors.sh
 
       - name: Try cross-repo deploy
+        if: success() || failure()
         env:
           GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
         run: |

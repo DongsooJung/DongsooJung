@@ -75,14 +75,39 @@ build_mirror "stargate-blog-hub" "$STAGING/stargate-blog-hub" \
   "mirror: stargate-blog-hub (blog.stargateedu.co.kr)"
 
 git checkout main
-git push origin \
-  mirror/ds-research-urban-analytics \
-  mirror/dongsoojung-github-io \
-  mirror/stargateedu \
-  mirror/stargate-main \
-  mirror/stargate-blog \
-  mirror/stargate-shop \
-  mirror/stargate-blog-hub \
-  --force
 
-echo "✅ mirror branches pushed"
+MIRRORS=(
+  mirror/ds-research-urban-analytics
+  mirror/dongsoojung-github-io
+  mirror/stargateedu
+  mirror/stargate-main
+  mirror/stargate-blog
+  mirror/stargate-shop
+  mirror/stargate-blog-hub
+)
+
+PUSH_FAILED=0
+HUB_FAILED=0
+for ref in "${MIRRORS[@]}"; do
+  echo "▶ pushing $ref"
+  if git push origin "$ref" --force; then
+    echo "✅ $ref pushed"
+  else
+    echo "⚠️  $ref push failed (continuing)"
+    PUSH_FAILED=1
+    if [[ "$ref" == "mirror/stargate-blog-hub" ]]; then
+      HUB_FAILED=1
+    fi
+  fi
+done
+
+if [[ "$HUB_FAILED" -ne 0 ]]; then
+  echo "❌ mirror/stargate-blog-hub push failed"
+  exit 1
+fi
+
+if [[ "$PUSH_FAILED" -ne 0 ]]; then
+  echo "⚠️  some mirror pushes failed (blog-hub OK)"
+else
+  echo "✅ all mirror branches pushed"
+fi
