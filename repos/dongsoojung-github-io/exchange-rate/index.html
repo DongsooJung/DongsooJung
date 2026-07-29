@@ -1,0 +1,1577 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>거시경제 대시보드 — 환율 · 금리 · 물가 · 비트코인 · 한미 금리차 · 반도체 · 원자재 | Stargate</title>
+<meta name="description" content="환율·금리·물가, 비트코인 월별 시세, 지난 30년 한미 단기금리 차와 DRAM·유가·금·구리·천연가스의 연간 가격을 집계·분석하는 자동 갱신 대시보드.">
+<meta property="og:title" content="거시경제 대시보드 — 환율 · 금리 · 물가 · 비트코인 · 한미 금리차 · 반도체 · 원자재">
+<meta property="og:description" content="환율·금리·물가, 비트코인, 30년 한미 금리차와 DRAM·유가·금·구리·천연가스를 한 화면에서 비교하는 인터랙티브 대시보드">
+<meta property="og:url" content="https://www.stargateedu.co.kr/exchange-rate/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://www.stargateedu.co.kr/exchange-rate/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%B1%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0a0d14; --panel:#0f172a; --panel2:#111c33;
+  --line:#1f2a44; --line2:#263452;
+  --ink:#e6edf3; --sub:#9aa7b8; --muted:#6b7a90;
+  --acc:#7aa2ff;
+  --grid:#1c2740; --baseline:#2b3a5e;
+  --delta-up:#2fb457; --delta-down:#e66767;
+  --grad1:linear-gradient(135deg,#4f7fff 0%,#7aa2ff 55%,#b388ff 100%);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Pretendard","Apple SD Gothic Neo","Segoe UI",system-ui,-apple-system,sans-serif;
+  color:var(--ink); background:var(--bg); line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1000px 600px at 10% -10%, rgba(79,127,255,.15), transparent 60%),
+    radial-gradient(800px 500px at 100% 0%, rgba(179,136,255,.10), transparent 60%);
+  background-attachment:fixed;
+}
+a{color:var(--acc);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 22px 90px}
+
+.nav{display:flex;justify-content:space-between;align-items:center;padding:6px 2px 0;font-size:13px}
+.nav .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.nav .brand .logo{width:30px;height:30px;border-radius:8px;background:var(--grad1);
+  display:inline-flex;align-items:center;justify-content:center;color:#0b1020;font-weight:900;font-size:14px}
+.nav .links a{color:var(--sub)} .nav .links a:hover{color:var(--ink)}
+
+header.head{padding:34px 0 6px}
+header.head h1{margin:0;font-size:30px;letter-spacing:-.4px;line-height:1.2}
+header.head h1 .grad{background:var(--grad1);-webkit-background-clip:text;background-clip:text;color:transparent}
+header.head .lead{color:var(--sub);font-size:14px;margin:8px 0 0;max-width:74ch}
+.meta-line{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--muted)}
+.meta-line .pill{border:1px solid var(--line2);background:var(--panel);border-radius:999px;padding:4px 10px}
+.meta-line .pill b{color:var(--sub);font-weight:600}
+.refresh-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px}
+.refresh-data{border:1px solid transparent;background:var(--grad1);color:#0b1020;border-radius:10px;
+  padding:9px 15px;font:700 13px inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.15s}
+.refresh-data:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.refresh-data:disabled{opacity:.65;cursor:wait;transform:none}
+.refresh-data.loading .refresh-mark{animation:spin .8s linear infinite}
+.refresh-status{font-size:12px;color:var(--muted)}
+.refresh-status.ok{color:#75cf91}.refresh-status.error{color:#ef8b8b}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.controls{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;margin:22px 0 16px}
+.fgroup{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fgroup .lbl{font-size:12px;color:var(--muted);margin-right:2px}
+.fbtn{border:1px solid var(--line2);background:var(--panel);color:var(--sub);
+  padding:7px 14px;border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit;transition:.15s;
+  display:inline-flex;align-items:center;gap:7px}
+.fbtn:hover{color:var(--ink);border-color:var(--acc)}
+.fbtn[aria-pressed="true"]{background:var(--grad1);color:#0b1020;border-color:transparent;font-weight:700}
+.fbtn .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.range-panel{width:100%;border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),var(--panel));
+  border-radius:14px;padding:14px 16px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin:0 0 16px}
+.range-panel .lbl{font-size:12px;color:var(--muted)}
+.range-panel select,.year-select{
+  border:1px solid var(--line2);background:var(--bg);color:var(--ink);border-radius:10px;
+  padding:8px 12px;font:inherit;font-size:13px;min-width:96px}
+.range-panel select:focus,.year-select:focus{outline:none;border-color:var(--acc)}
+.range-actions{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.dl-primary{border:1px solid transparent;background:var(--grad1);color:#0b1020;border-radius:10px;
+  padding:9px 14px;font:700 13px inherit;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.dl-primary:hover{filter:brightness(1.08)}
+.range-hint{width:100%;font-size:12px;color:var(--muted);margin:0}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),var(--panel));
+  border-radius:14px;padding:16px 18px 14px;min-width:0}
+.tile .lb{font-size:12.5px;color:var(--sub);display:flex;align-items:center;gap:7px}
+.tile .lb .key{width:12px;height:3px;border-radius:2px;display:inline-block}
+.tile .val{font-size:26px;font-weight:750;letter-spacing:-.4px;margin:5px 0 1px;white-space:nowrap}
+.tile .val small{font-size:12.5px;font-weight:500;color:var(--muted);margin-left:3px}
+.tile .delta{font-size:12px;color:var(--muted);white-space:nowrap}
+.tile .delta b{font-weight:700}
+.tile .delta .up{color:var(--delta-up)} .tile .delta .down{color:var(--delta-down)}
+.tile .spark{margin-top:9px;display:block;width:100%;height:30px}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.card{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),var(--panel));
+  border-radius:16px;padding:18px 18px 14px;min-width:0}
+.card.full{grid-column:1 / -1}
+.card h2{margin:0;font-size:15.5px;letter-spacing:-.2px}
+.card .cap{color:var(--muted);font-size:12px;margin:3px 0 12px}
+.chart-box{position:relative;height:380px}
+.card.half .chart-box{height:300px}
+
+.thead-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.dl{border:1px solid var(--line2);background:var(--panel);color:var(--sub);border-radius:9px;
+  padding:7px 13px;font-size:12.5px;cursor:pointer;font-family:inherit}
+.dl:hover{color:var(--ink);border-color:var(--acc)}
+.tbl-scroll{overflow-x:auto;margin-top:12px}
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.detail-body[hidden]{display:none!important}
+.detail-body{margin-top:4px}
+.stats-body[hidden]{display:none!important}
+.stats-body{margin-top:16px}
+.stats-summary{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.stat-chip{border:1px solid var(--line);background:rgba(10,13,20,.32);border-radius:10px;padding:11px 12px;min-width:0}
+.stat-chip .lb{display:block;color:var(--muted);font-size:11.5px;margin-bottom:3px}
+.stat-chip strong{display:block;color:var(--ink);font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat-chip small{display:block;color:var(--muted);font-size:10.5px;margin-top:2px;white-space:nowrap}
+.stats-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:12px}
+.stats-pane{border:1px solid var(--line);border-radius:12px;background:rgba(10,13,20,.22);overflow:hidden}
+.stats-pane-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:12px 14px 0}
+.stats-pane-head h3{margin:0;font-size:13.5px}
+.stats-pane-head span{color:var(--muted);font-size:11px}
+.stats-table-scroll{overflow:auto;max-height:460px;margin-top:6px}
+.stats-table-scroll table{min-width:560px}
+.stats-table-scroll thead th{position:sticky;top:0;z-index:1;background:var(--panel2)}
+.period-partial{display:inline-block;margin-left:5px;padding:1px 5px;border:1px solid var(--line2);
+  border-radius:999px;color:var(--muted);font-size:9.5px;vertical-align:1px}
+.period-change.up{color:#9bb7ff} .period-change.down{color:var(--sub)}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th,td{padding:8px 12px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+th{color:var(--muted);font-weight:600;font-size:12px;border-bottom:1px solid var(--line2)}
+th:first-child,td:first-child{text-align:left}
+td{border-bottom:1px solid var(--line);color:var(--ink)}
+td .mom{font-size:11.5px;margin-left:6px;color:var(--muted)}
+td .mom.up{color:var(--delta-up)} td .mom.down{color:var(--delta-down)}
+tr:hover td{background:rgba(122,162,255,.05)}
+
+.note{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:16px 18px;
+  margin-top:14px;font-size:12.5px;color:var(--sub);line-height:1.7}
+.note b{color:var(--ink)}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);
+  font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:960px){
+  .kpis{grid-template-columns:repeat(2,1fr)} .cards{grid-template-columns:1fr}
+  .stats-summary{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stats-grid{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .kpis{grid-template-columns:1fr}
+  .stats-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  header.head h1{font-size:24px}
+  .chart-box{height:300px} .card.half .chart-box{height:260px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <div class="brand"><span class="logo">D</span><span>DONGSOO.<span style="color:var(--acc)">PORTAL</span></span></div>
+    <div class="links" style="display:flex;gap:14px">
+      <a href="/research/">← 연구 대시보드</a>
+      <a href="../">포털</a>
+    </div>
+  </nav>
+
+  <header class="head">
+    <h1>거시경제 대시보드 <span class="grad">환율 · 금리 · 물가 · 비트코인 · 반도체 · 원자재</span></h1>
+    <p class="lead">유럽중앙은행(ECB)의
+      <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank" rel="noopener">일일 기준환율</a>과 한국은행
+      <a href="https://ecos.bok.or.kr/" target="_blank" rel="noopener">ECOS 경제통계</a>의
+      기준금리·소비자물가를 집계·분석합니다. 원화 환율(USD·JPY·EUR·CNY)과
+      통화정책·물가(1999년~), <b>비트코인 월별 시세</b>, 지난 30년 한·미 단기금리 차와 DRAM·유가·금·구리·천연가스 연간 가격을 한 화면에서 보고,
+      기간 프리셋·연도 구간을 고른 뒤 CSV로 내려받을 수 있습니다. GitHub Actions가 영업일마다 자동 갱신합니다.</p>
+    <div class="meta-line">
+      <span class="pill">데이터 기준 <b id="metaUpdated">—</b></span>
+      <span class="pill">커버리지 <b id="metaRange">—</b></span>
+      <span class="pill">단위 <b>원 (월평균 매매기준율)</b></span>
+      <span class="pill" id="metaMode">—</span>
+    </div>
+    <div class="refresh-row">
+      <button class="refresh-data" id="refreshAllBtn" type="button" aria-describedby="refreshStatus">
+        <span class="refresh-mark" aria-hidden="true">↻</span><span>오늘 데이터 새로고침</span>
+      </button>
+      <span class="refresh-status" id="refreshStatus" role="status" aria-live="polite">환율·금리·물가·비트코인·시장 데이터를 최신 파일에서 다시 확인합니다.</span>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="fgroup" role="group" aria-label="통화 선택">
+      <span class="lbl">통화</span>
+      <span id="curBtns" style="display:contents"></span>
+    </div>
+  </div>
+
+  <div class="range-panel" aria-label="기간 선택">
+    <div class="fgroup" role="group" aria-label="기간 프리셋">
+      <span class="lbl">기간</span>
+      <button class="fbtn" data-range="all" aria-pressed="true">전체</button>
+      <button class="fbtn" data-range="last12" aria-pressed="false">최근 1년</button>
+      <button class="fbtn" data-range="last5y" aria-pressed="false">최근 5년</button>
+      <button class="fbtn" data-range="last10y" aria-pressed="false">최근 10년</button>
+      <button class="fbtn" data-range="last20y" aria-pressed="false">최근 20년</button>
+    </div>
+    <div class="fgroup" aria-label="연도 구간 선택">
+      <span class="lbl">시작</span>
+      <select id="fromYear" class="year-select" aria-label="시작 연도"></select>
+      <span class="lbl">종료</span>
+      <select id="toYear" class="year-select" aria-label="종료 연도"></select>
+      <button class="fbtn" id="applyYearRange" type="button">구간 적용</button>
+    </div>
+    <div class="fgroup" role="group" aria-label="연도 바로가기" id="yearQuick" style="display:contents"></div>
+    <div class="range-actions">
+      <button class="dl" id="downloadFxBtn" type="button">⬇ 환율 CSV</button>
+      <button class="dl" id="downloadMacroBtn" type="button">⬇ 금리·물가 CSV</button>
+      <button class="dl-primary" id="downloadAllBtn" type="button">⬇ 선택 기간 전체 다운로드</button>
+    </div>
+    <p class="range-hint" id="rangeHint">커버리지 로딩 중…</p>
+  </div>
+
+  <section class="kpis" id="kpis" aria-label="핵심 지표"></section>
+
+  <section class="cards">
+    <div class="card full">
+      <h2 id="mainTitle">월평균 매매기준율</h2>
+      <div class="cap" id="mainCap">월평균 라인과 월중 최저–최고 변동밴드</div>
+      <div class="chart-box"><canvas id="mainChart" role="img" aria-label="선택 통화의 월평균 매매기준율과 월중 최저·최고 변동밴드. 동일한 값은 아래 표에서 확인할 수 있습니다."></canvas></div>
+    </div>
+
+    <div class="card half">
+      <h2>통화별 상대강도 지수</h2>
+      <div class="cap">표시 기간 첫 달 = 100 기준 리베이스 · 원화 대비 통화 가치</div>
+      <div class="chart-box"><canvas id="idxChart" role="img" aria-label="통화별 리베이스 지수 선 그래프"></canvas></div>
+    </div>
+
+    <div class="card half">
+      <h2 id="momTitle">전월 대비 증감률</h2>
+      <div class="cap">선택 통화 월평균의 전월비(%) · 원화 약세(＋)·강세(－)</div>
+      <div class="chart-box"><canvas id="momChart" role="img" aria-label="선택 통화 전월비 증감률 막대 그래프"></canvas></div>
+    </div>
+
+    <div class="sec-divider" style="grid-column:1/-1;margin-top:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+      <h2 style="font-size:19px;margin:0">거시 지표 · 금리 &amp; 물가</h2>
+      <span class="cap" style="margin:0">한국은행 ECOS 경제통계 — 기준금리와 소비자물가 상승률(전년동월비)</span>
+    </div>
+
+    <section class="kpis" id="macroKpis" style="grid-column:1/-1" aria-label="금리·물가 지표"></section>
+
+    <div class="card full">
+      <h2>기준금리 vs 소비자물가 상승률</h2>
+      <div class="cap">월별 · 한국은행 기준금리(%)와 소비자물가 전년동월비(%) — 좌축 · 소비자물가지수(2020=100) — 우축</div>
+      <div class="chart-box"><canvas id="macroChart" role="img" aria-label="한국은행 기준금리와 소비자물가 상승률, 소비자물가지수의 월별 추이 선 그래프. 동일한 값은 아래 표에서 확인할 수 있습니다."></canvas></div>
+    </div>
+
+    <div class="sec-divider" style="grid-column:1/-1;margin-top:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+      <h2 style="font-size:19px;margin:0">디지털 자산 · 비트코인</h2>
+      <span class="cap" style="margin:0">Binance BTC/USDT 월봉 · 월평균=(고가+저가)/2 · 상단 기간 필터 연동</span>
+    </div>
+
+    <section class="kpis" id="btcKpis" style="grid-column:1/-1" aria-label="비트코인 월간 지표"></section>
+
+    <div class="card full">
+      <div class="thead-row">
+        <div>
+          <h2>비트코인 월별 시세 (USD)</h2>
+          <div class="cap" style="margin-bottom:0">월평균 라인과 월중 최저–최고 변동밴드 · BTC/USDT</div>
+        </div>
+        <button class="dl" id="btcCsvBtn" type="button">⬇ 월간 CSV</button>
+      </div>
+      <div class="chart-box"><canvas id="btcChart" role="img" aria-label="비트코인 월평균 시세와 월중 최저·최고 변동밴드 선 그래프"></canvas></div>
+    </div>
+
+    <div class="sec-divider" style="grid-column:1/-1;margin-top:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+      <h2 style="font-size:19px;margin:0">산업·에너지 가격 · DRAM &amp; 유가</h2>
+      <span class="cap" style="margin:0">연간 평균 · DRAM 최저 소매가격(USD/GB)과 브렌트유 현물가격(USD/배럴)</span>
+    </div>
+
+    <section class="kpis" id="marketKpis" style="grid-column:1/-1" aria-label="DRAM·유가 연간 지표"></section>
+
+    <div class="card full">
+      <div class="thead-row">
+        <div>
+          <h2>DRAM 가격 vs 브렌트유 연간 시계열</h2>
+          <div class="cap" style="margin-bottom:0">연평균 · 당해연도는 최근 관측일까지의 YTD 평균</div>
+        </div>
+        <button class="dl" id="marketCsvBtn">⬇ 연간 CSV</button>
+      </div>
+      <div class="chart-box"><canvas id="marketChart" role="img" aria-label="DRAM 최저 소비자 소매가격과 브렌트유 현물가격의 연간 평균 추이 선 그래프"></canvas></div>
+    </div>
+
+    <div class="sec-divider" style="grid-column:1/-1;margin-top:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+      <h2 style="font-size:19px;margin:0">글로벌 원자재 · 금 · 구리 · 천연가스</h2>
+      <span class="cap" style="margin:0" id="commoditySectionCap">세계은행 Pink Sheet 월별 가격의 연평균 · 기준연도=100 비교지수</span>
+    </div>
+
+    <section class="kpis" id="commodityKpis" style="grid-column:1/-1" aria-label="금·구리·천연가스 연간 지표"></section>
+
+    <div class="card full">
+      <h2>금·구리·천연가스 연간 가격지수</h2>
+      <div class="cap" id="commodityChartCap">기준 연도 연평균=100 · 단위가 다른 세 원자재의 방향과 변동폭 비교</div>
+      <div class="chart-box"><canvas id="commodityChart" role="img" aria-label="금, 구리, 미국 천연가스의 기준 연도 대비 연간 가격지수 선 그래프"></canvas></div>
+    </div>
+
+    <div class="card full">
+      <h2>한·미 단기금리 차 · 30년</h2>
+      <div class="cap">월별 · 한국 콜머니·은행간 익일물 금리 − 미국 실효 연방기금금리 · 0선 위는 한국 금리가 높음 · 상단 기간 필터 연동</div>
+      <div class="chart-box"><canvas id="rateGapChart" role="img" aria-label="지난 30년간 한국 콜머니·은행간 익일물 금리와 미국 실효 연방기금금리, 한국에서 미국을 뺀 금리차의 월별 시계열 선 그래프"></canvas></div>
+    </div>
+
+    <div class="card full" id="usdStatsCard">
+      <div class="thead-row">
+        <div>
+          <h2>원·달러 환율 기초 통계</h2>
+          <div class="cap" id="usdStatsCap" style="margin-bottom:0">USD/KRW 분기·연간 집계 · 상단 기간 필터 연동</div>
+        </div>
+        <button class="dl" id="toggleUsdStatsBtn" type="button" aria-expanded="true" aria-controls="usdStatsBody">▴ 통계표 숨기기</button>
+      </div>
+      <div class="stats-body" id="usdStatsBody">
+        <div class="stats-summary" id="usdStatsSummary" aria-label="선택 기간 원달러 기초 통계"></div>
+        <div class="stats-grid">
+          <section class="stats-pane" aria-labelledby="quarterStatsTitle">
+            <div class="stats-pane-head">
+              <h3 id="quarterStatsTitle">분기별 원·달러 환율</h3>
+              <span id="quarterStatsCount"></span>
+            </div>
+            <div class="stats-table-scroll">
+              <table aria-label="분기별 원달러 환율 가중평균과 최저 최고 표">
+                <thead>
+                  <tr><th>분기</th><th>가중 평균</th><th>최저</th><th>최고</th><th>전분기 대비</th><th>관측일</th></tr>
+                </thead>
+                <tbody id="quarterStatsBody"></tbody>
+              </table>
+            </div>
+          </section>
+          <section class="stats-pane" aria-labelledby="annualStatsTitle">
+            <div class="stats-pane-head">
+              <h3 id="annualStatsTitle">연도별 원·달러 환율</h3>
+              <span id="annualStatsCount"></span>
+            </div>
+            <div class="stats-table-scroll">
+              <table aria-label="연도별 원달러 환율 가중평균과 최저 최고 표">
+                <thead>
+                  <tr><th>연도</th><th>가중 평균</th><th>최저</th><th>최고</th><th>전년 대비</th><th>관측일</th></tr>
+                </thead>
+                <tbody id="annualStatsBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div class="card full" id="detailCard">
+      <div class="thead-row">
+        <div>
+          <h2>월별 상세 데이터</h2>
+          <div class="cap" style="margin-bottom:0">통화별 월평균 매매기준율 · 괄호는 선택 통화 전월비 · 기준금리/물가는 우측 열</div>
+        </div>
+        <div class="detail-actions">
+          <button class="dl" id="toggleDetailBtn" type="button" aria-expanded="false" aria-controls="detailBody">▾ 상세 데이터 보기</button>
+          <button class="dl" id="csvBtn" type="button">⬇ CSV 다운로드</button>
+        </div>
+      </div>
+      <div class="detail-body" id="detailBody" hidden>
+        <div class="tbl-scroll">
+          <table id="dataTable" aria-label="월별 통화별 월평균 매매기준율 표">
+            <thead><tr id="tblHead"></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="note">
+    <b>데이터 출처 및 갱신</b> — 유럽중앙은행(ECB)
+    <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank" rel="noopener">일일 기준환율</a>을
+    Frankfurter API로 수집해 통화별 원화 교차환율과 월평균·월최저·월최고를 계산합니다.
+    GitHub Actions가 영업일마다 <code>data.json</code>을 갱신합니다. 인증키와 국내 PC 설치가 필요하지 않습니다.
+    USD·EUR·CNY는 <b>1단위당</b>, 엔(JPY)은 <b>100엔당</b> 원화이며 시장의 초단기 체결가가 아닌 공식 일일 기준환율입니다.
+    <br><br>
+    <b>금리 · 물가</b> — 한국은행 <a href="https://ecos.bok.or.kr/" target="_blank" rel="noopener">ECOS 경제통계시스템 API</a>에서
+    <b>한국은행 기준금리</b>(통계표 722Y001)와 <b>소비자물가지수</b>(901Y009, 2020=100)를 월별로 수집하며,
+    물가상승률은 소비자물가지수의 전년동월비(YoY)입니다. <code>BOK_API_KEY</code> 등록 시 근사 시드가 ECOS 정밀치로 대체됩니다.
+    <br><br>
+    <b>한·미 금리차</b> — 장기 비교가 가능한 동일 계열의 익일물 단기금리를 사용합니다.
+    한국은 OECD/FRED의 <a href="https://fred.stlouisfed.org/series/IRSTCI01KRM156N" target="_blank" rel="noopener">콜머니·은행간 익일물 금리</a>,
+    미국은 연준 H.15/FRED의 <a href="https://fred.stlouisfed.org/series/FEDFUNDS" target="_blank" rel="noopener">실효 연방기금금리</a>이며 모두 월평균입니다.
+    금리차는 <b>한국 − 미국</b>(%p)으로 계산합니다. 한국의 <a href="https://www.bok.or.kr/portal/singl/baseRate/list.do?menuNo=200656" target="_blank" rel="noopener">공식 기준금리 이력</a>은 1999년 5월부터이므로,
+    30년 비교 차트에는 정책금리와 가장 가까운 비교 가능한 익일물 금리를 사용합니다.
+    설정 방법은 <a href="https://github.com/DongsooJung/dongsoojung.github.io/tree/main/exchange-rate" target="_blank" rel="noopener">README</a> 참고.
+    <br><br>
+    <b>DRAM · 유가</b> — DRAM은 Stanford DAM의 공개 Memory Prices CSV를 이용한 <b>최저 소비자 소매가격(USD/GB)</b> 연평균이며,
+    반도체 업체 간 계약가격이나 TrendForce 현물가격과는 정의가 다릅니다. 브렌트유는 FRED의
+    <a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank" rel="noopener">DCOILBRENTEU</a>(원출처: U.S. EIA) 일일 현물가격을 연평균했습니다.
+    두 데이터는 인증키 없이 자동 갱신됩니다.
+    <br><br>
+    <b>금 · 구리 · 천연가스</b> — 세계은행
+    <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">Commodity Price Data (Pink Sheet)</a>의
+    금(USD/트로이온스), 구리(USD/톤), 미국 천연가스(USD/MMBtu) 월별 가격을 연평균하고
+    <b>1999년=100</b> 지수로 비교합니다. 당해연도는 최근 발표 월까지의 YTD 평균입니다.
+    <br><br>
+    <b>비트코인</b> — Binance Vision 공개 API의
+    <a href="https://data-api.binance.vision/" target="_blank" rel="noopener">BTCUSDT 월봉</a>을 사용합니다.
+    월평균은 <b>(고가+저가)/2</b>이며, 밴드의 상·하단은 해당 월의 고가·저가입니다. 당월은 진행 중(YTD) 값입니다.
+  </div>
+
+  <footer>
+    <span>© 2026 Dongsoo Jung · Stargate Corporation</span>
+    <span>
+      <a href="https://www.stargateedu.co.kr/">stargateedu.co.kr</a> ·
+      <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank" rel="noopener">ECB 기준환율</a> ·
+      <a href="https://ecos.bok.or.kr/" target="_blank" rel="noopener">한국은행 ECOS</a> ·
+      <a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener">FRED</a>
+    </span>
+  </footer>
+
+</div>
+
+<script src="./chart.umd.min.js"></script>
+<script src="./fallback-data.js"></script>
+<script src="./bok-fallback.js"></script>
+<script src="./market-fallback.js"></script>
+<script src="./rate-gap-fallback.js"></script>
+<script src="./bitcoin-fallback.js"></script>
+<script>
+'use strict';
+
+/* ─── 상수 ─────────────────────────────────────────── */
+const SURFACE = '#111c33';
+const INK='#e6edf3', SUB='#9aa7b8', MUTED='#6b7a90', GRID='#1c2740', BASELINE='#2b3a5e';
+const UP='#2fb457', DOWN='#e66767';
+const FONT = { family:'"Pretendard","Apple SD Gothic Neo","Segoe UI",system-ui,sans-serif' };
+
+const fmt = (n,d=2) => n==null ? '—' : n.toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtPct = n => n==null ? '—' : `${n>=0?'+':''}${n.toLocaleString('ko-KR',{maximumFractionDigits:2})}%`;
+const ymLabel = ym => { const [y,m]=ym.split('-'); return `${y.slice(2)}.${+m}`; };
+const ymKorean = ym => { const [y,m]=ym.split('-'); return `${y}년 ${+m}월`; };
+const hexA = (hex,a) => { const n=parseInt(hex.slice(1),16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; };
+
+Chart.defaults.font.family = FONT.family;
+Chart.defaults.font.size = 11.5;
+Chart.defaults.color = MUTED;
+
+/* 크로스헤어 */
+const crosshair = {
+  id:'crosshair',
+  afterDraw(chart){
+    const t = chart.tooltip;
+    if (!t || !t.getActiveElements().length) return;
+    const x = t.getActiveElements()[0].element.x;
+    const {top,bottom} = chart.chartArea, ctx = chart.ctx;
+    ctx.save();
+    ctx.strokeStyle = BASELINE; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom); ctx.stroke();
+    ctx.restore();
+  }
+};
+
+/* 지수 차트 라인 끝 직접 레이블 */
+const endLabels = {
+  id:'endLabels',
+  afterDatasetsDraw(chart){
+    if (!chart.$endLabels) return;
+    const ctx = chart.ctx, placed = [];
+    chart.data.datasets.forEach((ds,i)=>{
+      if (ds.$noLabel || !chart.isDatasetVisible(i)) return;
+      const meta = chart.getDatasetMeta(i);
+      let last = null;
+      for (let p = meta.data.length-1; p>=0; p--){ if (ds.data[p]!=null){ last = meta.data[p]; break; } }
+      if (!last) return;
+      let y = last.y;
+      for (const py of placed){ if (Math.abs(y-py) < 14) y = py + (y>=py?14:-14); }
+      placed.push(y);
+      ctx.save();
+      ctx.font = `600 11px ${FONT.family}`;
+      ctx.fillStyle = ds.$labelColor || ds.borderColor;
+      ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.fillText(ds.$labelText || ds.label, Math.min(last.x+8, chart.chartArea.right+6), y);
+      ctx.restore();
+    });
+  }
+};
+
+const tooltipStyle = {
+  backgroundColor:'#0d1526', borderColor:BASELINE, borderWidth:1,
+  titleColor:SUB, bodyColor:INK, padding:11, cornerRadius:9,
+  titleFont:{size:11.5, weight:'600'}, bodyFont:{size:12.5, weight:'650'},
+  boxWidth:12, boxHeight:2, boxPadding:5, usePointStyle:false, displayColors:true,
+};
+const legendStyle = {
+  position:'top', align:'end',
+  labels:{ color:SUB, boxWidth:14, boxHeight:2, padding:16, font:{size:12} }
+};
+
+/* ─── 상태 & 데이터 ─────────────────────────────────── */
+let DATA = null;                        // {currencies, series:[{ym,days,rates:{CODE:{avg,min,max}}}]}
+let CURS = [];                          // currencies 메타
+let BOK = null;                         // {meta, series:[{ym,baseRate,cpi,cpiYoY}]}
+let MACRO = {};                         // ym -> {baseRate,cpi,cpiYoY}
+let MARKET = null;                      // {series:[{year,dramUsdPerGb,brentUsdPerBbl}]}
+let RATE_GAP = null;                    // {series:[{ym,koreaRate,usRate,gap}]}
+let BTC = null;                         // {series:[{ym,usd,usdMin,usdMax}]}
+let state = { range:'all', fromYear:null, toYear:null, cur:'USD' };
+let charts = {};
+
+const MC = { base:'#e0a24e', cpi:'#5eb0e0', yoy:'#e0685e' };  // 금리·물가 색
+const MK = { dram:'#b388ff', brent:'#f2a65a', gold:'#f6c453', copper:'#d97745', gas:'#55c2a9' };
+const BTC_COLOR = '#f7931a';
+
+async function loadJSON(path, fallbackVar){
+  try{
+    const r = await fetch(path, {cache:'no-cache'});
+    if (!r.ok) throw new Error(r.status);
+    return await r.json();
+  }catch(e){
+    console.warn(`${path} 로드 실패 — 내장 폴백 사용`, e);
+    return window[fallbackVar];
+  }
+}
+const loadData = () => loadJSON('./data.json', 'FALLBACK_DATA');
+const loadBok  = () => loadJSON('./bok_data.json', 'BOK_FALLBACK');
+const loadMarket = () => loadJSON('./market_data.json', 'MARKET_FALLBACK');
+const loadRateGap = () => loadJSON('./rate_gap.json', 'RATE_GAP_FALLBACK');
+const loadBitcoin = () => loadJSON('./bitcoin_data.json', 'BITCOIN_FALLBACK');
+
+const curMeta = code => CURS.find(c=>c.code===code) || {code, label:code, per:1, color:'#7aa2ff'};
+const rateOf = (r, code, f='avg') => (r.rates && r.rates[code]) ? r.rates[code][f] : null;
+function perLabel(code){ const p=curMeta(code).per; return p>1?`${p}${code==='JPY'?'엔':''}당`:'1단위당'; }
+
+function availableYears(){
+  const years = new Set();
+  (DATA?.series || []).forEach(r => years.add(+r.ym.slice(0,4)));
+  (BOK?.series || []).forEach(r => years.add(+r.ym.slice(0,4)));
+  return [...years].sort((a,b)=>a-b);
+}
+function filterByYm(series){
+  const s = series || [];
+  if (!s.length) return s;
+  if (state.range === 'all') return s;
+  if (state.range === 'last12') return s.slice(-12);
+  if (state.range === 'last5y') return s.slice(-60);
+  if (state.range === 'last10y') return s.slice(-120);
+  if (state.range === 'last20y') return s.slice(-240);
+  if (state.range === 'custom' && state.fromYear && state.toYear){
+    const a = Math.min(state.fromYear, state.toYear);
+    const b = Math.max(state.fromYear, state.toYear);
+    return s.filter(r => {
+      const y = +r.ym.slice(0,4);
+      return y >= a && y <= b;
+    });
+  }
+  if (/^\d{4}$/.test(state.range)) return s.filter(r => r.ym.startsWith(state.range));
+  return s;
+}
+function filteredSeries(){ return filterByYm(DATA?.series || []); }
+function rangeLabel(){
+  if (state.range === 'all') return '전체';
+  if (state.range === 'last12') return '최근1년';
+  if (state.range === 'last5y') return '최근5년';
+  if (state.range === 'last10y') return '최근10년';
+  if (state.range === 'last20y') return '최근20년';
+  if (state.range === 'custom') return `${state.fromYear}-${state.toYear}`;
+  return state.range;
+}
+function updateRangeHint(){
+  const el = document.getElementById('rangeHint');
+  if (!el) return;
+  const fx = DATA?.series || [];
+  const bok = BOK?.series || [];
+  const sel = filteredSeries();
+  const macro = filteredMacro();
+  const fxEnd = fx.length ? fx[fx.length-1].ym : '—';
+  const bokEnd = bok.length ? bok[bok.length-1].ym : '—';
+  el.textContent =
+    `데이터 커버리지 · 환율 ${fx[0]?.ym || '—'} ~ ${fxEnd} (${fx.length}개월)`
+    + ` · 금리/물가 ${bok[0]?.ym || '—'} ~ ${bokEnd} (${bok.length}개월)`
+    + ` · 선택 ${rangeLabel()} → 환율 ${sel.length}개월 · 금리/물가 ${macro.length}개월`;
+}
+function syncRangeButtons(){
+  document.querySelectorAll('.range-panel .fbtn[data-range]').forEach(b=>{
+    b.setAttribute('aria-pressed', String(b.dataset.range === state.range));
+  });
+}
+function renderYearControls(){
+  const years = availableYears();
+  const from = document.getElementById('fromYear');
+  const to = document.getElementById('toYear');
+  const quick = document.getElementById('yearQuick');
+  if (!from || !to || !years.length) return;
+  const opts = years.map(y=>`<option value="${y}">${y}년</option>`).join('');
+  from.innerHTML = opts;
+  to.innerHTML = opts;
+  from.value = String(state.fromYear || years[0]);
+  to.value = String(state.toYear || years[years.length-1]);
+  state.fromYear = +from.value;
+  state.toYear = +to.value;
+  // show a compact set of decade/year shortcuts
+  const favorites = years.filter(y => y % 5 === 0 || y === years[0] || y === years[years.length-1]);
+  const uniq = [...new Set(favorites)];
+  quick.innerHTML = `<span class="lbl">연도</span>` + uniq.map(y =>
+    `<button class="fbtn" type="button" data-range="${y}" aria-pressed="${state.range===String(y)}">${y}</button>`
+  ).join('');
+  quick.querySelectorAll('.fbtn[data-range]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      state.range = btn.dataset.range;
+      state.fromYear = +btn.dataset.range;
+      state.toYear = +btn.dataset.range;
+      from.value = btn.dataset.range;
+      to.value = btn.dataset.range;
+      syncRangeButtons();
+      renderAll();
+    });
+  });
+}
+function downloadBlob(filename, lines){
+  const blob = new Blob(['\ufeff'+lines.join('\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function downloadFxCSV(){
+  const rows = filteredSeries();
+  const cols = CURS.map(c=>c.code);
+  const lines = ['ym,'+cols.map(c=>`${c}_avg,${c}_min,${c}_max`).join(',')];
+  rows.forEach(r=> lines.push([r.ym,
+    ...cols.flatMap(c=>[rateOf(r,c,'avg')??'',rateOf(r,c,'min')??'',rateOf(r,c,'max')??''])
+  ].join(',')));
+  downloadBlob(`exchange-rate_fx_${rangeLabel()}.csv`, lines);
+}
+function downloadMacroCSV(){
+  const rows = filteredMacro();
+  const lines = ['ym,base_rate,cpi,cpi_yoy'];
+  rows.forEach(r=> lines.push([r.ym, r.baseRate??'', r.cpi??'', r.cpiYoY??''].join(',')));
+  downloadBlob(`exchange-rate_macro_${rangeLabel()}.csv`, lines);
+}
+function downloadSelectedAll(){
+  // 환율 + 금리·물가 + 선택 통화 전월비를 한 파일로
+  const rows = filteredSeries();
+  const cols = CURS.map(c=>c.code);
+  const lines = ['ym,'+cols.map(c=>`${c}_avg,${c}_min,${c}_max`).join(',')+',base_rate,cpi,cpi_yoy'];
+  rows.forEach(r=> lines.push([r.ym,
+    ...cols.flatMap(c=>[rateOf(r,c,'avg')??'',rateOf(r,c,'min')??'',rateOf(r,c,'max')??'']),
+    macroVal(r.ym,'baseRate')??'', macroVal(r.ym,'cpi')??'', macroVal(r.ym,'cpiYoY')??''
+  ].join(',')));
+  downloadBlob(`exchange-rate_selected_${rangeLabel()}.csv`, lines);
+}
+function momOf(ym, code){
+  const idx = DATA.series.findIndex(r=>r.ym===ym);
+  if (idx <= 0) return null;
+  const cur = rateOf(DATA.series[idx], code), prev = rateOf(DATA.series[idx-1], code);
+  if (cur==null || prev==null || prev===0) return null;
+  return (cur/prev - 1) * 100;
+}
+function yoyOf(ym, code){
+  const prev = DATA.series.find(r => r.ym === `${+ym.slice(0,4)-1}${ym.slice(4)}`);
+  const cur  = DATA.series.find(r => r.ym === ym);
+  if (!prev || !cur) return null;
+  const a = rateOf(cur, code), b = rateOf(prev, code);
+  if (a==null || b==null || b===0) return null;
+  return (a/b - 1) * 100;
+}
+
+/* ─── KPI 타일 ─────────────────────────────────────── */
+function sparkSVG(values, color){
+  const pts = values.filter(v=>v!=null);
+  if (pts.length < 2) return '';
+  const min = Math.min(...pts), max = Math.max(...pts), span = (max-min)||1;
+  const W=140, H=30, P=3;
+  const step = (W-2*P)/(values.length-1);
+  let d='', lastX=0, lastY=0;
+  values.forEach((v,i)=>{
+    if (v==null) return;
+    const x = P + i*step, y = H-P - (v-min)/span*(H-2*P);
+    d += (d?' L':'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+    lastX=x; lastY=y;
+  });
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
+    <path d="${d}" fill="none" stroke="${MUTED}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${lastX}" cy="${lastY}" r="3" fill="${color}" stroke="${SURFACE}" stroke-width="1.5"/></svg>`;
+}
+
+function renderKPIs(){
+  const rows = filteredSeries();
+  const el = document.getElementById('kpis');
+  el.innerHTML = '';
+  if (!rows.length) return;
+  const code = state.cur, meta = curMeta(code), color = meta.color;
+  const withVal = rows.filter(r=>rateOf(r,code)!=null);
+  if (!withVal.length){ el.innerHTML = '<div class="tile"><div class="lb">데이터 없음</div></div>'; return; }
+  const last = withVal[withVal.length-1];
+  const avg = rateOf(last, code);
+  const latest = DATA.latest && DATA.latest.rates ? DATA.latest.rates[code] : null;
+  const mom = momOf(last.ym, code), yoy = yoyOf(last.ym, code);
+  // 기간 변동폭: 필터 범위 내 월평균의 최저~최고
+  const avgs = withVal.map(r=>rateOf(r,code));
+  const pMin = Math.min(...avgs), pMax = Math.max(...avgs);
+  const volPct = pMin ? (pMax/pMin - 1)*100 : null;
+  const idxA = DATA.series.findIndex(r=>r.ym===last.ym);
+  const spark = DATA.series.slice(Math.max(0,idxA-11), idxA+1).map(r=>rateOf(r,code));
+
+  const deltaTag = (v,suffix) => v==null ? `<span>${suffix} 데이터 없음</span>`
+    : `<b class="${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${Math.abs(v).toLocaleString('ko-KR',{maximumFractionDigits:2})}%</b> <span>${suffix}</span>`;
+
+  const tiles = [
+    {lb:`${meta.label} 최근 고시`, val:`${fmt(latest == null ? avg : latest)}<small>원 · ${perLabel(code)} · ${latest == null ? ymKorean(last.ym) : DATA.latest.date}</small>`,
+     delta:deltaTag(mom,'전월비'), spark:true},
+    {lb:'전월 대비 (MoM)', val: mom==null?'—':`${fmtPct(mom)}`, valColor:mom>=0?UP:DOWN,
+     delta:`<span>${ymKorean(last.ym)} 기준</span>`, spark:false},
+    {lb:'전년 동월 대비 (YoY)', val: yoy==null?'—':`${fmtPct(yoy)}`, valColor:yoy==null?null:(yoy>=0?UP:DOWN),
+     delta:`<span>${ymKorean(last.ym)} 기준</span>`, spark:false},
+    {lb:'기간 변동폭 (최저–최고)', val:`${fmt(pMin,1)}<small>~ ${fmt(pMax,1)}원</small>`,
+     delta: volPct==null?'<span>—</span>':`<b>${volPct.toLocaleString('ko-KR',{maximumFractionDigits:1})}%</b> <span>변동</span>`, spark:false},
+  ];
+  tiles.forEach(t=>{
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.innerHTML = `
+      <div class="lb"><span class="key" style="background:${color}"></span><span>${t.lb}</span></div>
+      <div class="val" ${t.valColor?`style="color:${t.valColor}"`:''}>${t.val}</div>
+      <div class="delta">${t.delta}</div>
+      ${t.spark ? sparkSVG(spark, color) : ''}`;
+    el.appendChild(tile);
+  });
+}
+
+/* ─── 차트 ─────────────────────────────────────────── */
+function ymTick(value){ return ymLabel(this.getLabelForValue(value)); }
+function baseScales(yFmt){
+  return {
+    x:{ grid:{display:false}, border:{color:BASELINE},
+        ticks:{color:MUTED, maxRotation:0, autoSkipPadding:14, callback: ymTick} },
+    y:{ border:{display:false}, grid:{color:GRID, drawTicks:false},
+        ticks:{color:MUTED, padding:8, callback:yFmt, font:{size:11}} },
+  };
+}
+
+function buildMain(){
+  charts.main = new Chart(document.getElementById('mainChart'), {
+    type:'line',
+    data:{ labels:[], datasets:[
+      // 밴드 상단(max) → 하단(min)까지 채움
+      {label:'월최고', data:[], borderColor:'transparent', backgroundColor:'rgba(122,162,255,.10)',
+       pointRadius:0, fill:'+1', order:3, $noLabel:true, tension:.25},
+      {label:'월최저', data:[], borderColor:'transparent', backgroundColor:'transparent',
+       pointRadius:0, fill:false, order:3, $noLabel:true, tension:.25},
+      {label:'월평균', data:[], borderColor:'#7aa2ff', backgroundColor:'#7aa2ff',
+       borderWidth:2.4, tension:.25, spanGaps:true, order:1,
+       pointRadius:0, pointHoverRadius:5, pointHoverBorderWidth:2,
+       pointHoverBackgroundColor:'#7aa2ff', pointHoverBorderColor:SURFACE},
+    ]},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      layout:{ padding:{right:12, top:6} },
+      interaction:{ mode:'index', intersect:false },
+      scales: baseScales(v => fmt(v,0)),
+      plugins:{
+        legend:{ display:false },
+        tooltip:{ ...tooltipStyle, filter: it => it.datasetIndex===2 || it.datasetIndex===0 || it.datasetIndex===1,
+          callbacks:{
+            title: items => ymKorean(items[0].label),
+            label: it => {
+              const names=['최고','최저','평균'];
+              return ` ${names[it.datasetIndex]} ${fmt(it.parsed.y)}원`;
+            },
+          }},
+      },
+    },
+    plugins:[crosshair],
+  });
+}
+
+function buildIdx(){
+  charts.idx = new Chart(document.getElementById('idxChart'), {
+    type:'line',
+    data:{ labels:[], datasets: CURS.map(c=>({
+      label:c.label, data:[], borderColor:c.color, backgroundColor:c.color, $labelColor:c.color,
+      borderWidth:2, tension:.25, spanGaps:true,
+      pointRadius:0, pointHoverRadius:5, pointHoverBorderWidth:2,
+      pointHoverBackgroundColor:c.color, pointHoverBorderColor:SURFACE,
+    }))},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      layout:{ padding:{right:46, top:6} },
+      interaction:{ mode:'index', intersect:false },
+      scales:{
+        x:{ grid:{display:false}, border:{color:BASELINE},
+            ticks:{color:MUTED, maxRotation:0, autoSkipPadding:14, callback: ymTick} },
+        y:{ border:{display:false},
+            grid:{ color: c => c.tick.value===100 ? BASELINE : GRID, drawTicks:false },
+            ticks:{color:MUTED, padding:8, font:{size:11}} },
+      },
+      plugins:{
+        legend: legendStyle,
+        tooltip:{ ...tooltipStyle,
+          callbacks:{
+            title: items => ymKorean(items[0].label) + ' · 지수',
+            label: it => it.parsed.y==null ? '' : ` ${it.parsed.y.toLocaleString('ko-KR',{maximumFractionDigits:1})} · ${it.dataset.label}`,
+          }},
+      },
+    },
+    plugins:[crosshair, endLabels],
+  });
+  charts.idx.$endLabels = true;
+}
+
+function buildMom(){
+  charts.mom = new Chart(document.getElementById('momChart'), {
+    type:'bar',
+    data:{ labels:[], datasets:[{ label:'전월비', data:[], backgroundColor:[],
+      maxBarThickness:22, borderRadius:3 }]},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      scales:{
+        x:{ grid:{display:false}, border:{color:BASELINE},
+            ticks:{color:MUTED, maxRotation:0, autoSkipPadding:12, callback: ymTick} },
+        y:{ border:{display:false},
+            grid:{ color: c => c.tick.value===0 ? BASELINE : GRID, drawTicks:false },
+            ticks:{color:MUTED, padding:8, callback:v=>v+'%', font:{size:11}} },
+      },
+      plugins:{
+        legend:{ display:false },
+        tooltip:{ ...tooltipStyle, displayColors:false,
+          callbacks:{
+            title: items => ymKorean(items[0].label),
+            label: it => it.parsed.y==null ? '' : ` 전월비 ${fmtPct(it.parsed.y)}`,
+          }},
+      },
+    },
+  });
+}
+
+function updateCharts(){
+  const rows = filteredSeries();
+  const code = state.cur, color = curMeta(code).color;
+
+  // 메인: 선택 통화 평균 + 밴드
+  charts.main.data.labels = rows.map(r=>r.ym);
+  charts.main.data.datasets[0].data = rows.map(r=>rateOf(r,code,'max'));
+  charts.main.data.datasets[1].data = rows.map(r=>rateOf(r,code,'min'));
+  charts.main.data.datasets[2].data = rows.map(r=>rateOf(r,code,'avg'));
+  charts.main.data.datasets[2].borderColor = color;
+  charts.main.data.datasets[2].pointHoverBackgroundColor = color;
+  charts.main.data.datasets[0].backgroundColor = hexA(color,.12);
+  charts.main.update();
+
+  // 지수: 각 통화 첫 유효값=100
+  charts.idx.data.labels = rows.map(r=>r.ym);
+  CURS.forEach((c,i)=>{
+    const base = (rows.find(r=>rateOf(r,c.code)!=null)||{});
+    const b = rateOf(base, c.code);
+    charts.idx.data.datasets[i].data = rows.map(r=>{
+      const v = rateOf(r,c.code); return (v==null||!b) ? null : v/b*100;
+    });
+  });
+  charts.idx.update();
+
+  // 전월비
+  charts.mom.data.labels = rows.map(r=>r.ym);
+  const momVals = rows.map(r=>momOf(r.ym, code));
+  charts.mom.data.datasets[0].data = momVals;
+  charts.mom.data.datasets[0].backgroundColor = momVals.map(v=> v==null? MUTED : (v>=0? hexA(UP,.85): hexA(DOWN,.85)));
+  charts.mom.update();
+}
+
+/* ─── 테이블 & CSV ─────────────────────────────────── */
+function aggregateUsdPeriods(rows, grain){
+  const groups = new Map();
+  rows.forEach(row=>{
+    const usd = row.rates && row.rates.USD;
+    if (!usd || usd.avg==null) return;
+    const year = row.ym.slice(0,4);
+    const month = +row.ym.slice(5,7);
+    const quarter = Math.ceil(month/3);
+    const key = grain === 'quarter' ? `${year}-Q${quarter}` : year;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(row);
+  });
+  const periods = [...groups.entries()].map(([key, periodRows])=>{
+    const observations = periodRows.reduce((sum,row)=>sum+(Number(row.days)||0),0);
+    const weightedSum = periodRows.reduce((sum,row)=>{
+      const days = Number(row.days)||0;
+      return sum + rateOf(row,'USD')*days;
+    },0);
+    const averages = periodRows.map(row=>rateOf(row,'USD')).filter(Number.isFinite);
+    const lows = periodRows.map(row=>rateOf(row,'USD','min')).filter(Number.isFinite);
+    const highs = periodRows.map(row=>rateOf(row,'USD','max')).filter(Number.isFinite);
+    const average = observations
+      ? weightedSum/observations
+      : averages.reduce((sum,value)=>sum+value,0)/averages.length;
+    return {
+      key,
+      average,
+      min:lows.length?Math.min(...lows):null,
+      max:highs.length?Math.max(...highs):null,
+      observations,
+      months:new Set(periodRows.map(row=>row.ym)).size,
+      complete:new Set(periodRows.map(row=>row.ym)).size === (grain==='quarter'?3:12),
+      change:null,
+    };
+  }).sort((a,b)=>a.key.localeCompare(b.key));
+  periods.forEach((period,index)=>{
+    const previous = periods[index-1];
+    period.change = previous && previous.average
+      ? (period.average/previous.average-1)*100
+      : null;
+  });
+  return periods;
+}
+
+function median(values){
+  if (!values.length) return null;
+  const sorted=[...values].sort((a,b)=>a-b);
+  const middle=Math.floor(sorted.length/2);
+  return sorted.length%2 ? sorted[middle] : (sorted[middle-1]+sorted[middle])/2;
+}
+
+function usdPeriodChange(value){
+  if (value==null) return '<span class="period-change">—</span>';
+  const normalized=Math.abs(value)<0.005?0:value;
+  const className=normalized>0?'up':(normalized<0?'down':'');
+  return `<span class="period-change ${className}">${normalized>0?'+':''}${normalized.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}%</span>`;
+}
+
+function renderUsdPeriodRows(targetId, periods){
+  const tbody=document.getElementById(targetId);
+  tbody.innerHTML=[...periods].reverse().map(period=>`
+    <tr>
+      <td>${period.key}${period.complete?'':'<span class="period-partial">부분</span>'}</td>
+      <td>${fmt(period.average)}</td>
+      <td>${fmt(period.min)}</td>
+      <td>${fmt(period.max)}</td>
+      <td>${usdPeriodChange(period.change)}</td>
+      <td>${period.observations.toLocaleString('ko-KR')}일</td>
+    </tr>`).join('');
+}
+
+function renderUsdStats(){
+  const rows=filteredSeries().filter(row=>rateOf(row,'USD')!=null);
+  const summary=document.getElementById('usdStatsSummary');
+  if (!summary) return;
+  const quarterPeriods=aggregateUsdPeriods(rows,'quarter');
+  const annualPeriods=aggregateUsdPeriods(rows,'annual');
+  const observations=rows.reduce((sum,row)=>sum+(Number(row.days)||0),0);
+  const weightedAverage=observations
+    ? rows.reduce((sum,row)=>sum+rateOf(row,'USD')*(Number(row.days)||0),0)/observations
+    : null;
+  const monthlyAverages=rows.map(row=>rateOf(row,'USD')).filter(Number.isFinite);
+  const monthlyMedian=median(monthlyAverages);
+  const weightedVariance=weightedAverage==null || !observations ? null
+    : rows.reduce((sum,row)=>{
+        const days=Number(row.days)||0;
+        return sum+days*Math.pow(rateOf(row,'USD')-weightedAverage,2);
+      },0)/observations;
+  const standardDeviation=weightedVariance==null?null:Math.sqrt(weightedVariance);
+  const lows=rows.map(row=>rateOf(row,'USD','min')).filter(Number.isFinite);
+  const highs=rows.map(row=>rateOf(row,'USD','max')).filter(Number.isFinite);
+  const periodMin=lows.length?Math.min(...lows):null;
+  const periodMax=highs.length?Math.max(...highs):null;
+  const first=rows[0]?.ym, last=rows[rows.length-1]?.ym;
+  const items=[
+    ['가중 평균',fmt(weightedAverage),'ECB 영업일 가중'],
+    ['월평균 중앙값',fmt(monthlyMedian),`${monthlyAverages.length.toLocaleString('ko-KR')}개월`],
+    ['월평균 표준편차',fmt(standardDeviation),'영업일 가중'],
+    ['기간 최저',fmt(periodMin),'월중 일별 최저'],
+    ['기간 최고',fmt(periodMax),'월중 일별 최고'],
+    ['표본 규모',observations.toLocaleString('ko-KR')+'일',`${rows.length.toLocaleString('ko-KR')}개월`],
+  ];
+  summary.innerHTML=items.map(([label,value,note])=>
+    `<div class="stat-chip"><span class="lb">${label}</span><strong>${value}</strong><small>${note}</small></div>`
+  ).join('');
+  document.getElementById('usdStatsCap').textContent=
+    `USD/KRW · ${rangeLabel()} · ${first?ymKorean(first):'—'} ~ ${last?ymKorean(last):'—'} · 분기·연 평균은 ECB 영업일 수 가중`;
+  document.getElementById('quarterStatsCount').textContent=`${quarterPeriods.length.toLocaleString('ko-KR')}개 분기`;
+  document.getElementById('annualStatsCount').textContent=`${annualPeriods.length.toLocaleString('ko-KR')}개 연도`;
+  renderUsdPeriodRows('quarterStatsBody',quarterPeriods);
+  renderUsdPeriodRows('annualStatsBody',annualPeriods);
+}
+
+function renderHead(){
+  const tr = document.getElementById('tblHead');
+  tr.innerHTML = '<th>월</th>'
+    + CURS.map(c=>`<th>${c.label}${c.per>1?` <span style="color:var(--muted)">(${c.per}${c.code==='JPY'?'엔':''})</span>`:''}</th>`).join('')
+    + '<th>기준금리</th><th>물가상승률</th>';
+}
+function renderTable(){
+  const tbody = document.querySelector('#dataTable tbody');
+  tbody.innerHTML = '';
+  const rows = [...filteredSeries()].reverse();
+  rows.forEach(r=>{
+    const tr = document.createElement('tr');
+    const first = document.createElement('td'); first.textContent = ymKorean(r.ym); tr.appendChild(first);
+    CURS.forEach(c=>{
+      const td = document.createElement('td');
+      const v = rateOf(r, c.code);
+      td.textContent = fmt(v);
+      if (c.code === state.cur){
+        const mom = momOf(r.ym, c.code);
+        if (mom!=null){
+          const sp = document.createElement('span');
+          sp.className = 'mom ' + (mom>=0?'up':'down');
+          sp.textContent = `(${fmtPct(mom)})`;
+          td.appendChild(sp);
+        }
+      }
+      tr.appendChild(td);
+    });
+    // 기준금리 · 물가상승률
+    const br = macroVal(r.ym, 'baseRate');
+    const brTd = document.createElement('td');
+    brTd.textContent = br==null ? '—' : br.toLocaleString('ko-KR',{minimumFractionDigits:2})+'%';
+    tr.appendChild(brTd);
+    const yoy = macroVal(r.ym, 'cpiYoY');
+    const yoyTd = document.createElement('td');
+    yoyTd.textContent = yoy==null ? '—' : fmtPct(yoy);
+    if (yoy!=null){ yoyTd.style.color = yoy>=0 ? UP : DOWN; }
+    tr.appendChild(yoyTd);
+    tbody.appendChild(tr);
+  });
+}
+function downloadCSV(){ downloadSelectedAll(); }
+
+/* ─── 거시 지표 (금리 · 물가) ───────────────────────── */
+function ymMinus(ym, n){
+  let [y,m] = ym.split('-').map(Number);
+  m -= n; while(m<1){ m+=12; y-=1; }
+  return `${y}-${String(m).padStart(2,'0')}`;
+}
+const macroVal = (ym, key) => MACRO[ym] ? (MACRO[ym][key] ?? null) : null;
+function filteredMacro(){ return filterByYm(BOK ? BOK.series : []); }
+function macroSparkAround(ym, key){
+  if (!BOK) return [];
+  const i = BOK.series.findIndex(r=>r.ym===ym);
+  if (i<0) return [];
+  return BOK.series.slice(Math.max(0,i-11), i+1).map(r=>r[key] ?? null);
+}
+function renderMacroKPIs(){
+  const el = document.getElementById('macroKpis');
+  el.innerHTML = '';
+  const rows = filteredMacro();
+  if (!rows.length){ el.innerHTML = '<div class="tile"><div class="lb">데이터 없음</div></div>'; return; }
+  const lastWith = pred => [...rows].reverse().find(pred) || null;
+  const brRow  = lastWith(r => r.baseRate!=null);
+  const yoyRow = lastWith(r => r.cpiYoY!=null);
+  const cpiRow = lastWith(r => r.cpi!=null);
+  // 실질 기준금리 = 기준금리 − 물가상승률 (동일 월 기준)
+  const realRow = lastWith(r => r.baseRate!=null && r.cpiYoY!=null);
+
+  const ppTag = (v,suffix) => v==null ? `<span>${suffix}</span>`
+    : `<b class="${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${Math.abs(v).toLocaleString('ko-KR',{maximumFractionDigits:2})}%p</b> <span>${suffix}</span>`;
+
+  const brDelta = brRow ? (()=>{ const p=macroVal(ymMinus(brRow.ym,12),'baseRate'); return p==null?null:brRow.baseRate-p; })() : null;
+  const yoyDelta = yoyRow ? (()=>{ const p=macroVal(ymMinus(yoyRow.ym,12),'cpiYoY'); return p==null?null:yoyRow.cpiYoY-p; })() : null;
+  const real = realRow ? Math.round((realRow.baseRate-realRow.cpiYoY)*100)/100 : null;
+
+  const tiles = [
+    { color:MC.base, lb:'한국은행 기준금리',
+      val: brRow?`${brRow.baseRate.toLocaleString('ko-KR',{minimumFractionDigits:2})}<small>% · ${ymKorean(brRow.ym)}</small>`:'—',
+      delta: ppTag(brDelta,'전년 대비'), spark: brRow?macroSparkAround(brRow.ym,'baseRate'):[] },
+    { color:MC.yoy, lb:'소비자물가 상승률', valColor: yoyRow?(yoyRow.cpiYoY>=0?UP:DOWN):null,
+      val: yoyRow?`${fmtPct(yoyRow.cpiYoY)}<small>YoY · ${ymKorean(yoyRow.ym)}</small>`:'—',
+      delta: ppTag(yoyDelta,'전년 대비'), spark: yoyRow?macroSparkAround(yoyRow.ym,'cpiYoY'):[] },
+    { color:MC.cpi, lb:'소비자물가지수',
+      val: cpiRow?`${cpiRow.cpi.toLocaleString('ko-KR',{minimumFractionDigits:2})}<small>2020=100</small>`:'—',
+      delta:`<span>${cpiRow?ymKorean(cpiRow.ym):''}</span>`, spark: cpiRow?macroSparkAround(cpiRow.ym,'cpi'):[] },
+    { color:'#8fb56b', lb:'실질 기준금리', valColor: real==null?null:(real>=0?UP:DOWN),
+      val: real==null?'—':`${fmtPct(real)}`,
+      delta:`<span>기준금리 − 물가상승률</span>`, spark:[] },
+  ];
+  tiles.forEach(t=>{
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.innerHTML = `
+      <div class="lb"><span class="key" style="background:${t.color}"></span><span>${t.lb}</span></div>
+      <div class="val" ${t.valColor?`style="color:${t.valColor}"`:''}>${t.val}</div>
+      <div class="delta">${t.delta}</div>
+      ${t.spark && t.spark.length ? sparkSVG(t.spark, t.color) : ''}`;
+    el.appendChild(tile);
+  });
+}
+
+function buildMacro(){
+  charts.macro = new Chart(document.getElementById('macroChart'), {
+    type:'line',
+    data:{ labels:[], datasets:[
+      {label:'기준금리', data:[], borderColor:MC.base, backgroundColor:MC.base, $labelColor:MC.base,
+       borderWidth:2.4, tension:.2, spanGaps:true, stepped:true, yAxisID:'y',
+       pointRadius:0, pointHoverRadius:5, pointHoverBorderWidth:2, pointHoverBackgroundColor:MC.base, pointHoverBorderColor:SURFACE},
+      {label:'물가상승률', data:[], borderColor:MC.yoy, backgroundColor:MC.yoy, $labelColor:MC.yoy,
+       borderWidth:2.4, tension:.28, spanGaps:true, yAxisID:'y',
+       pointRadius:0, pointHoverRadius:5, pointHoverBorderWidth:2, pointHoverBackgroundColor:MC.yoy, pointHoverBorderColor:SURFACE},
+      {label:'소비자물가지수', $labelText:'CPI', data:[], borderColor:MC.cpi, backgroundColor:MC.cpi, $labelColor:MC.cpi,
+       borderWidth:1.6, borderDash:[5,3], tension:.28, spanGaps:true, yAxisID:'y1',
+       pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:MC.cpi, pointHoverBorderColor:SURFACE},
+    ]},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      layout:{ padding:{right:46, top:6} },
+      interaction:{ mode:'index', intersect:false },
+      scales:{
+        x:{ grid:{display:false}, border:{color:BASELINE},
+            ticks:{color:MUTED, maxRotation:0, autoSkipPadding:14, callback: ymTick} },
+        y:{ position:'left', border:{display:false},
+            grid:{ color: c => c.tick.value===0 ? BASELINE : GRID, drawTicks:false },
+            ticks:{color:MUTED, padding:8, callback:v=>v+'%', font:{size:11}},
+            title:{display:true, text:'금리 · 물가상승률 (%)', color:MUTED, font:{size:10.5}} },
+        y1:{ position:'right', border:{display:false}, grid:{drawOnChartArea:false},
+            ticks:{color:MUTED, padding:6, font:{size:11}},
+            title:{display:true, text:'CPI (2020=100)', color:MUTED, font:{size:10.5}} },
+      },
+      plugins:{
+        legend: legendStyle,
+        tooltip:{ ...tooltipStyle,
+          callbacks:{
+            title: items => ymKorean(items[0].label),
+            label: it => {
+              if (it.parsed.y==null) return '';
+              if (it.dataset.label==='소비자물가지수') return ` ${it.parsed.y.toLocaleString('ko-KR',{maximumFractionDigits:2})} · CPI`;
+              return ` ${it.parsed.y.toLocaleString('ko-KR',{maximumFractionDigits:2})}% · ${it.dataset.label}`;
+            },
+          }},
+      },
+    },
+    plugins:[crosshair, endLabels],
+  });
+  charts.macro.$endLabels = true;
+}
+
+function updateMacro(){
+  if (!charts.macro) return;
+  const rows = filteredMacro();
+  charts.macro.data.labels = rows.map(r=>r.ym);
+  charts.macro.data.datasets[0].data = rows.map(r=>r.baseRate ?? null);
+  charts.macro.data.datasets[1].data = rows.map(r=>r.cpiYoY ?? null);
+  charts.macro.data.datasets[2].data = rows.map(r=>r.cpi ?? null);
+  charts.macro.update();
+}
+
+/* ─── 비트코인 월별 시세 ───────────────────────────── */
+function btcRowsAll(){ return BTC && Array.isArray(BTC.series) ? BTC.series : []; }
+function filteredBtc(){ return filterByYm(btcRowsAll()); }
+function btcMom(ym){
+  const all = btcRowsAll();
+  const idx = all.findIndex(r=>r.ym===ym);
+  if (idx <= 0) return null;
+  const cur = all[idx].usd, prev = all[idx-1].usd;
+  if (cur==null || prev==null || !prev) return null;
+  return (cur/prev - 1) * 100;
+}
+function btcYoy(ym){
+  const all = btcRowsAll();
+  const cur = all.find(r=>r.ym===ym);
+  const prev = all.find(r=>r.ym === `${+ym.slice(0,4)-1}${ym.slice(4)}`);
+  if (!cur || !prev || !prev.usd) return null;
+  return (cur.usd/prev.usd - 1) * 100;
+}
+function renderBtcKPIs(){
+  const el = document.getElementById('btcKpis');
+  if (!el) return;
+  el.innerHTML = '';
+  const rows = filteredBtc().filter(r=>r.usd!=null);
+  if (!rows.length){ el.innerHTML = '<div class="tile"><div class="lb">비트코인 데이터 없음</div></div>'; return; }
+  const last = rows[rows.length-1];
+  const mom = btcMom(last.ym);
+  const yoy = btcYoy(last.ym);
+  const maxUsd = Math.max(...rows.map(r=>r.usdMax ?? r.usd));
+  const minUsd = Math.min(...rows.map(r=>r.usdMin ?? r.usd));
+  const delta = (value, label) => value==null ? `<span>${label} —</span>`
+    : `<b class="${value>=0?'up':'down'}">${value>=0?'▲':'▼'} ${Math.abs(value).toLocaleString('ko-KR',{maximumFractionDigits:1})}%</b> <span>${label}</span>`;
+  const tiles = [
+    {color:BTC_COLOR, lb:'BTC 월평균 시세', val:`$${fmt(last.usd,0)}<small>${ymKorean(last.ym)}${last.partial?' · 진행중':''}</small>`, delta:delta(mom,'전월 대비')},
+    {color:BTC_COLOR, lb:'전년 동월 대비', val:yoy==null?'—':`${yoy>=0?'+':''}${fmt(yoy,1)}<small>%</small>`, delta:`<span>${ymKorean(last.ym)} vs ${+last.ym.slice(0,4)-1}년</span>`},
+    {color:BTC_COLOR, lb:'기간 내 최고가', val:`$${fmt(maxUsd,0)}<small>월중 고가</small>`, delta:`<span>선택 기간 ${rows.length}개월</span>`},
+    {color:BTC_COLOR, lb:'기간 내 최저가', val:`$${fmt(minUsd,0)}<small>월중 저가</small>`, delta:`<span>관측 ${BTC.observedAt||'—'}</span>`},
+  ];
+  tiles.forEach(t=>{
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.innerHTML = `<div class="lb"><span class="key" style="background:${t.color}"></span><span>${t.lb}</span></div>
+      <div class="val">${t.val}</div><div class="delta">${t.delta}</div>`;
+    el.appendChild(tile);
+  });
+}
+function buildBtc(){
+  charts.btc = new Chart(document.getElementById('btcChart'), {
+    type:'line',
+    data:{labels:[], datasets:[
+      {label:'월중 최고', data:[], borderColor:'transparent', backgroundColor:hexA(BTC_COLOR,.16),
+       pointRadius:0, fill:'+1', $noLabel:true, tension:.2, spanGaps:true},
+      {label:'월중 최저', data:[], borderColor:'transparent', backgroundColor:'transparent',
+       pointRadius:0, fill:false, $noLabel:true, tension:.2, spanGaps:true},
+      {label:'월평균 시세', $labelText:'BTC', data:[], borderColor:BTC_COLOR, backgroundColor:BTC_COLOR, $labelColor:BTC_COLOR,
+       borderWidth:2.6, tension:.24, spanGaps:true, pointRadius:0, pointHoverRadius:5,
+       pointHoverBackgroundColor:BTC_COLOR, pointHoverBorderColor:SURFACE, pointHoverBorderWidth:2},
+    ]},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      layout:{padding:{right:48, top:6}},
+      interaction:{mode:'index', intersect:false},
+      scales:{
+        x:{grid:{display:false}, border:{color:BASELINE},
+           ticks:{color:MUTED, maxRotation:0, autoSkip:true, maxTicksLimit:14, callback:function(v){ return ymLabel(this.getLabelForValue(v)); }}},
+        y:{border:{display:false}, grid:{color:GRID, drawTicks:false}, beginAtZero:false,
+           ticks:{color:MUTED, padding:8, callback:v=>'$'+Number(v).toLocaleString('en-US')},
+           title:{display:true, text:'USD / BTC', color:MUTED, font:{size:10.5}}},
+      },
+      plugins:{
+        legend:{display:false},
+        tooltip:{...tooltipStyle, callbacks:{
+          title:items=>ymKorean(items[0].label),
+          label:it=>{
+            if (it.parsed.y==null) return '';
+            if (it.dataset.label==='월평균 시세') return ` $${fmt(it.parsed.y,2)} · 월평균`;
+            if (it.dataset.label==='월중 최고') return ` $${fmt(it.parsed.y,2)} · 고가`;
+            if (it.dataset.label==='월중 최저') return ` $${fmt(it.parsed.y,2)} · 저가`;
+            return '';
+          },
+        }},
+      },
+    },
+    plugins:[crosshair, endLabels],
+  });
+  charts.btc.$endLabels = true;
+}
+function updateBtc(){
+  if (!charts.btc) return;
+  const rows = filteredBtc();
+  charts.btc.data.labels = rows.map(r=>r.ym);
+  charts.btc.data.datasets[0].data = rows.map(r=>r.usdMax ?? null);
+  charts.btc.data.datasets[1].data = rows.map(r=>r.usdMin ?? null);
+  charts.btc.data.datasets[2].data = rows.map(r=>r.usd ?? null);
+  charts.btc.update();
+}
+function downloadBtcCSV(){
+  const lines = ['ym,partial,usd_avg,usd_open,usd_close,usd_min,usd_max'];
+  filteredBtc().forEach(r=>lines.push([r.ym,r.partial?'Y':'N',r.usd??'',r.usdOpen??'',r.usdClose??'',r.usdMin??'',r.usdMax??''].join(',')));
+  const blob = new Blob(['\ufeff'+lines.join('\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='bitcoin-monthly.csv'; a.click(); URL.revokeObjectURL(a.href);
+}
+
+/* ─── 산업·에너지 지표 (DRAM · 유가) ───────────────── */
+function marketRows(){ return MARKET && Array.isArray(MARKET.series) ? MARKET.series : []; }
+function marketLatest(key){ return [...marketRows()].reverse().find(r=>r[key]!=null) || null; }
+function marketYoY(row, key){
+  if (!row) return null;
+  const prev = marketRows().find(r=>r.year===row.year-1);
+  if (!prev || prev[key]==null || !prev[key]) return null;
+  return (row[key]/prev[key]-1)*100;
+}
+function renderMarketKPIs(){
+  const el = document.getElementById('marketKpis');
+  el.innerHTML = '';
+  const dram = marketLatest('dramUsdPerGb');
+  const brent = marketLatest('brentUsdPerBbl');
+  if (!dram && !brent){ el.innerHTML = '<div class="tile"><div class="lb">시장 데이터 없음</div></div>'; return; }
+  const dramYoy = marketYoY(dram, 'dramUsdPerGb');
+  const brentYoy = marketYoY(brent, 'brentUsdPerBbl');
+  const period = row => row && row.partial ? `${row.year} YTD` : String(row ? row.year : '—');
+  const delta = (value, label='전년 대비') => value==null ? `<span>${label} —</span>`
+    : `<b class="${value>=0?'up':'down'}">${value>=0?'▲':'▼'} ${Math.abs(value).toLocaleString('ko-KR',{maximumFractionDigits:1})}%</b> <span>${label}</span>`;
+  const tiles = [
+    {color:MK.dram, lb:'DRAM 연평균 소매가격', val:dram?`$${fmt(dram.dramUsdPerGb,2)}<small>/GB · ${period(dram)}</small>`:'—', delta:delta(dramYoy)},
+    {color:MK.brent, lb:'브렌트유 연평균 현물가격', val:brent?`$${fmt(brent.brentUsdPerBbl,2)}<small>/배럴 · ${period(brent)}</small>`:'—', delta:delta(brentYoy)},
+    {color:MK.dram, lb:'DRAM 연간 관측치', val:dram?`${dram.dramObservations||'—'}<small>개 가격 관측</small>`:'—', delta:'<span>Stanford DAM · 최저 소매가</span>'},
+    {color:MK.brent, lb:'유가 연간 관측치', val:brent?`${brent.brentObservations||'—'}<small>영업일</small>`:'—', delta:'<span>FRED · 원출처 U.S. EIA</span>'},
+  ];
+  tiles.forEach(t=>{
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.innerHTML = `<div class="lb"><span class="key" style="background:${t.color}"></span><span>${t.lb}</span></div>
+      <div class="val">${t.val}</div><div class="delta">${t.delta}</div>`;
+    el.appendChild(tile);
+  });
+}
+function buildMarket(){
+  charts.market = new Chart(document.getElementById('marketChart'), {
+    type:'line',
+    data:{labels:[],datasets:[
+      {label:'DRAM 최저 소매가격',data:[],borderColor:MK.dram,backgroundColor:MK.dram,$labelColor:MK.dram,
+       borderWidth:2.5,tension:.24,spanGaps:true,yAxisID:'y',pointRadius:3,pointHoverRadius:6,pointHoverBorderWidth:2,pointHoverBackgroundColor:MK.dram,pointHoverBorderColor:SURFACE},
+      {label:'브렌트유 현물가격',data:[],borderColor:MK.brent,backgroundColor:MK.brent,$labelColor:MK.brent,
+       borderWidth:2.5,tension:.24,spanGaps:true,yAxisID:'y1',pointRadius:3,pointHoverRadius:6,pointHoverBorderWidth:2,pointHoverBackgroundColor:MK.brent,pointHoverBorderColor:SURFACE},
+    ]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      layout:{padding:{right:48,top:6}},interaction:{mode:'index',intersect:false},
+      scales:{
+        x:{grid:{display:false},border:{color:BASELINE},ticks:{color:MUTED,maxRotation:0}},
+        y:{position:'left',beginAtZero:false,border:{display:false},grid:{color:GRID,drawTicks:false},
+           ticks:{color:MUTED,padding:8,callback:v=>'$'+v},title:{display:true,text:'DRAM (USD/GB)',color:MUTED,font:{size:10.5}}},
+        y1:{position:'right',beginAtZero:false,border:{display:false},grid:{drawOnChartArea:false},
+            ticks:{color:MUTED,padding:6,callback:v=>'$'+v},title:{display:true,text:'Brent (USD/barrel)',color:MUTED,font:{size:10.5}}},
+      },
+      plugins:{legend:legendStyle,tooltip:{...tooltipStyle,callbacks:{
+        title:items=>`${items[0].label}년 연평균`,
+        label:it=>it.parsed.y==null?'':(it.datasetIndex===0?` $${fmt(it.parsed.y,2)}/GB · DRAM`:` $${fmt(it.parsed.y,2)}/배럴 · Brent`),
+      }}},
+    },plugins:[crosshair,endLabels],
+  });
+  charts.market.$endLabels = true;
+}
+function updateMarket(){
+  if (!charts.market) return;
+  const rows = marketRows();
+  charts.market.data.labels = rows.map(r=>String(r.year));
+  charts.market.data.datasets[0].data = rows.map(r=>r.dramUsdPerGb ?? null);
+  charts.market.data.datasets[1].data = rows.map(r=>r.brentUsdPerBbl ?? null);
+  charts.market.update();
+}
+function renderCommodityKPIs(){
+  const el = document.getElementById('commodityKpis');
+  el.innerHTML = '';
+  const metrics = [
+    {key:'goldUsdPerOz', label:'금 연평균 가격', unit:'/트로이온스', color:MK.gold},
+    {key:'copperUsdPerMt', label:'구리 연평균 가격', unit:'/톤', color:MK.copper},
+    {key:'gasUsdPerMmbtu', label:'미국 천연가스 연평균', unit:'/MMBtu', color:MK.gas},
+  ];
+  metrics.forEach(metric=>{
+    const row = marketLatest(metric.key), yoy = marketYoY(row, metric.key);
+    const tile = document.createElement('div'); tile.className='tile';
+    tile.innerHTML = `<div class="lb"><span class="key" style="background:${metric.color}"></span><span>${metric.label}</span></div>
+      <div class="val">${row?`$${fmt(row[metric.key],2)}<small>${metric.unit} · ${row.partial?row.year+' YTD':row.year}</small>`:'—'}</div>
+      <div class="delta">${yoy==null?'<span>전년 대비 —</span>':`<b class="${yoy>=0?'up':'down'}">${yoy>=0?'▲':'▼'} ${Math.abs(yoy).toLocaleString('ko-KR',{maximumFractionDigits:1})}%</b> <span>전년 대비</span>`}</div>`;
+    el.appendChild(tile);
+  });
+  const source = MARKET && MARKET.sources ? MARKET.sources.commodities : null;
+  const tile = document.createElement('div'); tile.className='tile';
+  tile.innerHTML = `<div class="lb"><span class="key" style="background:var(--acc)"></span><span>세계은행 데이터 기준</span></div>
+    <div class="val">${source&&source.observedAt?source.observedAt.slice(0,7):'—'}<small>최근 발표월</small></div>
+    <div class="delta"><span>${source&&source.workbookUpdated?`파일 갱신 ${source.workbookUpdated}`:'Pink Sheet'}</span></div>`;
+  el.appendChild(tile);
+}
+function commodityBaseYear(){
+  return MARKET?.coverage?.indexBaseYear
+    || MARKET?.sources?.commodities?.indexBaseYear
+    || (marketRows().find(r => r.goldUsdPerOz!=null || r.copperUsdPerMt!=null || r.gasUsdPerMmbtu!=null)?.year)
+    || 1999;
+}
+function buildCommodity(){
+  const defs = [
+    ['금','goldUsdPerOz',MK.gold],['구리','copperUsdPerMt',MK.copper],['미국 천연가스','gasUsdPerMmbtu',MK.gas]
+  ];
+  const baseYear = commodityBaseYear();
+  charts.commodity = new Chart(document.getElementById('commodityChart'), {
+    type:'line',data:{labels:[],datasets:defs.map(([label,key,color])=>({
+      label,data:[],borderColor:color,backgroundColor:color,$labelColor:color,$key:key,
+      borderWidth:2.5,tension:.24,spanGaps:true,pointRadius:3,pointHoverRadius:6,
+      pointHoverBorderWidth:2,pointHoverBackgroundColor:color,pointHoverBorderColor:SURFACE,
+    }))},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{right:64,top:6}},interaction:{mode:'index',intersect:false},
+      scales:{x:{grid:{display:false},border:{color:BASELINE},ticks:{color:MUTED,maxRotation:0}},
+        y:{border:{display:false},grid:{color:c=>c.tick.value===100?BASELINE:GRID,drawTicks:false},
+           ticks:{color:MUTED,padding:8,callback:v=>v},title:{display:true,text:`가격지수 (${baseYear}=100)`,color:MUTED,font:{size:10.5}}}},
+      plugins:{legend:legendStyle,tooltip:{...tooltipStyle,callbacks:{
+        title:items=>`${items[0].label}년 · ${commodityBaseYear()}=100`,label:it=>it.parsed.y==null?'':` ${fmt(it.parsed.y,1)} · ${it.dataset.label}`,
+      }}}},plugins:[crosshair,endLabels],
+  });
+  charts.commodity.$endLabels = true;
+}
+function updateCommodity(){
+  if (!charts.commodity) return;
+  const rows=marketRows();
+  const baseYear = commodityBaseYear();
+  const secCap = document.getElementById('commoditySectionCap');
+  const chartCap = document.getElementById('commodityChartCap');
+  if (secCap) secCap.textContent = `세계은행 Pink Sheet 월별 가격의 연평균 · ${baseYear}년=100 비교지수 · ${rows[0]?.year||'—'}~${rows[rows.length-1]?.year||'—'}`;
+  if (chartCap) chartCap.textContent = `${baseYear}년 연평균=100 · 단위가 다른 세 원자재의 방향과 변동폭 비교`;
+  if (charts.commodity.options?.scales?.y?.title) {
+    charts.commodity.options.scales.y.title.text = `가격지수 (${baseYear}=100)`;
+  }
+  charts.commodity.data.labels=rows.map(r=>String(r.year));
+  charts.commodity.data.datasets.forEach(ds=>{
+    const baseRow=rows.find(r=>r.year===baseYear && r[ds.$key]!=null) || rows.find(r=>r[ds.$key]!=null);
+    const base=baseRow?baseRow[ds.$key]:null;
+    ds.data=rows.map(r=>r[ds.$key]==null||!base?null:r[ds.$key]/base*100);
+  });
+  charts.commodity.update();
+}
+function setupDetailToggle(){
+  const btn = document.getElementById('toggleDetailBtn');
+  const body = document.getElementById('detailBody');
+  if (!btn || !body) return;
+  const setOpen = (open) => {
+    body.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? '▴ 상세 데이터 숨기기' : '▾ 상세 데이터 보기';
+  };
+  setOpen(false);
+  btn.addEventListener('click', () => setOpen(body.hidden));
+}
+function setupUsdStatsToggle(){
+  const btn=document.getElementById('toggleUsdStatsBtn');
+  const body=document.getElementById('usdStatsBody');
+  if (!btn || !body) return;
+  const setOpen=(open)=>{
+    body.hidden=!open;
+    btn.setAttribute('aria-expanded',String(open));
+    btn.textContent=open?'▴ 통계표 숨기기':'▾ 통계표 보기';
+  };
+  setOpen(true);
+  btn.addEventListener('click',()=>setOpen(body.hidden));
+}
+function downloadMarketCSV(){
+  const lines = ['year,partial,dram_usd_per_gb,dram_observations,brent_usd_per_barrel,brent_observations,gold_usd_per_oz,copper_usd_per_mt,natural_gas_usd_per_mmbtu'];
+  marketRows().forEach(r=>lines.push([r.year,r.partial?'Y':'N',r.dramUsdPerGb??'',r.dramObservations??'',r.brentUsdPerBbl??'',r.brentObservations??'',r.goldUsdPerOz??'',r.copperUsdPerMt??'',r.gasUsdPerMmbtu??''].join(',')));
+  const blob = new Blob(['﻿'+lines.join('\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='dram-brent-annual.csv'; a.click(); URL.revokeObjectURL(a.href);
+}
+
+/* ─── 한·미 익일물 단기금리 차 · 30년 ────────────────── */
+function filteredRateGap(){ return filterByYm(RATE_GAP ? RATE_GAP.series : []); }
+
+function rateGapTick(value, index){
+  const ym = this.getLabelForValue(value);
+  const count = this.getLabels().length;
+  if (count <= 24) return ymLabel(ym);
+  return index % 24 === 0 ? ym.slice(0, 4) : '';
+}
+
+function buildRateGap(){
+  const KOREA = '#e0a24e', US = '#5eb0e0', GAP = '#e6edf3';
+  charts.rateGap = new Chart(document.getElementById('rateGapChart'), {
+    type:'line',
+    data:{labels:[], datasets:[
+      {label:'한국 익일물 금리', $labelText:'한국', data:[], borderColor:KOREA, backgroundColor:KOREA, $labelColor:KOREA,
+       borderWidth:1.8, tension:.18, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:KOREA,
+       pointHoverBorderColor:SURFACE, pointHoverBorderWidth:2},
+      {label:'미국 실효 연방기금금리', $labelText:'미국', data:[], borderColor:US, backgroundColor:US, $labelColor:US,
+       borderWidth:1.8, borderDash:[6,4], tension:.18, pointRadius:0, pointHoverRadius:4,
+       pointHoverBackgroundColor:US, pointHoverBorderColor:SURFACE, pointHoverBorderWidth:2},
+      {label:'금리차 (한국−미국)', $labelText:'금리차', data:[], borderColor:GAP, backgroundColor:'rgba(230,237,243,.08)', $labelColor:GAP,
+       borderWidth:2.7, tension:.18, fill:{target:'origin', above:'rgba(224,162,78,.10)', below:'rgba(94,176,224,.10)'},
+       pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:GAP, pointHoverBorderColor:SURFACE, pointHoverBorderWidth:2},
+    ]},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      layout:{padding:{right:48, top:6}},
+      interaction:{mode:'index', intersect:false},
+      scales:{
+        x:{grid:{display:false}, border:{color:BASELINE},
+           ticks:{color:MUTED, autoSkip:false, maxRotation:0, callback:rateGapTick, font:{size:11}}},
+        y:{border:{display:false},
+           grid:{color:c=>c.tick.value===0?BASELINE:GRID, lineWidth:c=>c.tick.value===0?1.4:1, drawTicks:false},
+           ticks:{color:MUTED, padding:8, callback:v=>v+'%', font:{size:11}},
+           title:{display:true, text:'금리 (%) · 금리차 (%p)', color:MUTED, font:{size:10.5}}},
+      },
+      plugins:{
+        legend:legendStyle,
+        tooltip:{...tooltipStyle, callbacks:{
+          title:items=>ymKorean(items[0].label),
+          label:it=>{
+            if (it.parsed.y==null) return '';
+            const unit = it.dataset.label.startsWith('금리차') ? '%p' : '%';
+            const sign = it.dataset.label.startsWith('금리차') && it.parsed.y>0 ? '+' : '';
+            return ` ${sign}${it.parsed.y.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:3})}${unit} · ${it.dataset.label}`;
+          },
+        }},
+      },
+    },
+    plugins:[crosshair, endLabels],
+  });
+  charts.rateGap.$endLabels = true;
+}
+
+function updateRateGap(){
+  if (!charts.rateGap) return;
+  const rows = filteredRateGap();
+  charts.rateGap.data.labels = rows.map(r=>r.ym);
+  charts.rateGap.data.datasets[0].data = rows.map(r=>r.koreaRate ?? null);
+  charts.rateGap.data.datasets[1].data = rows.map(r=>r.usRate ?? null);
+  charts.rateGap.data.datasets[2].data = rows.map(r=>r.gap ?? null);
+  charts.rateGap.update();
+}
+
+/* ─── 초기화 ───────────────────────────────────────── */
+function renderMeta(){
+  const s = DATA.series;
+  document.getElementById('metaUpdated').textContent = DATA.observedAt || DATA.updatedAt || '—';
+  document.getElementById('metaRange').textContent =
+    s.length ? `${ymKorean(s[0].ym)} ~ ${ymKorean(s[s.length-1].ym)}` : '—';
+  document.getElementById('metaMode').textContent = DATA.sourceMode === 'ecb'
+    ? '정상 · ECB 영업일 자동 갱신'
+    : (DATA.sourceMode === 'api' ? '자동 갱신: 공식 API 연동 중' : '시드 데이터 (근사 월평균)');
+}
+function renderTitles(){
+  const meta = curMeta(state.cur);
+  document.getElementById('mainTitle').textContent = `${meta.label} 월평균 매매기준율`;
+  document.getElementById('mainCap').textContent = `월평균 라인과 월중 최저–최고 변동밴드 · ${perLabel(state.cur)} 원화 환율`;
+  document.getElementById('momTitle').textContent = `${meta.label} 전월 대비 증감률`;
+}
+function renderCurButtons(){
+  const box = document.getElementById('curBtns');
+  box.innerHTML = '';
+  CURS.forEach(c=>{
+    const b = document.createElement('button');
+    b.className = 'fbtn'; b.dataset.cur = c.code;
+    b.setAttribute('aria-pressed', String(c.code===state.cur));
+    b.innerHTML = `<span class="dot" style="background:${c.color}"></span>${c.code} · ${c.label}`;
+    b.addEventListener('click', ()=>{
+      state.cur = c.code;
+      box.querySelectorAll('.fbtn').forEach(x=>x.setAttribute('aria-pressed', String(x.dataset.cur===c.code)));
+      renderTitles(); renderKPIs(); updateCharts(); renderTable();
+    });
+    box.appendChild(b);
+  });
+}
+function renderAll(){ renderKPIs(); updateCharts(); renderMacroKPIs(); updateMacro(); renderBtcKPIs(); updateBtc(); renderMarketKPIs(); updateMarket(); renderCommodityKPIs(); updateCommodity(); updateRateGap(); renderUsdStats(); renderTable(); updateRangeHint(); syncRangeButtons(); }
+
+async function refreshAllData(){
+  const button=document.getElementById('refreshAllBtn'), status=document.getElementById('refreshStatus');
+  button.disabled=true; button.classList.add('loading'); status.className='refresh-status';
+  status.textContent='최신 공개 데이터를 다시 불러오는 중입니다…';
+  try{
+    const stamp=Date.now();
+    const fresh=await Promise.all(['data.json','bok_data.json','market_data.json','rate_gap.json','bitcoin_data.json'].map(async file=>{
+      const response=await fetch(`./${file}?t=${stamp}`,{cache:'no-store'});
+      if(!response.ok) throw new Error(`${file} ${response.status}`);
+      return response.json();
+    }));
+    [DATA,BOK,MARKET,RATE_GAP,BTC]=fresh;
+    CURS=DATA.currencies||CURS; MACRO={}; (BOK&&BOK.series||[]).forEach(r=>{MACRO[r.ym]=r;});
+    renderMeta(); renderTitles(); renderAll();
+    const bokLast=BOK&&BOK.series&&BOK.series.length?BOK.series[BOK.series.length-1].ym:'—';
+    const marketObserved=MARKET&&MARKET.sources&&MARKET.sources.commodities?MARKET.sources.commodities.observedAt:'—';
+    const checked=new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Seoul'}).format(new Date());
+    const rateGapLast=RATE_GAP&&RATE_GAP.series&&RATE_GAP.series.length?RATE_GAP.series[RATE_GAP.series.length-1].ym:'—';
+    const btcLast=BTC&&BTC.observedAt?BTC.observedAt:(BTC&&BTC.series&&BTC.series.length?BTC.series[BTC.series.length-1].ym:'—');
+    status.textContent=`${checked} 재조회 완료 · 환율 ${DATA.observedAt||DATA.updatedAt||'—'} · 금리/물가 ${bokLast} · BTC ${btcLast} · 한미 금리차 ${rateGapLast} · 원자재 ${marketObserved}`;
+    status.className='refresh-status ok';
+  }catch(error){
+    console.error(error); status.textContent='새로고침에 실패했습니다. 잠시 후 다시 시도해 주세요.'; status.className='refresh-status error';
+  }finally{button.disabled=false;button.classList.remove('loading');}
+}
+
+(async function init(){
+  const [ex, bok, market, rateGap, btc] = await Promise.all([loadData(), loadBok(), loadMarket(), loadRateGap(), loadBitcoin()]);
+  DATA = ex; BOK = bok; MARKET = market; RATE_GAP = rateGap; BTC = btc;
+  CURS = DATA.currencies || [];
+  MACRO = {}; (BOK && BOK.series || []).forEach(r=>{ MACRO[r.ym] = r; });
+  if (CURS.length && !CURS.find(c=>c.code===state.cur)) state.cur = CURS[0].code;
+  renderMeta(); renderCurButtons(); renderYearControls(); renderHead(); renderTitles();
+  buildMain(); buildIdx(); buildMom(); buildMacro(); buildBtc(); buildMarket(); buildCommodity(); buildRateGap();
+  renderAll();
+  document.querySelectorAll('.range-panel .fbtn[data-range]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      state.range = btn.dataset.range;
+      syncRangeButtons();
+      renderAll();
+    });
+  });
+  document.getElementById('applyYearRange').addEventListener('click', ()=>{
+    const from = +document.getElementById('fromYear').value;
+    const to = +document.getElementById('toYear').value;
+    state.fromYear = Math.min(from, to);
+    state.toYear = Math.max(from, to);
+    state.range = (state.fromYear === state.toYear) ? String(state.fromYear) : 'custom';
+    syncRangeButtons();
+    renderAll();
+  });
+  document.getElementById('csvBtn').addEventListener('click', downloadCSV);
+  document.getElementById('downloadFxBtn').addEventListener('click', downloadFxCSV);
+  document.getElementById('downloadMacroBtn').addEventListener('click', downloadMacroCSV);
+  document.getElementById('downloadAllBtn').addEventListener('click', downloadSelectedAll);
+  document.getElementById('marketCsvBtn').addEventListener('click', downloadMarketCSV);
+  document.getElementById('btcCsvBtn').addEventListener('click', downloadBtcCSV);
+  document.getElementById('refreshAllBtn').addEventListener('click', refreshAllData);
+  setupUsdStatsToggle();
+  setupDetailToggle();
+})();
+</script>
+</body>
+</html>

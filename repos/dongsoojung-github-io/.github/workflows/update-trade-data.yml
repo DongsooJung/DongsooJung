@@ -1,0 +1,88 @@
+name: Update trade data
+
+on:
+  schedule:
+    # 매월 16일 03:00 UTC (12:00 KST) — 관세청이 매월 15일경 전월 자료를 현행화한 직후
+    - cron: '0 3 16 * *'
+  workflow_dispatch:
+    inputs:
+      api_key:
+        description: '(선택) data.go.kr 인증키(Decoding) — CUSTOMS_API_KEY 시크릿이 없을 때 1회용으로 사용. 공개 저장소에서는 실행 기록에 남으므로 사용 후 키 재발급 권장'
+        required: false
+        default: ''
+      debug:
+        description: '(선택) true면 게이트웨이 진단 프로브 실행 (403 원인 분석)'
+        required: false
+        default: 'false'
+      proxy_base:
+        description: '(선택) 서울 리전 프록시 URL (예: https://<도메인>/api/customs) — 관세청의 해외 IP 차단 우회'
+        required: false
+        default: ''
+      start_ym:
+        description: '(선택) 수집 시작 연월 YYYY-MM — 기본 2010-01. 과거 백필 시 더 이른 값 지정'
+        required: false
+        default: ''
+  push:
+    branches: [main]
+    paths:
+      - '.github/triggers/backfill-trade'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mask one-off key in logs
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.api_key != '' }}
+        run: echo "::add-mask::${{ github.event.inputs.api_key }}"
+
+      - name: Diagnose gateway (debug)
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'true' }}
+        env:
+          KEY: ${{ secrets.CUSTOMS_API_KEY || github.event.inputs.api_key }}
+        run: |
+          NT="https://apis.data.go.kr/1220000/nationtrade/getNationtradeList?serviceKey=$KEY&strtYymm=202606&endYymm=202606"
+          probe() {
+            echo "== $1"
+            curl -sS --max-time 30 -A "$3" -o /tmp/body -w "HTTP %{http_code}\n" "$2" || true
+            head -c 300 /tmp/body; echo; echo
+          }
+          probe "nationtrade(국가별) / 사용자 키" "$NT" "stargateedu-dashboard"
+          probe "nationtrade(국가별) / 고의로 틀린 키" "https://apis.data.go.kr/1220000/nationtrade/getNationtradeList?serviceKey=WRONGKEY1234567890&strtYymm=202606&endYymm=202606" "stargateedu-dashboard"
+          probe "totaltrade(수출입실적 총괄) / 사용자 키" "https://apis.data.go.kr/1220000/totaltrade/getTotaltradeList?serviceKey=$KEY&strtYymm=202606&endYymm=202606" "stargateedu-dashboard"
+          probe "Itemtrade(품목별) / 사용자 키" "https://apis.data.go.kr/1220000/Itemtrade/getItemtradeList?serviceKey=$KEY&strtYymm=202606&endYymm=202606&hsSgn=8542" "stargateedu-dashboard"
+          probe "nitemtrade(신성질별) / 사용자 키" "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList?serviceKey=$KEY&strtYymm=202606&endYymm=202606" "stargateedu-dashboard"
+
+      - name: Fetch nation trade stats (관세청)
+        env:
+          CUSTOMS_API_KEY: ${{ secrets.CUSTOMS_API_KEY }}
+          CUSTOMS_PROXY_BASE: ${{ secrets.CUSTOMS_PROXY_BASE }}
+          START_YM: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.start_ym || '2010-01' }}
+          ONE_OFF_API_KEY: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.api_key || '' }}
+          ONE_OFF_PROXY_BASE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.proxy_base || '' }}
+        run: |
+          if [ -z "$CUSTOMS_API_KEY" ] && [ -n "$ONE_OFF_API_KEY" ]; then
+            export CUSTOMS_API_KEY="$ONE_OFF_API_KEY"
+          fi
+          if [ -z "$CUSTOMS_PROXY_BASE" ] && [ -n "$ONE_OFF_PROXY_BASE" ]; then
+            export CUSTOMS_PROXY_BASE="$ONE_OFF_PROXY_BASE"
+          fi
+          if [ -n "$CUSTOMS_API_KEY" ]; then echo "key_present=yes start=$START_YM"; else echo "key_present=no start=$START_YM"; fi
+          python3 trade/fetch_data.py
+
+      - name: Commit updated data
+        run: |
+          FILES="trade/data.json trade/fallback-data.js"
+          if git diff --quiet $FILES; then
+            echo "변경 없음 — 커밋 생략"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add $FILES
+          git commit -m "chore(trade): 국가별 수출입실적 데이터 자동 갱신"
+          git push

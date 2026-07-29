@@ -1,0 +1,64 @@
+name: Collect public data CSV
+
+on:
+  schedule:
+    # 매일 00:10 KST (전일 15:10 UTC)
+    - cron: '10 15 * * *'
+  workflow_dispatch:
+    inputs:
+      apis:
+        description: '수집할 API id 목록 (쉼표 구분, 비우면 전체)'
+        required: false
+        default: 'apt_trade,store_dong,store_upjong,village_fcst'
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Ensure Supabase schema
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          WEOLBU_SUPABASE_URL: ${{ secrets.WEOLBU_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          WEOLBU_SUPABASE_SERVICE_KEY: ${{ secrets.WEOLBU_SUPABASE_SERVICE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          export SUPABASE_URL="${SUPABASE_URL:-${WEOLBU_SUPABASE_URL:-https://inftexpcnfinglwlrvsj.supabase.co}}"
+          export SUPABASE_SERVICE_KEY="${SUPABASE_SERVICE_KEY:-${WEOLBU_SUPABASE_SERVICE_KEY:-$SUPABASE_SECRET_KEY}}"
+          export DATABASE_URL="${DATABASE_URL:-$SUPABASE_DB_URL}"
+          node scripts/apply-public-data-schema.mjs || echo "스키마 적용 스킵/실패 — 수집은 계속 시도합니다."
+
+      - name: Collect and upload CSV to Supabase
+        env:
+          DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          WEOLBU_SUPABASE_URL: ${{ secrets.WEOLBU_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          WEOLBU_SUPABASE_SERVICE_KEY: ${{ secrets.WEOLBU_SUPABASE_SERVICE_KEY }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          COLLECT_APIS: ${{ inputs.apis }}
+        run: |
+          export SUPABASE_URL="${SUPABASE_URL:-${WEOLBU_SUPABASE_URL:-https://inftexpcnfinglwlrvsj.supabase.co}}"
+          export SUPABASE_SERVICE_KEY="${SUPABASE_SERVICE_KEY:-$WEOLBU_SUPABASE_SERVICE_KEY}"
+          if [ -z "$DATA_GO_KR_API_KEY" ]; then
+            echo "DATA_GO_KR_API_KEY 시크릿이 없습니다."
+            exit 1
+          fi
+          if [ -z "$SUPABASE_SERVICE_KEY" ] && [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "SUPABASE_SERVICE_KEY 또는 SUPABASE_ANON_KEY 시크릿이 필요합니다."
+            exit 1
+          fi
+          node scripts/collect-public-data.mjs

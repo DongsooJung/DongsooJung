@@ -1,53 +1,37 @@
-/* Stargate PWA service worker — network-first with offline fallback. */
-const CACHE = 'stargate-v1';
+/* Stargate PWA service worker - network-first with offline fallback. */
+const CACHE = 'stargate-v7';
 const OFFLINE_URL = '/offline.html';
-const PRECACHE = [
-  OFFLINE_URL,
-  '/assets/icons/icon-192.png'
-];
+const PRECACHE = [OFFLINE_URL, '/assets/icons/icon-192.png'];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(PRECACHE))
-  );
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)));
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))))
+      .then(() => self.clients.claim())
   );
 });
 
+async function networkFirst(request) {
+  try {
+    const response = await fetch(request, { cache: 'no-store' });
+    if (!response.ok) return response;
+
+    const copy = response.clone();
+    caches.open(CACHE).then((cache) => cache.put(request, copy));
+    return response;
+  } catch (_) {
+    return caches.match(request).then(
+      (hit) => hit || (request.mode === 'navigate' ? caches.match(OFFLINE_URL) : undefined),
+    );
+  }
+}
+
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-
-  // Page navigations: network first, offline fallback.
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE).then((cache) => cache.put(event.request, copy));
-          return res;
-        })
-        .catch(() =>
-          caches.match(event.request).then((hit) => hit || caches.match(OFFLINE_URL))
-        )
-    );
-    return;
-  }
-
-  // Static assets: network first, cache fallback.
-  event.respondWith(
-    fetch(event.request)
-      .then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE).then((cache) => cache.put(event.request, copy));
-        return res;
-      })
-      .catch(() => caches.match(event.request))
-  );
+  event.respondWith(networkFirst(event.request));
 });
