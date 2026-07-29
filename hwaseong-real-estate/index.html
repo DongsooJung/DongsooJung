@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>전국 동네 실거래 데이터 허브 | STARGATE</title>
+  <meta name="description" content="전국 읍면동을 입력해 법정동 단위 아파트 실거래량과 VWorld 지도를 확인하고 CSV로 내려받는 공공데이터 대시보드">
+  <meta name="theme-color" content="#f3f0e8">
+  <meta property="og:title" content="동네의 거래를 한 번에 읽다">
+  <meta property="og:description" content="전국 읍면동 입력으로 확인하는 법정동 단위 아파트 실거래량">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.stargateedu.co.kr/hwaseong-real-estate/">
+  <meta property="og:image" content="https://www.stargateedu.co.kr/hwaseong-real-estate/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.stargateedu.co.kr/hwaseong-real-estate/">
+  <style>
+    :root{
+      --paper:#f3f0e8;--paper-deep:#e8e4d9;--ink:#151914;--muted:#686d65;
+      --line:#c9c7bd;--acid:#d9ff43;--forest:#193c29;--white:#fffef9;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      -webkit-font-smoothing:antialiased;background:
+      linear-gradient(rgba(21,25,20,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(21,25,20,.035) 1px,transparent 1px),var(--paper);
+      background-size:32px 32px}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+    .topbar{width:min(1440px,calc(100% - 64px));height:82px;margin:0 auto;display:flex;
+      align-items:center;justify-content:space-between;border-bottom:1px solid var(--ink)}
+    .brand{display:inline-flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;
+      font:800 13px/1 Arial,sans-serif;letter-spacing:.12em}
+    .brand-mark{width:31px;height:31px;display:grid;place-items:center;background:var(--ink);
+      color:var(--acid);border-radius:50%;font:900 14px/1 Arial,sans-serif}
+    .top-links{display:flex;align-items:center;gap:18px}
+    .back-link{color:var(--muted);font-size:11px;text-decoration:none}
+    .source-status{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:12px}
+    .status-dot{width:7px;height:7px;border-radius:50%;background:#48a564;
+      box-shadow:0 0 0 4px rgba(72,165,100,.14)}
+    .hero{width:min(1440px,calc(100% - 64px));min-height:610px;margin:0 auto;display:grid;
+      grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);gap:76px;align-items:center;
+      padding:72px 0 76px}
+    .eyebrow{margin:0 0 20px;font:800 11px/1.2 Arial,sans-serif;letter-spacing:.19em;color:var(--forest)}
+    h1{margin:0;font-size:clamp(56px,7.4vw,108px);line-height:.94;letter-spacing:-.075em;font-weight:900}
+    h1 span{color:transparent;-webkit-text-stroke:1.8px var(--ink)}
+    .hero-lead{max-width:560px;margin:30px 0 32px;color:var(--muted);font-size:17px;
+      line-height:1.75;letter-spacing:-.035em}
+    .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .sync-btn,.csv-btn{min-height:52px;border:1px solid var(--ink);cursor:pointer;
+      transition:transform .16s ease,box-shadow .16s ease,background .16s ease}
+    .sync-btn{min-width:246px;padding:0 18px 0 22px;display:inline-flex;align-items:center;
+      justify-content:space-between;gap:24px;background:var(--acid);box-shadow:5px 5px 0 var(--ink);
+      font-weight:850}
+    .sync-btn:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+    .sync-btn:disabled{cursor:wait;opacity:.65}
+    .csv-btn{padding:0 20px;background:transparent;color:var(--ink);font-weight:750}
+    .csv-btn:hover:not(:disabled){background:var(--white)}
+    .notice{min-height:20px;margin:20px 0 0;color:var(--muted);font-size:12px}
+    .hero-panel{position:relative;background:var(--forest);color:var(--white);padding:30px;min-height:442px;
+      box-shadow:13px 13px 0 var(--acid)}
+    .hero-panel:before{content:"";position:absolute;inset:13px;border:1px solid rgba(255,255,255,.1);
+      pointer-events:none}
+    .panel-top{display:flex;align-items:center;justify-content:space-between;
+      font:700 10px/1 Arial,sans-serif;letter-spacing:.18em}
+    .live-pill{padding:7px 10px 6px;background:var(--acid);color:var(--ink);
+      border-radius:999px;letter-spacing:.08em}
+    .progress-number{display:flex;align-items:baseline;gap:9px;margin-top:54px}
+    .progress-number strong{font:850 56px/1 Arial,sans-serif;letter-spacing:-.055em}
+    .progress-number span{color:rgba(255,255,255,.58);font-size:13px}
+    .progress-track{height:6px;margin:20px 0 39px;background:rgba(255,255,255,.15);overflow:hidden}
+    .progress-track span{display:block;height:100%;background:var(--acid);transition:width .3s ease}
+    .pipeline{border-top:1px solid rgba(255,255,255,.22)}
+    .pipeline>div{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:center;
+      padding:17px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+    .pipe-index{color:var(--acid);font:700 11px/1 Arial,sans-serif}
+    .pipeline b,.pipeline small{display:block}
+    .pipeline b{font-size:14px}
+    .pipeline small{margin-top:4px;color:rgba(255,255,255,.5);font-size:11px}
+    .region-search{width:min(1440px,calc(100% - 64px));margin:0 auto;padding:0 0 72px}
+    .region-console{padding:34px;border:1px solid var(--ink);background:var(--white);
+      box-shadow:9px 9px 0 var(--ink)}
+    .region-console-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:24px}
+    .region-console-head .eyebrow{margin-bottom:9px}
+    .region-console h2{font-size:clamp(30px,3.4vw,48px)}
+    .region-console-head p{max-width:430px;margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+    .region-form{display:grid;grid-template-columns:minmax(280px,1fr) minmax(170px,.3fr) auto;gap:10px}
+    .region-field{display:grid;gap:7px}
+    .region-field span{font:800 9px/1 Arial,sans-serif;letter-spacing:.13em;color:var(--muted)}
+    .region-field input{width:100%;height:54px;padding:0 16px;border:1px solid var(--ink);
+      border-radius:0;background:var(--paper);color:var(--ink);font:750 15px/1 "Pretendard",sans-serif}
+    .region-field input:focus{outline:3px solid var(--acid);outline-offset:-4px}
+    .region-submit{align-self:end;height:54px;padding:0 25px;border:1px solid var(--ink);
+      background:var(--acid);color:var(--ink);font-weight:850;cursor:pointer}
+    .region-submit:disabled{opacity:.55;cursor:wait}
+    .region-examples{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:16px}
+    .region-examples>span{margin-right:2px;color:var(--muted);font-size:10px}
+    .region-examples button,.reset-region{padding:8px 11px;border:1px solid var(--line);background:transparent;
+      color:var(--muted);font-size:10px;cursor:pointer}
+    .region-examples button:hover,.reset-region:hover{border-color:var(--ink);color:var(--ink)}
+    .region-status{min-height:18px;margin:16px 0 0;color:var(--muted);font-size:11px}
+    .region-resolution{margin-top:22px;padding:18px 20px;display:grid;
+      grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;background:var(--forest);color:var(--white)}
+    .region-resolution[hidden]{display:none}
+    .region-resolution span{color:var(--acid);font:750 10px/1.3 Arial,sans-serif;letter-spacing:.08em}
+    .region-resolution strong{display:block;margin-top:7px;font-size:17px}
+    .region-resolution p{margin:6px 0 0;color:rgba(255,255,255,.65);font-size:11px;line-height:1.55}
+    .reset-region{border-color:rgba(255,255,255,.4);color:var(--white)}
+    .metrics{width:100%;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);
+      border-bottom:1px solid var(--ink);background:rgba(255,254,249,.42)}
+    .metrics article{min-height:192px;padding:32px clamp(22px,3vw,52px);display:flex;
+      flex-direction:column;border-right:1px solid var(--ink)}
+    .metrics article:last-child{border-right:0}
+    .metrics article>span{color:var(--muted);font-size:12px}
+    .metrics strong{margin:auto 0;font-size:clamp(28px,3vw,45px);letter-spacing:-.055em;white-space:nowrap}
+    .metrics strong small{margin-left:4px;font-size:17px}
+    .metrics em{max-width:100%;overflow:hidden;color:var(--muted);font:700 9px/1.2 Arial,sans-serif;
+      letter-spacing:.16em;text-overflow:ellipsis;white-space:nowrap}
+    .metrics .accent-metric{background:var(--acid)}
+    .metrics .accent-metric span,.metrics .accent-metric em{color:var(--ink)}
+    .map-section{width:min(1440px,calc(100% - 64px));margin:0 auto;padding:96px 0 12px}
+    .map-source{max-width:360px;color:var(--muted);font-size:11px;line-height:1.6;text-align:right}
+    .map-source b{color:var(--ink)}
+    .map-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,.55fr);
+      border:1px solid var(--ink);background:rgba(255,254,249,.58)}
+    .map-canvas{position:relative;min-height:630px;padding:24px;background:
+      radial-gradient(circle at 52% 48%,rgba(217,255,67,.17),transparent 42%),var(--paper-deep);
+      overflow:hidden}
+    .map-canvas:before{content:"VWORLD / 2026";position:absolute;top:20px;left:22px;color:rgba(21,25,20,.33);
+      font:800 9px/1 Arial,sans-serif;letter-spacing:.17em}
+    .legal-map{width:100%;height:100%;min-height:580px;display:block}
+    .legal-map path{stroke:var(--ink);stroke-width:1.2;vector-effect:non-scaling-stroke;cursor:pointer;
+      transition:fill .16s ease,opacity .16s ease,stroke-width .16s ease}
+    .legal-map path:hover,.legal-map path:focus{stroke-width:3;outline:none}
+    .legal-map path.is-muted{opacity:.18}
+    .legal-map path.is-selected{stroke:var(--ink);stroke-width:4;filter:drop-shadow(3px 4px 0 rgba(21,25,20,.28))}
+    .map-tooltip{position:absolute;z-index:3;min-width:154px;padding:11px 13px;background:var(--ink);
+      color:var(--white);pointer-events:none;transform:translate(12px,-50%);
+      font-size:11px;line-height:1.5;box-shadow:4px 4px 0 var(--acid)}
+    .map-tooltip b{display:block;color:var(--acid);font-size:14px}
+    .map-legend{position:absolute;left:22px;bottom:18px;display:flex;gap:11px;padding:9px 11px;
+      background:rgba(255,254,249,.9);border:1px solid var(--line);font-size:9px}
+    .map-legend span{display:inline-flex;align-items:center;gap:5px}
+    .legend-chip{width:13px;height:13px;border:1px solid rgba(21,25,20,.45)}
+    .map-panel{padding:28px;border-left:1px solid var(--ink);background:var(--white)}
+    .map-panel-top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+    .map-panel-top span{color:var(--muted);font-size:10px;letter-spacing:.08em}
+    .map-panel-top strong{display:block;margin-top:9px;font-size:28px;letter-spacing:-.05em}
+    .map-panel-top p{margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.6}
+    .district-list{display:grid;margin-top:22px}
+    .district-card{width:100%;padding:15px 0;display:grid;grid-template-columns:13px 1fr auto;gap:11px;
+      align-items:center;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);
+      text-align:left;cursor:pointer}
+    .district-card:hover b,.district-card.active b{text-decoration:underline;text-underline-offset:4px}
+    .district-swatch{width:10px;height:10px;border-radius:50%;background:var(--district-color)}
+    .district-card b{font-size:13px}.district-card small{display:block;margin-top:4px;color:var(--muted);font-size:9px}
+    .district-card strong{font:800 20px/1 Arial,sans-serif}
+    .selection-card{margin-top:26px;padding:18px;background:var(--forest);color:var(--white)}
+    .selection-card span{color:rgba(255,255,255,.58);font-size:9px;letter-spacing:.12em}
+    .selection-card strong{display:block;margin:9px 0 5px;color:var(--acid);font-size:21px}
+    .selection-card p{margin:0;color:rgba(255,255,255,.66);font-size:11px}
+    .selection-card button{width:100%;margin-top:16px;padding:10px;border:1px solid rgba(255,255,255,.45);
+      background:transparent;color:var(--white);font-size:10px;cursor:pointer}
+    .selection-card button:hover{background:var(--white);color:var(--ink)}
+    .data-section{width:min(1440px,calc(100% - 64px));margin:0 auto;padding:96px 0 84px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}
+    .section-head .eyebrow{margin-bottom:10px}
+    h2{margin:0;font-size:clamp(36px,4vw,58px);line-height:1;letter-spacing:-.06em}
+    .filters{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+    .filters button{padding:9px 13px;border:1px solid var(--line);background:transparent;
+      color:var(--muted);font-size:11px;cursor:pointer}
+    .filters button:hover,.filters button.active{border-color:var(--ink);background:var(--ink);color:var(--white)}
+    .table-shell{border-top:2px solid var(--ink);overflow-x:auto}
+    table{width:100%;min-width:980px;border-collapse:collapse}
+    th{height:47px;color:var(--muted);text-align:left;font-size:10px;letter-spacing:.04em;
+      border-bottom:1px solid var(--line)}
+    th:nth-child(4),th:nth-child(5),th:nth-child(6),td:nth-child(4),td:nth-child(5),td:nth-child(6){text-align:right}
+    td{height:74px;padding:11px 8px 11px 0;border-bottom:1px solid var(--line);
+      font-size:13px;vertical-align:middle}
+    td b,td small{display:block}
+    td b{font-size:13px}
+    td small{max-width:230px;margin-top:5px;color:var(--muted);font-size:10px;overflow:hidden;
+      text-overflow:ellipsis;white-space:nowrap}
+    .date-cell b{font:800 18px/1 Arial,sans-serif}
+    .district-tag,.deal-type{display:inline-flex;align-items:center;min-height:23px;padding:0 7px;
+      border:1px solid var(--line);font-size:10px}
+    .district-tag{background:var(--white);border-color:var(--ink);font-weight:750}
+    .price-cell{font-weight:850;font-size:15px}
+    .deal-type{border-radius:999px;color:var(--muted)}
+    .empty{padding:80px 0;color:var(--muted);text-align:center}
+    footer{min-height:105px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;
+      gap:24px;border-top:1px solid var(--ink);background:var(--ink);color:var(--white)}
+    footer p{margin:0;color:rgba(255,255,255,.65);font-size:10px;letter-spacing:.08em}
+    footer p span{margin-left:14px;color:rgba(255,255,255,.35)}
+    footer #footer-month{margin:0;color:inherit}
+    @media(max-width:980px){
+      .topbar,.hero,.region-search,.map-section,.data-section{width:min(100% - 36px,760px)}
+      .hero{grid-template-columns:1fr;gap:50px;padding-top:56px}
+      .hero-panel{max-width:600px}.metrics{grid-template-columns:repeat(2,1fr)}
+      .metrics article:nth-child(2){border-right:0}.metrics article:nth-child(-n+2){border-bottom:1px solid var(--ink)}
+      .region-form{grid-template-columns:1fr 180px}.region-submit{grid-column:1/-1}
+      .map-layout{grid-template-columns:1fr}.map-canvas{min-height:540px}
+      .map-panel{border-left:0;border-top:1px solid var(--ink)}
+    }
+    @media(max-width:620px){
+      .topbar{height:68px}.back-link{display:none}.source-status{font-size:0}
+      .source-status:after{content:"API DATA";font-size:10px}
+      .hero{min-height:0;padding:46px 0 58px}.hero h1{font-size:clamp(49px,15.4vw,75px)}
+      .hero-lead{font-size:15px}.hero-actions,.sync-btn,.csv-btn{width:100%}
+      .hero-panel{min-height:420px;padding:26px;box-shadow:8px 8px 0 var(--acid)}
+      .progress-number strong{font-size:47px}.metrics{grid-template-columns:1fr}
+      .metrics article{min-height:142px;border-right:0;border-bottom:1px solid var(--ink)}
+      .region-search{padding-bottom:56px}.region-console{padding:22px;box-shadow:6px 6px 0 var(--ink)}
+      .region-console-head{align-items:flex-start;flex-direction:column}.region-form{grid-template-columns:1fr}
+      .region-submit{grid-column:auto}.region-resolution{grid-template-columns:1fr}.reset-region{width:100%}
+      .section-head{align-items:flex-start;flex-direction:column}.filters{justify-content:flex-start}
+      .map-section{padding-top:62px}.map-source{text-align:left}.map-canvas{min-height:420px;padding:10px}
+      .legal-map{min-height:400px}.map-legend{left:10px;bottom:10px;gap:6px;flex-wrap:wrap;max-width:250px}
+      .map-panel{padding:22px}
+      footer{padding:24px 20px;align-items:flex-start;flex-direction:column;justify-content:center}
+      footer p span{display:block;margin:6px 0 0}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="전국 부동산 데이터 허브 홈">
+      <span class="brand-mark" aria-hidden="true">R</span><span>REGION DATA</span>
+    </a>
+    <nav class="top-links" aria-label="보조 탐색">
+      <a class="back-link" href="/">STARGATE 홈</a>
+      <div class="source-status"><span class="status-dot"></span>국토교통부 실거래가 API</div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div>
+        <p class="eyebrow">KOREA · APARTMENT SALES</p>
+        <h1>동네의 거래를<br><span>한 번에 읽다.</span></h1>
+        <p class="hero-lead">전국의 시·군·구와 읍·면·동을 입력하면 VWorld가 법정동을 해석하고, 국토부 아파트 실거래를 100건씩 보여줍니다.</p>
+        <div class="hero-actions">
+          <button class="sync-btn" id="next-btn" type="button"><span>다음 100건 불러오기</span><span aria-hidden="true">↗</span></button>
+          <button class="csv-btn" id="csv-btn" type="button">현재 CSV 내려받기</button>
+        </div>
+        <p class="notice" id="notice" role="status">2026년 6월 초기 100건을 불러오는 중입니다.</p>
+      </div>
+
+      <aside class="hero-panel" aria-label="데이터 수집 현황">
+        <div class="panel-top"><span>DATA PIPELINE</span><span class="live-pill">READY</span></div>
+        <div class="progress-number"><strong id="range-number">0–0</strong><span id="total-label">/ 0건</span></div>
+        <div class="progress-track"><span id="progress-bar" style="width:0"></span></div>
+        <div class="pipeline">
+          <div><span class="pipe-index">01</span><span><b>지역 해석</b><small>행정동 입력을 법정동에 연결</small></span></div>
+          <div><span class="pipe-index">02</span><span><b>100건 배치</b><small>버튼으로 다음 묶음 탐색</small></span></div>
+          <div><span class="pipe-index">03</span><span><b>법정동 지도</b><small>VWorld 경계와 거래량 결합</small></span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="region-search" aria-labelledby="region-search-title">
+      <div class="region-console">
+        <div class="region-console-head">
+          <div><p class="eyebrow">NATIONWIDE REGION SEARCH</p><h2 id="region-search-title">어느 동네의 거래를 볼까요?</h2></div>
+          <p>시·도와 시·군·구, 읍·면·동을 함께 입력하면 같은 이름의 지역도 정확히 구분합니다. 행정동은 국토부 집계 기준인 법정동으로 연결합니다.</p>
+        </div>
+        <form class="region-form" id="region-form">
+          <label class="region-field">
+            <span>REGION</span>
+            <input id="region-input" name="query" value="서울 관악구 대학동"
+              placeholder="예: 서울 관악구 대학동" autocomplete="off" required>
+          </label>
+          <label class="region-field">
+            <span>DEAL MONTH</span>
+            <input id="region-month" name="dealMonth" type="month" value="2026-06" min="2006-01" required>
+          </label>
+          <button class="region-submit" id="region-submit" type="submit">거래량 조회</button>
+        </form>
+        <div class="region-examples">
+          <span>예시</span>
+          <button type="button" data-region-example="서울 관악구 대학동">서울 관악구 대학동</button>
+          <button type="button" data-region-example="경기 화성시 향남읍">경기 화성시 향남읍</button>
+          <button type="button" data-region-example="부산 해운대구 우동">부산 해운대구 우동</button>
+        </div>
+        <p class="region-status" id="region-status" role="status">지역을 입력하면 해당 법정동의 월 거래량과 실거래 목록을 불러옵니다.</p>
+        <div class="region-resolution" id="region-resolution" hidden>
+          <div>
+            <span id="resolution-type">REGION RESOLUTION</span>
+            <strong id="resolution-title"></strong>
+            <p id="resolution-note"></p>
+          </div>
+          <button class="reset-region" id="reset-region" type="button">화성시 기본 화면</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="현재 100건 요약">
+      <article><span id="metric-count-label">현재 화면</span><strong id="metric-count">0<small>건</small></strong><em id="metric-count-meta">PAGE SIZE</em></article>
+      <article><span>평균 거래가</span><strong id="metric-average">—</strong><em>AVERAGE</em></article>
+      <article><span>중앙 거래가</span><strong id="metric-median">—</strong><em>MEDIAN</em></article>
+      <article class="accent-metric"><span>최고가</span><strong id="metric-top">—</strong><em id="metric-top-name">TOP DEAL</em></article>
+    </section>
+
+    <section class="map-section" aria-labelledby="map-title">
+      <div class="section-head">
+        <div><p class="eyebrow">VWORLD LEGAL-DONG MAP</p><h2 id="map-title">법정동으로 읽는 100건</h2></div>
+        <p class="map-source" id="map-source"><b>VWorld 공간정보 오픈플랫폼</b><br>LT_C_ADEMD_INFO · 화성시 39개 법정동 경계</p>
+      </div>
+      <div class="map-layout">
+        <div class="map-canvas" id="map-canvas">
+          <svg class="legal-map" id="legal-map" viewBox="0 0 1000 620" role="img"
+            aria-label="화성시 39개 법정동 경계와 현재 100건의 거래 분포"></svg>
+          <div class="map-tooltip" id="map-tooltip" hidden></div>
+          <div class="map-legend" aria-label="거래 건수 색상 범례">
+            <span><i class="legend-chip" style="background:#dedbd1"></i>0건</span>
+            <span><i class="legend-chip" style="background:#d9ff43"></i>1–2건</span>
+            <span><i class="legend-chip" style="background:#84b85d"></i>3–5건</span>
+            <span><i class="legend-chip" style="background:#193c29"></i>6건+</span>
+          </div>
+        </div>
+        <aside class="map-panel" aria-label="법정동 지도 요약">
+          <div class="map-panel-top">
+            <span>LEGAL-DONG COVERAGE</span>
+            <strong><span id="active-dong-count">0</span> / <span id="legal-dong-total">39</span></strong>
+            <p id="map-panel-note">현재 100건에서 거래가 확인되는 법정동입니다. 지도 영역을 누르면 해당 구·법정동 거래만 볼 수 있습니다.</p>
+          </div>
+          <div class="district-list" id="district-list"></div>
+          <div class="selection-card">
+            <span>SELECTED AREA</span>
+            <strong id="selected-area">화성시 전체</strong>
+            <p id="selected-count">현재 100건 전체 보기</p>
+            <button type="button" id="clear-map-filter">지도 선택 초기화</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="data-section">
+      <div class="section-head">
+        <div><p class="eyebrow">TRANSACTION LOG</p><h2>실거래 내역</h2></div>
+        <div class="filters" id="filters" role="group" aria-label="구 필터"></div>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead><tr><th>계약일</th><th>구 · 법정동</th><th>아파트</th><th>전용면적</th><th>층</th><th>거래금액</th><th>유형</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <p class="empty" id="empty" hidden>표시할 거래가 없습니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Source · 국토교통부 실거래가 · VWorld 법정동 경계 <span>2026.02.01 화성시 법정구역 개편 반영</span></p>
+    <p>DATA MONTH <span id="footer-month">2026-06</span> · UNIT KRW 10K</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+  (() => {
+    if(window.REGION_DASHBOARD_V2)return;
+    const state={summary:null,legalDongs:null,rows:[],offset:0,filter:'전체',selectedDong:null,loading:false};
+    const $=id=>document.getElementById(id);
+    const money=new Intl.NumberFormat('ko-KR');
+    const decimal=new Intl.NumberFormat('ko-KR',{maximumFractionDigits:1});
+    const districtColors={만세구:'#d46a45',효행구:'#5f8d65',병점구:'#5d78bd',동탄구:'#7858a6'};
+    const safe=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const wonLabel=value=>{const eok=Math.floor(value/10000),rest=value%10000;return eok?(rest?`${eok}억 ${money.format(rest)}만`:`${eok}억`):`${money.format(value)}만`};
+    const dateLabel=value=>{const parts=value.split('-');return `${Number(parts[1])}.${String(Number(parts[2])).padStart(2,'0')}`};
+    const csvEscape=value=>{const text=String(value??'');return /[",\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text};
+    const rowDong=row=>row.neighborhood.split(' ')[0];
+    const dongKey=(district,name)=>`${district}|${name}`;
+
+    function stats(rows){
+      if(!rows.length)return{average:0,median:0,top:null};
+      const prices=rows.map(row=>row.price_manwon).sort((a,b)=>a-b),mid=Math.floor(prices.length/2);
+      return{
+        average:Math.round(rows.reduce((sum,row)=>sum+row.price_manwon,0)/rows.length),
+        median:prices.length%2?prices[mid]:Math.round((prices[mid-1]+prices[mid])/2),
+        top:rows.reduce((best,row)=>row.price_manwon>best.price_manwon?row:best)
+      };
+    }
+
+    function filteredRows(){
+      return state.rows.filter(row=>{
+        const districtMatch=state.filter==='전체'||row.district_name===state.filter;
+        const dongMatch=!state.selectedDong||dongKey(row.district_name,rowDong(row))===state.selectedDong;
+        return districtMatch&&dongMatch;
+      });
+    }
+
+    function renderFilters(){
+      const mappedDistricts=state.legalDongs?.features.map(feature=>feature.properties.district)||state.rows.map(row=>row.district_name);
+      const districts=['전체',...new Set(mappedDistricts)];
+      $('filters').innerHTML=districts.map(name=>`<button type="button" data-district="${safe(name)}" class="${name===state.filter?'active':''}">${safe(name)}</button>`).join('');
+      $('filters').querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{
+        state.filter=button.dataset.district;state.selectedDong=null;render();
+      }));
+    }
+
+    function renderMap(){
+      if(!state.legalDongs)return;
+      const features=state.legalDongs.features,counts=new Map();
+      state.rows.forEach(row=>{
+        const key=dongKey(row.district_name,rowDong(row));
+        counts.set(key,(counts.get(key)||0)+1);
+      });
+
+      const points=[];
+      const collect=value=>{
+        if(typeof value?.[0]==='number')points.push(value);
+        else value?.forEach(collect);
+      };
+      features.forEach(feature=>collect(feature.geometry.coordinates));
+      const meanLat=points.reduce((sum,point)=>sum+point[1],0)/points.length;
+      const cosLat=Math.cos(meanLat*Math.PI/180);
+      const xs=points.map(point=>point[0]*cosLat),ys=points.map(point=>point[1]);
+      const bounds={minX:Math.min(...xs),maxX:Math.max(...xs),minY:Math.min(...ys),maxY:Math.max(...ys)};
+      const width=1000,height=620,pad=30;
+      const scale=Math.min((width-pad*2)/(bounds.maxX-bounds.minX),(height-pad*2)/(bounds.maxY-bounds.minY));
+      const project=point=>[
+        pad+(point[0]*cosLat-bounds.minX)*scale,
+        height-pad-(point[1]-bounds.minY)*scale
+      ];
+      const ringPath=ring=>ring.map((point,index)=>`${index?'L':'M'}${project(point).map(value=>value.toFixed(1)).join(',')}`).join(' ')+' Z';
+      const geometryPath=geometry=>{
+        if(geometry.type==='Polygon')return geometry.coordinates.map(ringPath).join(' ');
+        return geometry.coordinates.flatMap(polygon=>polygon.map(ringPath)).join(' ');
+      };
+      const fillFor=count=>count>=6?'#193c29':count>=3?'#84b85d':count>=1?'#d9ff43':'#dedbd1';
+
+      $('legal-map').innerHTML=features.map(feature=>{
+        const {district,name}=feature.properties,key=dongKey(district,name),count=counts.get(key)||0;
+        const muted=(state.filter!=='전체'&&state.filter!==district)||(state.selectedDong&&state.selectedDong!==key);
+        return `<path d="${geometryPath(feature.geometry)}" fill="${fillFor(count)}" fill-rule="evenodd"
+          class="${muted?'is-muted ':''}${state.selectedDong===key?'is-selected':''}"
+          data-key="${safe(key)}" data-district="${safe(district)}" data-name="${safe(name)}" data-count="${count}"
+          tabindex="0" role="button" aria-label="${safe(district)} ${safe(name)}, 현재 ${count}건"></path>`;
+      }).join('');
+
+      const tooltip=$('map-tooltip'),canvas=$('map-canvas');
+      const showTooltip=(path,event)=>{
+        tooltip.innerHTML=`<b>${safe(path.dataset.name)}</b>${safe(path.dataset.district)} · 현재 ${money.format(Number(path.dataset.count))}건`;
+        tooltip.hidden=false;
+        const box=canvas.getBoundingClientRect();
+        const pathBox=path.getBoundingClientRect();
+        const x=event?.clientX??pathBox.left+pathBox.width/2;
+        const y=event?.clientY??pathBox.top+pathBox.height/2;
+        tooltip.style.left=`${Math.min(box.width-185,Math.max(5,x-box.left))}px`;
+        tooltip.style.top=`${Math.min(box.height-35,Math.max(35,y-box.top))}px`;
+      };
+      $('legal-map').querySelectorAll('path').forEach(path=>{
+        path.addEventListener('pointermove',event=>showTooltip(path,event));
+        path.addEventListener('pointerleave',()=>tooltip.hidden=true);
+        path.addEventListener('focus',()=>showTooltip(path));
+        path.addEventListener('blur',()=>tooltip.hidden=true);
+        path.addEventListener('click',()=>{
+          state.filter=path.dataset.district;state.selectedDong=path.dataset.key;render();
+          document.querySelector('.data-section').scrollIntoView({behavior:'smooth',block:'start'});
+        });
+        path.addEventListener('keydown',event=>{
+          if(event.key==='Enter'||event.key===' '){event.preventDefault();path.click()}
+        });
+      });
+
+      const districts=['만세구','효행구','병점구','동탄구'].filter(district=>
+        features.some(feature=>feature.properties.district===district)
+      );
+      $('district-list').innerHTML=districts.map(district=>{
+        const currentCount=state.rows.filter(row=>row.district_name===district).length;
+        const dongCount=features.filter(feature=>feature.properties.district===district).length;
+        return `<button type="button" class="district-card ${state.filter===district&&!state.selectedDong?'active':''}"
+          data-district="${safe(district)}" style="--district-color:${districtColors[district]||'#151914'}">
+          <i class="district-swatch"></i><span><b>${safe(district)}</b><small>${dongCount}개 법정동</small></span><strong>${currentCount}</strong>
+        </button>`;
+      }).join('');
+      $('district-list').querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{
+        state.filter=button.dataset.district;state.selectedDong=null;render();
+      }));
+
+      $('active-dong-count').textContent=money.format(features.filter(feature=>
+        (counts.get(dongKey(feature.properties.district,feature.properties.name))||0)>0
+      ).length);
+      const selectedRows=filteredRows();
+      if(state.selectedDong){
+        const [district,name]=state.selectedDong.split('|');
+        $('selected-area').textContent=`${district} ${name}`;
+        $('selected-count').textContent=`현재 100건 중 ${money.format(selectedRows.length)}건`;
+      }else if(state.filter!=='전체'){
+        $('selected-area').textContent=state.filter;
+        $('selected-count').textContent=`현재 100건 중 ${money.format(selectedRows.length)}건`;
+      }else{
+        $('selected-area').textContent='화성시 전체';
+        $('selected-count').textContent=`현재 ${money.format(state.rows.length)}건 전체 보기`;
+      }
+    }
+
+    function render(){
+      const rows=filteredRows(),summary=stats(state.rows);
+      $('metric-count').innerHTML=`${money.format(state.rows.length)}<small>건</small>`;
+      $('metric-average').textContent=summary.average?wonLabel(summary.average):'—';
+      $('metric-median').textContent=summary.median?wonLabel(summary.median):'—';
+      $('metric-top').textContent=summary.top?wonLabel(summary.top.price_manwon):'—';
+      $('metric-top-name').textContent=summary.top?.apartment_name||'TOP DEAL';
+      const start=state.rows.length?state.offset+1:0,end=state.offset+state.rows.length,total=state.summary?.totalCount||0;
+      $('range-number').textContent=`${money.format(start)}–${money.format(end)}`;
+      $('total-label').textContent=`/ ${money.format(total)}건`;
+      $('progress-bar').style.width=total?`${Math.min(100,end/total*100)}%`:'0';
+      $('next-btn').querySelector('span').textContent=end>=total?'처음 100건으로':'다음 100건 불러오기';
+      $('rows').innerHTML=rows.map(row=>`<tr>
+        <td class="date-cell"><b>${safe(dateLabel(row.deal_date))}</b><small>2026</small></td>
+        <td><span class="district-tag">${safe(row.district_name)}</span><small>${safe(row.neighborhood)}</small></td>
+        <td><b>${safe(row.apartment_name)}</b><small>${safe(row.build_year)}년 · ${safe(row.jibun)}</small></td>
+        <td>${safe(decimal.format(row.area_sqm))}㎡</td><td>${safe(row.floor)}층</td>
+        <td class="price-cell">${safe(wonLabel(row.price_manwon))}</td>
+        <td><span class="deal-type">${safe(row.deal_type||'미기재')}</span></td></tr>`).join('');
+      $('empty').hidden=rows.length>0;
+      renderFilters();
+      renderMap();
+    }
+
+    async function loadBatch(offset){
+      if(state.loading)return;
+      state.loading=true;$('next-btn').disabled=true;$('notice').textContent=`${money.format(offset+1)}번째 거래부터 불러오는 중입니다.`;
+      try{
+        const batch=state.summary.batches.find(item=>item.offset===offset)||state.summary.batches[0];
+        const response=await fetch(`data/${batch.file}?v=${encodeURIComponent(state.summary.updatedAt)}`,{cache:'no-store'});
+        if(!response.ok)throw new Error(`HTTP ${response.status}`);
+        state.rows=await response.json();state.offset=batch.offset;state.filter='전체';state.selectedDong=null;
+        $('notice').textContent=`공공 API 수집본 ${money.format(batch.offset+1)}–${money.format(batch.offset+batch.count)}건 · ${state.rows.length}건 표시`;
+        render();
+      }catch(error){$('notice').textContent=`데이터를 불러오지 못했습니다: ${error.message}`}
+      finally{state.loading=false;$('next-btn').disabled=false}
+    }
+
+    function downloadCsv(){
+      const rows=filteredRows();
+      const columns=[
+        ['global_index','순번'],['district_code','구코드'],['district_name','구'],['neighborhood','법정동'],
+        ['apartment_name','아파트'],['deal_date','계약일'],['price_manwon','거래금액(만원)'],
+        ['area_sqm','전용면적(㎡)'],['floor','층'],['build_year','건축년도'],['jibun','지번'],
+        ['deal_type','거래유형'],['agent_location','중개사소재지'],['buyer_type','매수자'],
+        ['seller_type','매도자'],['cancellation_date','해제사유발생일'],['registration_date','등기일자'],
+        ['transaction_key','거래키']
+      ];
+      const lines=[columns.map(([,label])=>csvEscape(label)).join(','),...rows.map(row=>columns.map(([key])=>csvEscape(key==='global_index'?row[key]+1:row[key])).join(','))];
+      const blob=new Blob([`\ufeff${lines.join('\n')}\n`],{type:'text/csv;charset=utf-8'});
+      const anchor=document.createElement('a');anchor.href=URL.createObjectURL(blob);
+      anchor.download=`화성시_아파트_실거래가_2026-06_${state.offset+1}-${state.offset+rows.length}.csv`;
+      anchor.click();URL.revokeObjectURL(anchor.href);
+    }
+
+    async function init(){
+      try{
+        const [summaryResponse,mapResponse]=await Promise.all([
+          fetch('data/summary.json',{cache:'no-store'}),
+          fetch('data/hwaseong-legal-dong.geojson',{cache:'force-cache'})
+        ]);
+        if(!summaryResponse.ok)throw new Error(`HTTP ${summaryResponse.status}`);
+        state.summary=await summaryResponse.json();
+        if(mapResponse.ok)state.legalDongs=await mapResponse.json();
+        await loadBatch(0);
+      }catch(error){$('notice').textContent=`요약 데이터를 불러오지 못했습니다: ${error.message}`}
+    }
+
+    $('next-btn').addEventListener('click',()=>{
+      if(!state.summary)return;
+      const next=state.offset+100>=state.summary.totalCount?0:state.offset+100;
+      loadBatch(next);
+    });
+    $('csv-btn').addEventListener('click',downloadCsv);
+    $('clear-map-filter').addEventListener('click',()=>{state.filter='전체';state.selectedDong=null;render()});
+    init();
+  })();
+  </script>
+</body>
+</html>

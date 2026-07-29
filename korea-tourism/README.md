@@ -1,6 +1,7 @@
 # 방한 외래관광객 대시보드 (중국 · 대만 · 베트남)
 
-2024년 1월부터의 국적별 월별 방한 외래관광객 수를 보여주는 인터랙티브 시계열 대시보드입니다.
+2010년 1월부터(기본)의 국적별 월별 방한 외래관광객 수를 보여주는 인터랙티브 시계열 대시보드입니다.
+과거 백필이 필요하면 `START_YM=2005-01`처럼 시작 연월을 더 앞당길 수 있습니다.
 
 - **라이브**: https://www.stargateedu.co.kr/korea-tourism/
 - **데이터**: 같은 폴더의 `data.json` (대시보드는 이 파일만 읽습니다)
@@ -9,12 +10,28 @@
 ## 데이터 갱신 구조
 
 ```
-공공데이터포털 API ──(매월 5일, GitHub Actions)──▶ data.json ──▶ 대시보드
+공공데이터포털 API ──(국내 PC에서 Run.bat 실행)──▶ data.json ──▶ 대시보드
 ```
 
-`data.json`은 공표 통계 기반 시드 값으로 시작하며, GitHub Actions 워크플로
-(`.github/workflows/update-tourism-data.yml`)가 매월 API를 호출해 최신 공표월까지
-자동으로 덮어씁니다. API 키가 등록되기 전에는 시드 데이터로 동작합니다.
+`data.json`은 공표 통계 기반 시드 값으로 시작합니다.
+
+> **⚠️ 해외 IP 차단**: data.go.kr / tour.go.kr는 해외 IP를 차단하므로 **GitHub Actions
+> (해외 러너)에서는 API 호출이 실패**합니다(HTTP 500 / 타임아웃 확인됨). 따라서 실제
+> 데이터 갱신은 **국내 네트워크의 PC에서** 아래 방법으로 실행합니다. Actions 워크플로는
+> 남겨두었으며, 향후 접근이 허용되면 자동 갱신으로 전환됩니다.
+
+## 국내 PC에서 데이터 갱신 (권장)
+
+1. 이 저장소를 클론: `git clone https://github.com/DongsooJung/dongsoojung.github.io.git`
+2. `korea-tourism\Run.bat` 더블클릭 (Windows PowerShell 내장 기능만 사용, 파이썬 불필요)
+3. 인증키 입력 → 2010-01부터(결측·근사치·최근 3개월) 자동 수집 → git이 있으면 자동 커밋·푸시
+
+명령줄로는:
+```powershell
+$env:TOUR_API_KEY="<인증키>"
+# (선택) 더 과거부터: $env:START_YM="2005-01"
+powershell -File korea-tourism\fetch_local.ps1
+```
 
 ## API 키 등록 (1회 설정)
 
@@ -25,8 +42,9 @@
    - Name: `TOUR_API_KEY`
    - Secret: 복사한 인증키
 5. **Actions 탭 → Update tourism data → Run workflow**로 1회 수동 실행해 확인
+   - 과거 구간을 한꺼번에 채우려면 `start_ym`(예: `2010-01` 또는 `2005-01`) 입력을 사용
 
-이후에는 매월 5일에 자동으로 갱신됩니다.
+이후에는 매월 5일에 자동으로 갱신됩니다. 확정된 과거 월은 재호출하지 않고, 최근 3개월·결측·근사치만 다시 수집합니다.
 
 ## 파일 구성
 
@@ -34,7 +52,8 @@
 |---|---|
 | `index.html` | 대시보드 (Chart.js 4, 자체 완결형 정적 페이지) |
 | `data.json` | 월별 통계 데이터 (시드 → API 자동 갱신) |
-| `fetch_data.py` | API 호출·병합 스크립트 (표준 라이브러리만 사용) |
+| `fetch_data.py` | API 호출·병합 스크립트 — GitHub Actions용 (표준 라이브러리만 사용) |
+| `Run.bat` / `fetch_local.ps1` | **국내 PC용 수집 스크립트** (PowerShell, 파이썬 불필요) |
 
 ## 참고
 
