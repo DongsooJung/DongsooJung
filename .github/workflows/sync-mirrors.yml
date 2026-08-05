@@ -1,4 +1,4 @@
-name: Sync Mirror Branches
+name: Sync Snapshot Branches
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build and push mirror branches
+      - name: Build snapshot branches only
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -29,14 +29,7 @@ jobs:
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/DongsooJung/DongsooJung.git"
           ./scripts/sync-mirrors.sh
 
-      - name: Try cross-repo deploy
-        if: success() || failure()
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+      - name: Production deployment policy
         run: |
-          if [[ -n "${{ secrets.GH_PAT }}" ]]; then
-            chmod +x scripts/deploy-mirrors.sh
-            ./scripts/deploy-mirrors.sh
-          else
-            echo "::notice::GH_PAT 없음 — mirror 브랜치만 갱신됨. 로컬에서 scripts/deploy-mirrors.sh 실행 가능."
-          fi
+          echo "::notice::Cross-repository deployment is disabled."
+          echo "::notice::Edit and deploy each production domain from its canonical repository."
