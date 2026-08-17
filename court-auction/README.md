@@ -1,0 +1,46 @@
+# 법원경매 × 국토부 실거래 비교
+
+대한민국법원 법원경매정보의 **현재 매각공고 화면**을 읽어 경매 물건을 JSON으로 만들고, 대시보드에서 아파트 경매 최저가와 국토교통부 월 실거래를 비교합니다.
+
+## 변경된 수집 경로
+
+기존 `fetch_court_auction.py`는 폐기된 `/pgj/pgj15B/selectAuctnGdsDtlSrchRslt.on`과 과거 요청 필드를 사용해 실제 데이터가 수집되지 않았습니다. 새 수집기는 현재 사이트가 사용하는 두 단계를 따릅니다.
+
+1. `POST /pgj/pgj143/selectRletDspslPbanc.on` — 월 매각공고 목록
+2. `POST /pgj/pgj143/selectRletDspslPbancDtl.on` — 공고별 사건·물건 상세
+
+응답에서 사건번호, 법원, 용도, 주소, 감정가, 최저매각가, 매각기일을 정규화합니다. `data.json`과 `data_commercial.json`에는 샘플이 아닌 실제 파싱 결과만 저장합니다.
+
+## 실행
+
+법원 사이트의 접근 정책상 국내 네트워크에서 실행하는 것을 권장합니다.
+
+```bash
+cd court-auction
+npm install
+npm run collect -- --month=2026-07
+```
+
+특정 법원만 수집하려면 법원 코드를 함께 지정합니다.
+
+```bash
+npm run collect -- --month=2026-07 --court=B000210
+```
+
+수집기는 과도한 호출을 막기 위해 요청 사이에 지연을 두며, 차단 응답을 우회하지 않습니다.
+
+## 대시보드
+
+- 주택/상업용 전환
+- 사건번호·법원·주소·용도 검색
+- 시도·용도 필터
+- 평균 감정가·최저가·최저가율
+- 아파트 주소의 법정동 추출
+- VWorld 법정동 해석 후 국토부 아파트 매매 실거래 조회
+- 경매 최저가와 해당 월 법정동 평균 실거래가 비교
+
+실거래 비교 API는 `https://stargate-real-estate-api.vercel.app/api/region`을 사용하며 `VWORLD_API_KEY`, `DATA_GO_KR_API_KEY`가 배포 환경에 설정되어 있어야 합니다.
+
+## 주의
+
+경매 공고와 실거래 신고는 정정·취하·해제 등으로 바뀔 수 있습니다. 이 화면은 탐색용이며, 실제 입찰 전 법원 원문과 매각물건명세서를 반드시 확인해야 합니다.

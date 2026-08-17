@@ -1,0 +1,151 @@
+{
+  "archives": [
+    {
+      "date": "2026-08-16",
+      "collectedAt": "2026-08-16T11:06:36+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-16.json"
+    },
+    {
+      "date": "2026-08-15",
+      "collectedAt": "2026-08-15T10:56:56+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-15.json"
+    },
+    {
+      "date": "2026-08-14",
+      "collectedAt": "2026-08-14T12:06:59+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-14.json"
+    },
+    {
+      "date": "2026-08-13",
+      "collectedAt": "2026-08-13T12:07:44+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-13.json"
+    },
+    {
+      "date": "2026-08-12",
+      "collectedAt": "2026-08-12T12:04:53+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-12.json"
+    },
+    {
+      "date": "2026-08-11",
+      "collectedAt": "2026-08-11T11:35:09+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-11.json"
+    },
+    {
+      "date": "2026-08-10",
+      "collectedAt": "2026-08-10T11:41:12+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-10.json"
+    },
+    {
+      "date": "2026-08-09",
+      "collectedAt": "2026-08-09T11:35:40+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-09.json"
+    },
+    {
+      "date": "2026-08-08",
+      "collectedAt": "2026-08-08T11:28:06+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-08.json"
+    },
+    {
+      "date": "2026-08-07",
+      "collectedAt": "2026-08-07T12:28:44+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-07.json"
+    },
+    {
+      "date": "2026-08-06",
+      "collectedAt": "2026-08-06T12:49:33+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-06.json"
+    },
+    {
+      "date": "2026-08-05",
+      "collectedAt": "2026-08-05T12:43:45+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-05.json"
+    },
+    {
+      "date": "2026-08-04",
+      "collectedAt": "2026-08-04T12:48:47+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-04.json"
+    },
+    {
+      "date": "2026-08-03",
+      "collectedAt": "2026-08-03T13:06:24+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-03.json"
+    },
+    {
+      "date": "2026-08-02",
+      "collectedAt": "2026-08-02T13:04:02+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-02.json"
+    },
+    {
+      "date": "2026-08-01",
+      "collectedAt": "2026-08-01T13:01:16+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-08-01.json"
+    },
+    {
+      "date": "2026-07-31",
+      "collectedAt": "2026-07-31T13:00:37+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-07-31.json"
+    },
+    {
+      "date": "2026-07-30",
+      "collectedAt": "2026-07-30T12:41:37+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-07-30.json"
+    },
+    {
+      "date": "2026-07-29",
+      "collectedAt": "2026-07-29T12:50:08+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-07-29.json"
+    },
+    {
+      "date": "2026-07-28",
+      "collectedAt": "2026-07-28T12:46:44+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-07-28.json"
+    },
+    {
+      "date": "2026-07-27",
+      "collectedAt": "2026-07-27T13:13:12+09:00",
+      "count": 56,
+      "placementCount": 56,
+      "json": "./data/history/2026-07-27.json"
+    }
+  ]
+}

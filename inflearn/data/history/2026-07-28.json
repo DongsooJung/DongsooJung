@@ -1,0 +1,3415 @@
+{
+  "source": "https://www.inflearn.com/courses",
+  "collectedAt": "2026-07-28T12:37:16+09:00",
+  "archiveDate": "2026-07-28",
+  "count": 100,
+  "courses": [
+    {
+      "rank": 1,
+      "courseId": 343202,
+      "title": "김영한의 실전 데이터베이스 - 성능 최적화, 실행 계획과 인덱스 완전 정복",
+      "instructor": "김영한",
+      "price": "₩107,800",
+      "payPrice": 107800,
+      "regularPrice": 154000,
+      "discountRate": 30,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 1192,
+      "level": "고급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "데이터 사이언스"
+      ],
+      "subCategories": [
+        "데이터베이스",
+        "데이터 분석",
+        "풀스택"
+      ],
+      "skills": [
+        "SQL",
+        "MySQL",
+        "DBMS/RDBMS",
+        "sql-tuning",
+        "SQLD"
+      ],
+      "runtimeMinutes": 1270,
+      "publishedAt": "2026-07-27T15:00:00.000Z",
+      "updatedAt": "2026-07-28T00:00:00.000Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/김영한-실전-데이터베이스-성능최적화",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343202/cover/01ky4bcykeaddt1e10dqgk1n0n"
+    },
+    {
+      "rank": 2,
+      "courseId": 339317,
+      "title": "클로드 코드 완벽 마스터: AI 개발 워크플로우 기초부터 실전까지",
+      "instructor": "짐코딩",
+      "price": "₩198,000",
+      "payPrice": 198000,
+      "regularPrice": 198000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 1297,
+      "studentCount": 9825,
+      "level": "입문",
+      "categories": [
+        "AI 기술",
+        "개발 · 프로그래밍",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "AI 코딩",
+        "AI 개발 활용"
+      ],
+      "skills": [
+        "React",
+        "인공지능(AI)",
+        "claude"
+      ],
+      "runtimeMinutes": 1254,
+      "publishedAt": "2025-11-19T09:00:00.000Z",
+      "updatedAt": "2026-07-19T20:25:01.712Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/클로드-코드-완벽-마스터-ai-개발",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/339317/cover/01knkcagd40y7q9573t8t1x4s7.gif"
+    },
+    {
+      "rank": 3,
+      "courseId": 342628,
+      "title": "AI 디자이너 입문: 이미지·영상 제작부터 자동화까지, ComfyUI + n8n",
+      "instructor": "남박사",
+      "price": "₩20,790",
+      "payPrice": 20790,
+      "regularPrice": 69300,
+      "discountRate": 70,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 101,
+      "level": "입문",
+      "categories": [
+        "AI 기술",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "AI 실무 활용",
+        "AI 크리에이티브"
+      ],
+      "skills": [
+        "Python",
+        "n8n",
+        "AI Agent",
+        "ComfyUI",
+        "AI 이미지",
+        "웹 디자인",
+        "디자인 시스템"
+      ],
+      "runtimeMinutes": 1053,
+      "publishedAt": "2026-07-23T12:00:33.000Z",
+      "updatedAt": "2026-07-22T12:48:29.189Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/introduction-to-ai-d",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342628/cover/01kxffpssnt60fb41ecwf5a66j.gif"
+    },
+    {
+      "rank": 4,
+      "courseId": 342687,
+      "title": "코덱스 참교육 - Codex 업무 자동화부터 바이브 코딩까지",
+      "instructor": "얄팍한 코딩사전",
+      "price": "₩49,500",
+      "payPrice": 49500,
+      "regularPrice": 99000,
+      "discountRate": 50,
+      "rating": 5,
+      "reviewCount": 11,
+      "studentCount": 195,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "업무 생산성",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "AI 실무 활용",
+        "업무 자동화",
+        "AI 코딩"
+      ],
+      "skills": [
+        "agents",
+        "codex",
+        "프롬프트엔지니어링",
+        "바이브코딩",
+        "하네스"
+      ],
+      "runtimeMinutes": 451,
+      "publishedAt": "2026-07-20T05:00:30.000Z",
+      "updatedAt": "2026-07-27T17:33:18.056Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/codex-true-education",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342687/cover/01kxqhkyczd7vn1chvxe8sc210"
+    },
+    {
+      "rank": 5,
+      "courseId": 342984,
+      "title": "진짜 바이브코딩 올인원 클래스: Claude Code 기초부터 런칭, 운영, 에이전트 자동화까지",
+      "instructor": "그랩",
+      "price": "₩118,800",
+      "payPrice": 118800,
+      "regularPrice": 198000,
+      "discountRate": 40,
+      "rating": 5,
+      "reviewCount": 4,
+      "studentCount": 84,
+      "level": "초급",
+      "categories": [
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI 실무 활용",
+        "AI 개발 활용",
+        "AI 시작하기"
+      ],
+      "skills": [
+        "Git",
+        "GitHub",
+        "Next.js",
+        "인공지능(AI)",
+        "AI Agent",
+        "claude",
+        "바이브코딩"
+      ],
+      "runtimeMinutes": 675,
+      "publishedAt": "2026-07-23T04:50:00.000Z",
+      "updatedAt": "2026-07-23T00:00:00.000Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/바이브코딩-올인원-클래스-claudecode",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342984/cover/01kyhhat54ez1tefvd43c8tfdq.gif"
+    },
+    {
+      "rank": 6,
+      "courseId": 337730,
+      "title": "토비의 클린 스프링 - 도메인 모델 패턴과 헥사고날 아키텍처 Part 2",
+      "instructor": "토비",
+      "price": "₩69,300",
+      "payPrice": 69300,
+      "regularPrice": 99000,
+      "discountRate": 30,
+      "rating": 5,
+      "reviewCount": 8,
+      "studentCount": 316,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "백엔드"
+      ],
+      "skills": [
+        "Java",
+        "Spring",
+        "Spring Boot",
+        "JPA",
+        "리팩터링",
+        "DDD",
+        "hexagonal-architecture"
+      ],
+      "runtimeMinutes": 779,
+      "publishedAt": "2026-07-16T08:12:00.000Z",
+      "updatedAt": "2026-07-16T00:00:00.000Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/tobys-clean-spring-d",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/337730/cover/01kt6wyea77ef2kk99asc0n1dx"
+    },
+    {
+      "rank": 7,
+      "courseId": 340120,
+      "title": "[바이브 코딩 입문 강의] 혼자 공부하는 바이브 코딩 with 클로드 코드",
+      "instructor": "한빛미디어",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 431,
+      "studentCount": 9961,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "업무 생산성"
+      ],
+      "subCategories": [
+        "AI 시작하기",
+        "AI 개발 활용",
+        "생산성 도구"
+      ],
+      "skills": [
+        "인공지능(AI)",
+        "바이브코딩"
+      ],
+      "runtimeMinutes": 259,
+      "publishedAt": "2025-12-22T08:00:00.000Z",
+      "updatedAt": "2026-01-07T07:20:44.145Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/바이브-코딩-입문-강의-혼자-공부하는",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/340120/cover/01kd4ve7rz772fdj3ren8a3e28"
+    },
+    {
+      "rank": 8,
+      "courseId": 342527,
+      "title": "블렌더 리부트 베이직: AI와 새로운 UI로 다시 시작하는 블렌더",
+      "instructor": "런타임",
+      "price": "₩103,950",
+      "payPrice": 103950,
+      "regularPrice": 148500,
+      "discountRate": 30,
+      "rating": 5,
+      "reviewCount": 7,
+      "studentCount": 69,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "디자인 · 아트"
+      ],
+      "subCategories": [
+        "AI 실무 활용",
+        "CAD · 3D 모델링",
+        "AI 크리에이티브"
+      ],
+      "skills": [
+        "Blender",
+        "콘텐츠 제작",
+        "3d-modeling",
+        "MCP"
+      ],
+      "runtimeMinutes": 131,
+      "publishedAt": "2026-07-20T08:30:05.000Z",
+      "updatedAt": "2026-07-27T14:23:37.914Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/blender-reboot-basic",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342527/cover/01kxmtf8m33x9hc57am7mxqxat"
+    },
+    {
+      "rank": 9,
+      "courseId": 337587,
+      "title": "전동킥보드로 배우는 임베디드 실전 프로젝트",
+      "instructor": "제어쟁이",
+      "price": "₩550,000",
+      "payPrice": 550000,
+      "regularPrice": 550000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 71,
+      "studentCount": 515,
+      "level": "고급",
+      "categories": [
+        "하드웨어"
+      ],
+      "subCategories": [
+        "임베디드 · IoT",
+        "모빌리티"
+      ],
+      "skills": [
+        "임베디드",
+        "stm32",
+        "hardware",
+        "motordriver",
+        "artwork"
+      ],
+      "runtimeMinutes": 1017,
+      "publishedAt": "2025-06-15T15:00:00.000Z",
+      "updatedAt": "2026-07-05T13:30:17.886Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/전동킥보드개발-임베디드-개발자",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/337587/cover/01jwrjt9ehmr31m5vd1hbpfp0b"
+    },
+    {
+      "rank": 10,
+      "courseId": 343184,
+      "title": "[VOD] 바이브코딩은 배우고 싶지만, 겉핥기는 싫은 당신에게",
+      "instructor": "이정환 Winterlood",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 6,
+      "studentCount": 304,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "AI 기술",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "AI 시작하기",
+        "AI에이전트 개발",
+        "AI 코딩"
+      ],
+      "skills": [
+        "codex",
+        "인공지능(AI)",
+        "AI Agent",
+        "claude",
+        "바이브코딩"
+      ],
+      "runtimeMinutes": 46,
+      "publishedAt": "2026-07-20T04:30:05.000Z",
+      "updatedAt": "2026-07-21T03:57:32.606Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/vod-for-those-who-wa",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343184/cover/01kxj3ejyys2b01pmqkvma3jjv.gif"
+    },
+    {
+      "rank": 11,
+      "courseId": 332119,
+      "title": "2026년 CPPG 개인정보관리사 자격증 취득하기 (개정안 반영)",
+      "instructor": "컴공로드맵",
+      "price": "₩89,100",
+      "payPrice": 89100,
+      "regularPrice": 89100,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 205,
+      "studentCount": 1500,
+      "level": "입문",
+      "categories": [
+        "보안 · 네트워크",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "보안 · 네트워크 자격증",
+        "개발 · 프로그래밍 자격증",
+        "보안"
+      ],
+      "skills": [
+        "security",
+        "CPPG(개인정보관리사)"
+      ],
+      "runtimeMinutes": 727,
+      "publishedAt": "2023-11-16T15:00:00.000Z",
+      "updatedAt": "2026-07-15T12:04:39.450Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/cppg-개인정보관리사-취득하기",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/332119/cover/c19c0a57-4c5b-476c-ac88-292ead4479bd/332119-eng.png"
+    },
+    {
+      "rank": 12,
+      "courseId": 336073,
+      "title": "토비의 클린 스프링 - 도메인 모델 패턴과 헥사고날 아키텍처 Part 1",
+      "instructor": "토비",
+      "price": "₩84,700",
+      "payPrice": 84700,
+      "regularPrice": 121000,
+      "discountRate": 30,
+      "rating": 5,
+      "reviewCount": 299,
+      "studentCount": 2442,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "백엔드"
+      ],
+      "skills": [
+        "Java",
+        "Spring",
+        "Spring Boot",
+        "JPA",
+        "hexagonal-architecture",
+        "리팩터링",
+        "DDD"
+      ],
+      "runtimeMinutes": 872,
+      "publishedAt": "2025-06-18T15:00:00.000Z",
+      "updatedAt": "2025-10-23T07:53:22.134Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/토비-클린스프링-도메인모델패턴-헥사고날-part1",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/336073/cover/01jxenn0g2x8x74qp6gfyvwpan"
+    },
+    {
+      "rank": 13,
+      "courseId": 340198,
+      "title": "AWS SAA-C03 자격증 벼락치기 - 딱 163문제로 2주만에 합격하기",
+      "instructor": "JSCODE 박재성",
+      "price": "₩88,000",
+      "payPrice": 88000,
+      "regularPrice": 88000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 187,
+      "studentCount": 1033,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "개발 · 프로그래밍 자격증",
+        "웹 개발",
+        "데브옵스 · 인프라"
+      ],
+      "skills": [
+        "AWS",
+        "devops",
+        "infrastructure",
+        "AWS SAA",
+        "backend"
+      ],
+      "runtimeMinutes": 309,
+      "publishedAt": "2026-01-06T22:30:00.000Z",
+      "updatedAt": "2026-03-25T10:49:44.515Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/aws-saa-c03-자격증-벼락치기",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/340198/cover/01keb4h7ypfbt8j4tz2xzvge5b"
+    },
+    {
+      "rank": 14,
+      "courseId": 328340,
+      "title": "한 입 크기로 잘라 먹는 리액트(React.js) : 기초부터 실전까지",
+      "instructor": "이정환 Winterlood",
+      "price": "₩36,300",
+      "payPrice": 36300,
+      "regularPrice": 48400,
+      "discountRate": 25,
+      "rating": 4.9,
+      "reviewCount": 1511,
+      "studentCount": 15243,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프론트엔드",
+        "웹 개발"
+      ],
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js"
+      ],
+      "runtimeMinutes": 1114,
+      "publishedAt": "2022-01-26T15:00:00.000Z",
+      "updatedAt": "2026-06-13T00:57:34.805Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/한입-리액트",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/328340/cover/01jx9xv8sprqfcjdkhy723nw9y"
+    },
+    {
+      "rank": 15,
+      "courseId": 341870,
+      "title": "AI 처음으로 일 시키기 — Claude Code 에이전틱 자동화",
+      "instructor": "FlowCoder",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 161,
+      "studentCount": 2624,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "AI 기술"
+      ],
+      "subCategories": [
+        "AI 시작하기",
+        "AI 실무 활용",
+        "AI에이전트 개발"
+      ],
+      "skills": [
+        "인공지능(AI)",
+        "AI Agent",
+        "claude",
+        "바이브코딩",
+        "업무 생산성"
+      ],
+      "runtimeMinutes": 77,
+      "publishedAt": "2026-04-21T04:00:00.000Z",
+      "updatedAt": "2026-07-27T08:04:25.171Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/giving-ai-its-first",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341870/cover/01kpddmsbbxzv2c4zrspcgb80f"
+    },
+    {
+      "rank": 16,
+      "courseId": 339694,
+      "title": "[바이브코딩] Google AntiGravity 마스터 클래스 - Basic",
+      "instructor": "AI 지식 전달자",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.7,
+      "reviewCount": 323,
+      "studentCount": 3551,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "AI 개발 활용",
+        "AI 실무 활용",
+        "풀스택"
+      ],
+      "skills": [
+        "인공지능(AI)",
+        "AI Agent"
+      ],
+      "runtimeMinutes": null,
+      "publishedAt": "2026-01-27T10:00:00.000Z",
+      "updatedAt": "2026-06-30T00:59:39.967Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/바이브코딩-google-antigra",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/339694/cover/01keh7jfnxbx3jeazjsxe75xdj"
+    },
+    {
+      "rank": 17,
+      "courseId": 343394,
+      "title": "네트워크 입문 — 핑 한 번으로 끝나지 않는, 진짜로 이해하는 네트워크 기초",
+      "instructor": "김병국(프랭크2024)",
+      "price": "₩3,300",
+      "payPrice": 3300,
+      "regularPrice": 11000,
+      "discountRate": 70,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 8,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "데브옵스 · 인프라",
+        "시스템 · 운영체제",
+        "네트워크"
+      ],
+      "skills": [
+        "debugging",
+        "networking",
+        "subnet",
+        "operating-systems",
+        "tcp-ip"
+      ],
+      "runtimeMinutes": 42,
+      "publishedAt": "2026-07-26T16:00:05.000Z",
+      "updatedAt": "2026-07-26T14:29:54.016Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/introduction-to-netw",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343394/cover/ai/3/cbbf4446-2245-48d0-a2e9-243b188a7a47.png"
+    },
+    {
+      "rank": 18,
+      "courseId": 343251,
+      "title": "How We Scaled Kimi K2.5 : 1조 파라미터 모델의 학습 비법 | GTC 2026 Keynote",
+      "instructor": "Open Academy",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 142,
+      "level": "초급",
+      "categories": [
+        "AI 활용(AX)",
+        "AI 기술"
+      ],
+      "subCategories": [
+        "AI 개발 활용",
+        "AI에이전트 개발"
+      ],
+      "skills": [
+        "LLM",
+        "AI Agent"
+      ],
+      "runtimeMinutes": 40,
+      "publishedAt": "2026-07-22T10:34:48.824Z",
+      "updatedAt": "2026-07-15T00:00:00.000Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/how-we-scaled-kimi",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343251/cover/01ky41a7mdqajqcf5v1n293yfp"
+    },
+    {
+      "rank": 19,
+      "courseId": 343302,
+      "title": "UI디자이너를 위한 언리얼 엔진 - 중급",
+      "instructor": "루시",
+      "price": "₩46,200",
+      "payPrice": 46200,
+      "regularPrice": 66000,
+      "discountRate": 30,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 14,
+      "level": "고급",
+      "categories": [
+        "게임 개발"
+      ],
+      "subCategories": [
+        "게임 개발 기타",
+        "게임 프로그래밍",
+        "게임 아트 · 그래픽"
+      ],
+      "skills": [
+        "Unreal Engine",
+        "UE Blueprint",
+        "unreal-engine5",
+        "unreal-umg",
+        "Niagara"
+      ],
+      "runtimeMinutes": 610,
+      "publishedAt": "2026-07-23T19:00:05.000Z",
+      "updatedAt": "2026-07-23T15:55:48.447Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/unreal-engine-for-ui",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343302/cover/01ky7zpp47y7dmgky41wv4zjp3"
+    },
+    {
+      "rank": 20,
+      "courseId": 325969,
+      "title": "스프링 핵심 원리 - 기본편",
+      "instructor": "김영한",
+      "price": "₩88,000",
+      "payPrice": 88000,
+      "regularPrice": 88000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 4887,
+      "studentCount": 50100,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "백엔드",
+        "웹 개발"
+      ],
+      "skills": [
+        "Spring",
+        "객체지향"
+      ],
+      "runtimeMinutes": 725,
+      "publishedAt": "2020-09-20T15:00:00.000Z",
+      "updatedAt": "2025-06-04T15:00:00.555Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/스프링-핵심-원리-기본편",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/325969/cover/2868c757-5886-4508-a140-7cb68a83dfd8/325969-eng.png"
+    },
+    {
+      "rank": 21,
+      "courseId": 341386,
+      "title": "한 입 크기로 잘라먹는 바이브코딩 - 기초부터 실전 배포까지 (클로드 & 코덱스)",
+      "instructor": "이정환 Winterlood",
+      "price": "₩74,250",
+      "payPrice": 74250,
+      "regularPrice": 99000,
+      "discountRate": 25,
+      "rating": 5,
+      "reviewCount": 62,
+      "studentCount": 564,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍",
+        "AI 기술",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI 코딩",
+        "AI에이전트 개발",
+        "AI 개발 활용"
+      ],
+      "skills": [
+        "웹앱",
+        "네트워크",
+        "보안 교육",
+        "claude",
+        "바이브코딩"
+      ],
+      "runtimeMinutes": 516,
+      "publishedAt": "2026-05-12T00:00:00.000Z",
+      "updatedAt": "2026-07-24T13:27:12.011Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/bite-sized-vibe-codi",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341386/cover/01krfw6tx158mgcdp6gjtymmz4"
+    },
+    {
+      "rank": 22,
+      "courseId": 325630,
+      "title": "스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술",
+      "instructor": "김영한",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 8003,
+      "studentCount": 122462,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "백엔드",
+        "웹 개발"
+      ],
+      "skills": [
+        "Java",
+        "Spring",
+        "MVC",
+        "Spring Boot"
+      ],
+      "runtimeMinutes": 321,
+      "publishedAt": "2020-07-19T15:00:00.000Z",
+      "updatedAt": "2026-01-30T11:34:33.353Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/스프링-입문-스프링부트",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/325630/cover/56f635a3-3a44-4096-a16b-453ea1696b1a/325630-eng.png"
+    },
+    {
+      "rank": 23,
+      "courseId": 333250,
+      "title": "한 입 크기로 잘라먹는 Next.js",
+      "instructor": "이정환 Winterlood",
+      "price": "₩36,300",
+      "payPrice": 36300,
+      "regularPrice": 48400,
+      "discountRate": 25,
+      "rating": 5,
+      "reviewCount": 619,
+      "studentCount": 5803,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프론트엔드",
+        "웹 개발"
+      ],
+      "skills": [
+        "React",
+        "TypeScript",
+        "Next.js"
+      ],
+      "runtimeMinutes": 934,
+      "publishedAt": "2024-08-18T15:00:00.000Z",
+      "updatedAt": "2026-07-13T03:56:34.520Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/한입-크기-nextjs",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/333250/cover/01jx9zy2h8wyf9qbcrk2kyyt26"
+    },
+    {
+      "rank": 24,
+      "courseId": 332505,
+      "title": "김영한의 자바 입문 - 코드로 시작하는 자바 첫걸음",
+      "instructor": "김영한",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 3029,
+      "studentCount": 56459,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어",
+        "웹 개발",
+        "백엔드"
+      ],
+      "skills": [
+        "Java",
+        "객체지향"
+      ],
+      "runtimeMinutes": 771,
+      "publishedAt": "2023-11-27T15:00:00.000Z",
+      "updatedAt": "2026-01-28T11:59:57.298Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/김영한의-자바-입문",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/332505/cover/c32e770b-b417-436d-afd0-e2285ac6e514/332505.png"
+    },
+    {
+      "rank": 25,
+      "courseId": 342122,
+      "title": "[단테랩스] Hermes × Codex 로 세우는 나만의 AI 가상 오피스 (8주 마스터 과정)",
+      "instructor": "Dante(곽지호)",
+      "price": "₩198,000",
+      "payPrice": 198000,
+      "regularPrice": 198000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 106,
+      "studentCount": 946,
+      "level": "초급",
+      "categories": [
+        "AI 기술",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "AI 실무 활용"
+      ],
+      "skills": [
+        "인공지능(AI)",
+        "AI Agent"
+      ],
+      "runtimeMinutes": 1301,
+      "publishedAt": "2026-05-13T06:30:00.000Z",
+      "updatedAt": "2026-07-26T06:21:46.170Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/hermes-agent-advance",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342122/cover/01krwcjvvm3d0srn93wv7979yt.gif"
+    },
+    {
+      "rank": 26,
+      "courseId": 332506,
+      "title": "김영한의 실전 자바 - 기본편",
+      "instructor": "김영한",
+      "price": "₩44,000",
+      "payPrice": 44000,
+      "regularPrice": 44000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 2329,
+      "studentCount": 27760,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어",
+        "웹 개발",
+        "백엔드"
+      ],
+      "skills": [
+        "Java",
+        "객체지향"
+      ],
+      "runtimeMinutes": 1012,
+      "publishedAt": "2023-11-27T15:00:00.000Z",
+      "updatedAt": "2025-12-23T06:52:23.926Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/김영한의-실전-자바-기본편",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/332506/cover/a2cc776f-4996-44a4-bbb3-b31df29c087c/332506.png"
+    },
+    {
+      "rank": 27,
+      "courseId": 343210,
+      "title": "AI 영상 제작 올인원: 이미지 생성부터 영상 편집까지",
+      "instructor": "스탠리탬",
+      "price": "₩11,550",
+      "payPrice": 11550,
+      "regularPrice": 38500,
+      "discountRate": 70,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 29,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "디자인 · 아트"
+      ],
+      "subCategories": [
+        "AI 시작하기",
+        "사진 · 영상",
+        "AI 크리에이티브"
+      ],
+      "skills": [
+        "영상제작",
+        "콘텐츠 제작",
+        "Midjourney",
+        "인공지능(AI)",
+        "CapCut",
+        "ChatGPT"
+      ],
+      "runtimeMinutes": 127,
+      "publishedAt": "2026-07-21T08:49:43.371Z",
+      "updatedAt": "2026-07-24T16:25:21.888Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/all-in-one-ai-video",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343210/cover/ai/0/af985f56-470e-42b6-b64b-c708b96c3a72.png"
+    },
+    {
+      "rank": 28,
+      "courseId": 341958,
+      "title": "Obsidian x Claude Code 나만의 LLM Wiki 만들기",
+      "instructor": "실용주의개발",
+      "price": "₩88,000",
+      "payPrice": 88000,
+      "regularPrice": 88000,
+      "discountRate": 0,
+      "rating": 4.7,
+      "reviewCount": 133,
+      "studentCount": 1049,
+      "level": "초급",
+      "categories": [
+        "업무 생산성",
+        "AI 활용(AX)",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "생산성 도구",
+        "AI 실무 활용",
+        "AI 코딩"
+      ],
+      "skills": [
+        "업무 생산성",
+        "wiki",
+        "obsidian",
+        "claude"
+      ],
+      "runtimeMinutes": 203,
+      "publishedAt": "2026-04-25T18:30:00.000Z",
+      "updatedAt": "2026-06-02T10:42:55.697Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/obsidian-x-claude-co",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341958/cover/01kq2mztdrp4rtp8j7w0s8qxsf"
+    },
+    {
+      "rank": 29,
+      "courseId": 342455,
+      "title": "[취업폭격기] 사기업 IT취업 치트키 : 서류·포트폴리오·커리어까지 한 번에 뚫는 정규과정",
+      "instructor": "취업폭격기",
+      "price": "₩77,000",
+      "payPrice": 77000,
+      "regularPrice": 77000,
+      "discountRate": 0,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 27,
+      "level": "입문",
+      "categories": [
+        "커리어 · 자기계발",
+        "보안 · 네트워크",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "취업 · 이직",
+        "보안 · 네트워크 기타",
+        "개발 · 프로그래밍 기타"
+      ],
+      "skills": [
+        "이력서",
+        "기술면접",
+        "자기계발",
+        "취업"
+      ],
+      "runtimeMinutes": 335,
+      "publishedAt": "2026-07-13T14:30:04.000Z",
+      "updatedAt": "2026-07-13T12:44:58.088Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/job-bomber-private-s",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342455/cover/01ktc4bc0b7914ghg6t61cjppy"
+    },
+    {
+      "rank": 30,
+      "courseId": 338210,
+      "title": "김영한의 실전 데이터베이스 입문 - 모든 IT인을 위한 SQL 첫걸음(SQL부터 차근차근)",
+      "instructor": "김영한",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 677,
+      "studentCount": 10870,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍",
+        "데이터 사이언스"
+      ],
+      "subCategories": [
+        "데이터베이스",
+        "백엔드",
+        "데이터 분석"
+      ],
+      "skills": [
+        "SQL",
+        "MySQL",
+        "DBMS/RDBMS",
+        "SQLD"
+      ],
+      "runtimeMinutes": 517,
+      "publishedAt": "2025-07-31T15:00:00.000Z",
+      "updatedAt": "2025-08-31T09:28:51.006Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/김영한-실전-데이터베이스-입문",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/338210/cover/01k1fmnftndew0k8243j49h78z"
+    },
+    {
+      "rank": 31,
+      "courseId": 342858,
+      "title": "MATLAB/Simulink 자동차 MBD 실무 입문: 모델링부터 검증과 코드 생성까지",
+      "instructor": "제어쟁이",
+      "price": "₩129,800",
+      "payPrice": 129800,
+      "regularPrice": 129800,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 4,
+      "studentCount": 58,
+      "level": "초급",
+      "categories": [
+        "하드웨어"
+      ],
+      "subCategories": [
+        "모빌리티",
+        "임베디드 · IoT"
+      ],
+      "skills": [
+        "MATLAB"
+      ],
+      "runtimeMinutes": 376,
+      "publishedAt": "2026-06-27T10:30:05.000Z",
+      "updatedAt": "2026-07-19T07:45:28.669Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/introduction-to-prac",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342858/cover/01kw6sxhr2mwd57hj4be1br91y"
+    },
+    {
+      "rank": 32,
+      "courseId": 324145,
+      "title": "프로그래밍 시작하기 : 파이썬 입문 (Inflearn Original)",
+      "instructor": "인프런",
+      "price": "₩33,000",
+      "payPrice": 33000,
+      "regularPrice": 33000,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 1364,
+      "studentCount": 34131,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어"
+      ],
+      "skills": [
+        "Python"
+      ],
+      "runtimeMinutes": 857,
+      "publishedAt": "2019-06-01T15:00:00.000Z",
+      "updatedAt": "2025-05-13T07:44:34.331Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/프로그래밍-파이썬-입문-인프런-오리지널",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/324145/cover/184a19f3-c99f-4eea-a764-dc8e71d4c37a/324145.png"
+    },
+    {
+      "rank": 33,
+      "courseId": 341717,
+      "title": "AI 에이전트 엔지니어링",
+      "instructor": "민혁",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.7,
+      "reviewCount": 23,
+      "studentCount": 1324,
+      "level": "고급",
+      "categories": [
+        "AI 기술",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "AI 개발 활용",
+        "AI 실무 활용"
+      ],
+      "skills": [
+        "Python",
+        "인공지능(AI)",
+        "RAG",
+        "AI Agent"
+      ],
+      "runtimeMinutes": 322,
+      "publishedAt": "2026-04-07T05:00:00.000Z",
+      "updatedAt": "2026-04-07T02:58:08.781Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/ai-agent-engineering",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341717/cover/01knjz72sa1sj1v56agxm1yn40"
+    },
+    {
+      "rank": 34,
+      "courseId": 343296,
+      "title": "[Rookiss] 클로드 하네스 입문 (인터랙티브 교재)",
+      "instructor": "Rookiss",
+      "price": "₩69,300",
+      "payPrice": 69300,
+      "regularPrice": 99000,
+      "discountRate": 30,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 72,
+      "level": "초급",
+      "categories": [
+        "AI 기술",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "AI 개발 활용",
+        "AI 시작하기"
+      ],
+      "skills": [
+        "Python",
+        "인공지능(AI)",
+        "AI Agent"
+      ],
+      "runtimeMinutes": 197,
+      "publishedAt": "2026-07-24T09:30:06.000Z",
+      "updatedAt": "2026-07-23T12:07:23.052Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/rookiss-introduction-2",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343296/cover/01ky7app0bmemdbfq8rw44q6cw"
+    },
+    {
+      "rank": 35,
+      "courseId": 340151,
+      "title": "PMSM 벡터제어 완전정복 - 이론, Matlab, STM32 실습까지!",
+      "instructor": "제어쟁이",
+      "price": "₩1,100,000",
+      "payPrice": 1100000,
+      "regularPrice": 1100000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 12,
+      "studentCount": 129,
+      "level": "고급",
+      "categories": [
+        "하드웨어",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "임베디드 · IoT",
+        "개발 · 프로그래밍 기타",
+        "모빌리티"
+      ],
+      "skills": [
+        "stm32",
+        "motordriver"
+      ],
+      "runtimeMinutes": 1297,
+      "publishedAt": "2026-02-24T01:30:00.000Z",
+      "updatedAt": "2026-07-15T14:28:31.325Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/pmsm-벡터제어-완전정복-이론-ma",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/340151/cover/ai/2/4a8644df-7e14-40ef-890b-a2f4f545fe9e.png"
+    },
+    {
+      "rank": 36,
+      "courseId": 330869,
+      "title": "쿠버네티스 어나더 클래스-Sprint 1, 2 (#실무기초 #설치 #배포 #Jenkins #Helm #ArgoCD)",
+      "instructor": "일프로",
+      "price": "₩61,880",
+      "payPrice": 61880,
+      "regularPrice": 82500,
+      "discountRate": 24.993939393939392,
+      "rating": 4.9,
+      "reviewCount": 776,
+      "studentCount": 2772,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "데브옵스 · 인프라",
+        "풀스택",
+        "시스템 · 운영체제"
+      ],
+      "skills": [
+        "Kubernetes",
+        "devops",
+        "argocd",
+        "container",
+        "helm"
+      ],
+      "runtimeMinutes": 669,
+      "publishedAt": "2023-09-11T15:00:00.000Z",
+      "updatedAt": "2026-05-27T08:15:25.352Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/쿠버네티스-어나더-클래스-지상편-sprint1",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/330869/cover/01jydcz7kbp520d08cyze1mdjf.gif"
+    },
+    {
+      "rank": 37,
+      "courseId": 333308,
+      "title": "김영한의 실전 자바 - 중급 1편",
+      "instructor": "김영한",
+      "price": "₩66,000",
+      "payPrice": 66000,
+      "regularPrice": 66000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 1209,
+      "studentCount": 12162,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어",
+        "백엔드",
+        "웹 개발"
+      ],
+      "skills": [
+        "Java",
+        "객체지향"
+      ],
+      "runtimeMinutes": 1161,
+      "publishedAt": "2024-03-27T15:00:00.000Z",
+      "updatedAt": "2025-11-28T10:04:41.236Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/김영한의-실전-자바-중급-1",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/333308/cover/1afaf39b-6942-43af-933e-65dcc8c93d5b/333308.png"
+    },
+    {
+      "rank": 38,
+      "courseId": 332108,
+      "title": "비전공자도 이해할 수 있는 AWS 입문/실전",
+      "instructor": "JSCODE 박재성",
+      "price": "₩77,000",
+      "payPrice": 77000,
+      "regularPrice": 77000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 362,
+      "studentCount": 3245,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "데브옵스 · 인프라",
+        "백엔드",
+        "클라우드"
+      ],
+      "skills": [
+        "AWS",
+        "aws-elb",
+        "aws-rds",
+        "ec2",
+        "s3"
+      ],
+      "runtimeMinutes": 257,
+      "publishedAt": "2023-11-29T15:00:00.000Z",
+      "updatedAt": "2026-02-11T05:28:03.130Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/비전공자-이해할수있는-aws-입문실전",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/332108/cover/01k0qng7s435e3194b2pfaf8yv"
+    },
+    {
+      "rank": 39,
+      "courseId": 342279,
+      "title": "챗봇을 만들며 배우는 ai agent 개발의 모든것(fastapi, RAG, vector, LangChain, sLLM/파인튜닝)",
+      "instructor": "bradkim",
+      "price": "₩61,600",
+      "payPrice": 61600,
+      "regularPrice": 88000,
+      "discountRate": 30,
+      "rating": 5,
+      "reviewCount": 4,
+      "studentCount": 68,
+      "level": "입문",
+      "categories": [
+        "AI 기술",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "인공지능 기타",
+        "AI 개발 활용"
+      ],
+      "skills": [
+        "RAG",
+        "vector-database",
+        "FastAPI",
+        "LLM",
+        "Llama",
+        "Fine-Tuning",
+        "openAI API"
+      ],
+      "runtimeMinutes": 507,
+      "publishedAt": "2026-07-01T06:30:06.000Z",
+      "updatedAt": "2026-07-01T07:03:29.747Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/everything-about-ai",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342279/cover/01kw13addykzby2zx4scep2yfh"
+    },
+    {
+      "rank": 40,
+      "courseId": 342683,
+      "title": "[Codex + Ollama] 온디바이스 바이브코딩: 무료 & 무제한 토큰과 보안까지",
+      "instructor": "AI 지식 전달자",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 55,
+      "studentCount": 626,
+      "level": "입문",
+      "categories": [
+        "AI 기술",
+        "AI 활용(AX)",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "AI 실무 활용",
+        "AI 코딩"
+      ],
+      "skills": [
+        "codex",
+        "인공지능(AI)",
+        "LLM",
+        "바이브코딩"
+      ],
+      "runtimeMinutes": null,
+      "publishedAt": "2026-06-27T04:00:06.000Z",
+      "updatedAt": "2026-06-30T07:01:04.312Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/on-device-vibe-codin",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342683/cover/01kwbgps5pg85sm1eqg3v8sb0f"
+    },
+    {
+      "rank": 41,
+      "courseId": 324835,
+      "title": "파이썬 무료 강의 (기본편) - 6시간 뒤면 나도 개발자",
+      "instructor": "나도코딩",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 1882,
+      "studentCount": 39477,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어"
+      ],
+      "skills": [
+        "Python"
+      ],
+      "runtimeMinutes": 358,
+      "publishedAt": "2020-02-24T15:00:00.000Z",
+      "updatedAt": "2025-04-29T06:34:34.311Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/나도코딩-파이썬-기본",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/324835/cover/d7c5e8eb-242e-428f-9c27-0e19748fdc82/thumbnail_코자 python_1200x781.jpg"
+    },
+    {
+      "rank": 42,
+      "courseId": 340819,
+      "title": "실리콘밸리 엔지니어와 함께하는 Claude Code(개발자용)",
+      "instructor": "미쿡엔지니어",
+      "price": "₩44,000",
+      "payPrice": 44000,
+      "regularPrice": 44000,
+      "discountRate": 0,
+      "rating": 4.5,
+      "reviewCount": 182,
+      "studentCount": 2197,
+      "level": "초급",
+      "categories": [
+        "AI 기술",
+        "개발 · 프로그래밍",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "개발 · 프로그래밍 기타",
+        "AI 실무 활용"
+      ],
+      "skills": [
+        "업무 생산성",
+        "인공지능(AI)",
+        "AI Agent",
+        "claude",
+        "바이브코딩"
+      ],
+      "runtimeMinutes": 312,
+      "publishedAt": "2026-03-03T02:00:00.000Z",
+      "updatedAt": "2026-07-09T07:04:40.343Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/claude-code-with-sil",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/340819/cover/01kjnek1sw3gb57vb0aedxs579"
+    },
+    {
+      "rank": 43,
+      "courseId": 342633,
+      "title": "[VOD] AI시대, 나의 전문성을 재설계하는 법",
+      "instructor": "하용호",
+      "price": "₩16,500",
+      "payPrice": 16500,
+      "regularPrice": 16500,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 76,
+      "studentCount": 1033,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "커리어 · 자기계발"
+      ],
+      "subCategories": [
+        "AI 실무 활용",
+        "취업 · 이직",
+        "AI 시작하기"
+      ],
+      "skills": [
+        "인공지능(AI)",
+        "AI Agent"
+      ],
+      "runtimeMinutes": 167,
+      "publishedAt": "2026-06-18T09:53:00.000Z",
+      "updatedAt": "2026-06-26T00:21:35.186Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/ai시대-나의전문성-재설계-하는법",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342633/cover/01kv7bvnz7t0wjh5fyp3xkscyp"
+    },
+    {
+      "rank": 44,
+      "courseId": 342552,
+      "title": "\"AI 딸깍의 시대\" 원리로 돌파하는 Node.js와 CS Part 4 - HTTP 심연과 커스텀 프레임워크",
+      "instructor": "nhcodingstudio",
+      "price": "₩36,300",
+      "payPrice": 36300,
+      "regularPrice": 121000,
+      "discountRate": 70,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 150,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "풀스택",
+        "웹 개발",
+        "백엔드"
+      ],
+      "skills": [
+        "JavaScript",
+        "Node.js",
+        "컴퓨터 구조",
+        "인공지능(AI)",
+        "React",
+        "frontend",
+        "backend"
+      ],
+      "runtimeMinutes": 433,
+      "publishedAt": "2026-06-28T18:00:05.000Z",
+      "updatedAt": "2026-06-28T13:50:52.311Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/nodejs-and-cs-part-4",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342552/cover/01kw79v0edfyd8jsqshmnxeb4z"
+    },
+    {
+      "rank": 45,
+      "courseId": 342723,
+      "title": "채널톡 면접관이 직접 알려주는 CS 면접 대비 - 네트워크 & 웹 편",
+      "instructor": "JSCODE 제이온",
+      "price": "₩77,000",
+      "payPrice": 77000,
+      "regularPrice": 77000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 10,
+      "studentCount": 210,
+      "level": "초급",
+      "categories": [
+        "커리어 · 자기계발",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "취업 · 이직",
+        "웹 개발",
+        "개발 · 프로그래밍 기타"
+      ],
+      "skills": [
+        "네트워크",
+        "websocket",
+        "https",
+        "dns",
+        "computer-science"
+      ],
+      "runtimeMinutes": 210,
+      "publishedAt": "2026-06-27T10:00:07.000Z",
+      "updatedAt": "2026-06-27T05:13:07.132Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/cs-interview-prepara-2",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342723/cover/01kw41y4swrrzg2djbdnempg0p"
+    },
+    {
+      "rank": 46,
+      "courseId": 330452,
+      "title": "한 입 크기로 잘라먹는 타입스크립트(TypeScript)",
+      "instructor": "이정환 Winterlood",
+      "price": "₩36,300",
+      "payPrice": 36300,
+      "regularPrice": 48400,
+      "discountRate": 25,
+      "rating": 5,
+      "reviewCount": 750,
+      "studentCount": 14339,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어",
+        "웹 개발",
+        "프론트엔드"
+      ],
+      "skills": [
+        "TypeScript"
+      ],
+      "runtimeMinutes": 632,
+      "publishedAt": "2023-05-21T15:00:00.000Z",
+      "updatedAt": "2026-04-16T00:41:51.879Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/한입-크기-타입스크립트",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g"
+    },
+    {
+      "rank": 47,
+      "courseId": 333482,
+      "title": "김영한의 실전 자바 - 중급 2편",
+      "instructor": "김영한",
+      "price": "₩66,000",
+      "payPrice": 66000,
+      "regularPrice": 66000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 846,
+      "studentCount": 10661,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어",
+        "백엔드",
+        "웹 개발"
+      ],
+      "skills": [
+        "Java",
+        "객체지향",
+        "알고리즘",
+        "코딩 테스트"
+      ],
+      "runtimeMinutes": 1165,
+      "publishedAt": "2024-05-07T15:00:00.000Z",
+      "updatedAt": "2025-11-24T10:17:13.631Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/김영한의-실전-자바-중급-2",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/333482/cover/bb6e0c88-fbe0-49c9-aa1b-ebaa9918b7d7/333482.png"
+    },
+    {
+      "rank": 48,
+      "courseId": 342875,
+      "title": "Java Champion Vlad Mihalcea 인터뷰",
+      "instructor": "Vlad Mihalcea",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 18,
+      "studentCount": 738,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍",
+        "커리어 · 자기계발"
+      ],
+      "subCategories": [
+        "백엔드",
+        "AI 코딩",
+        "커리어 · 자기계발 기타"
+      ],
+      "skills": [
+        "Java",
+        "Spring",
+        "hibernate",
+        "spring-jpa",
+        "spring-data-jdbc"
+      ],
+      "runtimeMinutes": 83,
+      "publishedAt": "2026-07-14T05:56:00.000Z",
+      "updatedAt": "2026-07-14T00:00:00.000Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/vlad-mihalcea-interview",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342875/cover/01kx9xx24kxcn61bxrr3tex62c"
+    },
+    {
+      "rank": 49,
+      "courseId": 329800,
+      "title": "개발자를 위한 컴퓨터공학 1: 혼자 공부하는 컴퓨터구조 + 운영체제",
+      "instructor": "강민철",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 440,
+      "studentCount": 20694,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크",
+        "하드웨어",
+        "대학 교육"
+      ],
+      "subCategories": [
+        "개발 · 프로그래밍 기타",
+        "시스템 · 운영체제",
+        "컴퓨터 구조",
+        "공학"
+      ],
+      "skills": [
+        "컴퓨터 구조",
+        "운영체제",
+        "기술면접"
+      ],
+      "runtimeMinutes": 823,
+      "publishedAt": "2023-03-02T15:00:00.000Z",
+      "updatedAt": "2025-04-29T09:43:24.787Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/혼자-공부하는-컴퓨터구조-운영체제",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/329800/cover/9c369471-f981-4fde-8746-1d22f88ef7f2/329800-eng.png"
+    },
+    {
+      "rank": 50,
+      "courseId": 342424,
+      "title": "클로드 코드 완벽 가이드: 입문부터 실전 서비스 배포까지",
+      "instructor": "Kyo",
+      "price": "₩61,600",
+      "payPrice": 61600,
+      "regularPrice": 88000,
+      "discountRate": 30,
+      "rating": 5,
+      "reviewCount": 6,
+      "studentCount": 56,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "개발 · 프로그래밍",
+        "AI 기술"
+      ],
+      "subCategories": [
+        "AI 개발 활용",
+        "풀스택",
+        "AI에이전트 개발"
+      ],
+      "skills": [
+        "Next.js",
+        "supabase",
+        "인공지능(AI)",
+        "AI Agent",
+        "claude",
+        "바이브코딩",
+        "AX(에이전트 경험)"
+      ],
+      "runtimeMinutes": 380,
+      "publishedAt": "2026-07-13T21:30:04.000Z",
+      "updatedAt": "2026-07-26T10:36:34.034Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/claude-code-ultimate",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342424/cover/01kx5858eajk4rdt6jzk97kwx9.gif"
+    },
+    {
+      "rank": 51,
+      "courseId": 341084,
+      "title": "컴맹도 따라하는 주식 바이브코딩 - AI로 만드는 주식 자동매매 시스템",
+      "instructor": "얄팍한 코딩사전",
+      "price": "₩154,000",
+      "payPrice": 154000,
+      "regularPrice": 154000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 94,
+      "studentCount": 678,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI 개발 활용",
+        "AI 실무 활용",
+        "AI 시작하기"
+      ],
+      "skills": [
+        "gemini",
+        "인공지능(AI)",
+        "CursorAI",
+        "바이브코딩"
+      ],
+      "runtimeMinutes": 461,
+      "publishedAt": "2026-04-06T06:00:00.000Z",
+      "updatedAt": "2026-07-14T23:26:01.663Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/stock-vibe-coding-ev",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341084/cover/01ks12gx87pb875tf8d8w1h8mb"
+    },
+    {
+      "rank": 52,
+      "courseId": 340490,
+      "title": "개발자 개념 장착 - 프로그래밍 개발에 필요한 필수 개념과 핵심 이론정리",
+      "instructor": "코딩하는기술사",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 18,
+      "studentCount": 1037,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "개발 · 프로그래밍 기타",
+        "웹 개발",
+        "백엔드"
+      ],
+      "skills": [
+        "아키텍처",
+        "컴퓨터 구조",
+        "기술면접",
+        "소프트웨어 설계",
+        "문제해결능력"
+      ],
+      "runtimeMinutes": null,
+      "publishedAt": "2026-01-19T13:00:00.000Z",
+      "updatedAt": "2026-01-30T22:11:57.790Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/개발자-개념-장착-프로그래밍-개발에",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/340490/cover/01kfc5vnm3f6bvkz4a76xe8hcx"
+    },
+    {
+      "rank": 53,
+      "courseId": 342123,
+      "title": "Certified Kubernetes Security Specialist (CKS) – Practical Exam Guide",
+      "instructor": "일프로",
+      "price": "₩66,000",
+      "payPrice": 66000,
+      "regularPrice": 66000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 2,
+      "studentCount": 74,
+      "level": "고급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "데브옵스 · 인프라",
+        "시스템 · 운영체제",
+        "보안 · 네트워크 자격증"
+      ],
+      "skills": [
+        "Kubernetes",
+        "security",
+        "devops",
+        "infrastructure",
+        "container"
+      ],
+      "runtimeMinutes": 259,
+      "publishedAt": "2026-07-15T02:00:07.000Z",
+      "updatedAt": "2026-07-13T08:31:14.489Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/certified-kubernetes-3",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342123/cover/01kradn40407xdjvcpvttexwnt"
+    },
+    {
+      "rank": 54,
+      "courseId": 338226,
+      "title": "프론트엔드 마스터클래스",
+      "instructor": "한상훈",
+      "price": "₩847,000",
+      "payPrice": 847000,
+      "regularPrice": 847000,
+      "discountRate": 0,
+      "rating": 4.7,
+      "reviewCount": 15,
+      "studentCount": 262,
+      "level": "고급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "웹 개발",
+        "프론트엔드",
+        "개발 도구"
+      ],
+      "skills": [
+        "JavaScript",
+        "React",
+        "함수형 프로그래밍",
+        "객체지향",
+        "Next.js"
+      ],
+      "runtimeMinutes": 3394,
+      "publishedAt": "2025-08-11T04:30:00.000Z",
+      "updatedAt": "2026-02-18T05:23:37.477Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/프론트엔드-마스터클래스",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/338226/cover/01k26arg1jyc43npmkmd07ge7b"
+    },
+    {
+      "rank": 55,
+      "courseId": 341234,
+      "title": "2026년! 백엔드 개발자를 위한 Redis 실전 가이드: 기초부터 실무 패턴까지",
+      "instructor": "코딩하는기술사",
+      "price": "₩66,000",
+      "payPrice": 66000,
+      "regularPrice": 88000,
+      "discountRate": 25,
+      "rating": 5,
+      "reviewCount": 20,
+      "studentCount": 305,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "백엔드",
+        "데이터베이스",
+        "개발 · 프로그래밍 기타"
+      ],
+      "skills": [
+        "아키텍처",
+        "Redis",
+        "FastAPI"
+      ],
+      "runtimeMinutes": 709,
+      "publishedAt": "2026-03-13T15:30:00.000Z",
+      "updatedAt": "2026-04-05T00:07:03.176Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/2026-a-practical-gui",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341234/cover/01kkkqkfjm5kf9exfr2mg6ftfw"
+    },
+    {
+      "rank": 56,
+      "courseId": 343382,
+      "title": "영어 말하기 입문 4주 완성 - 일자별 실전 훈련 프로그램",
+      "instructor": "김병국(프랭크2024)",
+      "price": "₩6,600",
+      "payPrice": 6600,
+      "regularPrice": 22000,
+      "discountRate": 70,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 9,
+      "level": "입문",
+      "categories": [
+        "업무 생산성",
+        "커리어 · 자기계발",
+        "외국어"
+      ],
+      "subCategories": [
+        "생산성 도구",
+        "개인 브랜딩",
+        "영어"
+      ],
+      "skills": [
+        "영어",
+        "스피치",
+        "pubsub",
+        "운동",
+        "학습방법"
+      ],
+      "runtimeMinutes": 31,
+      "publishedAt": "2026-07-24T15:01:07.000Z",
+      "updatedAt": "2026-07-24T16:39:16.259Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/4-week-beginner-engl",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343382/cover/ai/3/f9638c6c-02b8-4db9-9824-8fe8c4912f74.png"
+    },
+    {
+      "rank": 57,
+      "courseId": 324119,
+      "title": "실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발",
+      "instructor": "김영한",
+      "price": "₩88,000",
+      "payPrice": 88000,
+      "regularPrice": 88000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 2547,
+      "studentCount": 27510,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "백엔드",
+        "웹 개발"
+      ],
+      "skills": [
+        "Java",
+        "Spring",
+        "웹앱",
+        "Spring Boot",
+        "JPA"
+      ],
+      "runtimeMinutes": 464,
+      "publishedAt": "2019-09-23T15:00:00.000Z",
+      "updatedAt": "2026-01-18T09:47:31.426Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/스프링부트-JPA-활용-1",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/324119/course_cover/07c45106-3cfa-4dd6-93ed-a6449591831c/그룹 5 복사 4.png"
+    },
+    {
+      "rank": 58,
+      "courseId": 339687,
+      "title": "Certified Kubernetes Administrator (CKA) – Practical Exam Guide",
+      "instructor": "일프로",
+      "price": "₩55,000",
+      "payPrice": 55000,
+      "regularPrice": 55000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 71,
+      "studentCount": 438,
+      "level": "초급",
+      "categories": [
+        "보안 · 네트워크",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "보안 · 네트워크 자격증",
+        "데브옵스 · 인프라",
+        "시스템 · 운영체제"
+      ],
+      "skills": [
+        "Kubernetes",
+        "devops",
+        "certificates",
+        "container"
+      ],
+      "runtimeMinutes": 197,
+      "publishedAt": "2026-02-19T22:30:00.000Z",
+      "updatedAt": "2026-03-23T04:55:21.390Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/certified-kubernetes",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/339687/cover/01kra9r21pge8nkmgy1y6c7kqd"
+    },
+    {
+      "rank": 59,
+      "courseId": 340540,
+      "title": "시스코 CCNA 함께 공부해요",
+      "instructor": "ccie_pe_kim",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 26,
+      "studentCount": 975,
+      "level": "초급",
+      "categories": [
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "보안 · 네트워크 자격증",
+        "네트워크",
+        "보안 · 네트워크 기타"
+      ],
+      "skills": [
+        "네트워크",
+        "CCNA",
+        "routing",
+        "tcpip"
+      ],
+      "runtimeMinutes": 1213,
+      "publishedAt": "2026-01-30T15:00:00.000Z",
+      "updatedAt": "2026-03-25T09:44:13.272Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/시스코-ccna-함께-공부해요",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/340540/cover/ai/0/af50e615-792b-4116-80a2-69043f0cd1e9.png"
+    },
+    {
+      "rank": 60,
+      "courseId": 342845,
+      "title": "깃미남의 Git 완전정복",
+      "instructor": "깃미남 (깃에 미친 남자)",
+      "price": "₩79,200",
+      "payPrice": 79200,
+      "regularPrice": 79200,
+      "discountRate": 0,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 15,
+      "level": "고급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "개발 도구",
+        "개발 · 프로그래밍 기타"
+      ],
+      "skills": [
+        "Git",
+        "GitHub",
+        "버전관리시스템",
+        "github-actions",
+        "협업"
+      ],
+      "runtimeMinutes": 214,
+      "publishedAt": "2026-07-13T09:30:04.000Z",
+      "updatedAt": "2026-07-13T07:36:32.540Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/git-masterclass-by-g",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342845/cover/01kxd4qm4ws9ab9h5bjbxzz04t"
+    },
+    {
+      "rank": 61,
+      "courseId": 334598,
+      "title": "빅데이터분석기사 필기 올인원: 3주에 끝내는 완벽 대비",
+      "instructor": "Masocampus",
+      "price": "₩159,500",
+      "payPrice": 159500,
+      "regularPrice": 159500,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 56,
+      "studentCount": 392,
+      "level": "초급",
+      "categories": [
+        "데이터 사이언스"
+      ],
+      "subCategories": [
+        "데이터 사이언스 자격증"
+      ],
+      "skills": [
+        "빅데이터분석기사",
+        "빅데이터",
+        "통계",
+        "인공지능(AI)"
+      ],
+      "runtimeMinutes": 1955,
+      "publishedAt": "2024-08-15T15:00:00.000Z",
+      "updatedAt": "2025-08-19T05:09:22.115Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/빅데이터분서기사-필기-올인원-3주완성",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/334598/cover/c109f7d7-c67a-46ee-85a4-7a3a965f91af/334598.png"
+    },
+    {
+      "rank": 62,
+      "courseId": 324109,
+      "title": "자바 ORM 표준 JPA 프로그래밍 - 기본편",
+      "instructor": "김영한",
+      "price": "₩121,000",
+      "payPrice": 121000,
+      "regularPrice": 121000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 2132,
+      "studentCount": 25412,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "백엔드",
+        "웹 개발",
+        "데이터베이스"
+      ],
+      "skills": [
+        "Java",
+        "JPA"
+      ],
+      "runtimeMinutes": 963,
+      "publishedAt": "2019-06-25T15:00:00.000Z",
+      "updatedAt": "2025-04-29T09:40:24.471Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/ORM-JPA-Basic",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/324109/course_cover/161476f8-f0b7-4b04-b293-ce648c2ea445/kyh_jsp.png"
+    },
+    {
+      "rank": 63,
+      "courseId": 341135,
+      "title": "30분 만에 나만의 AI 에이전트 만들기 (Antigravity 실습)",
+      "instructor": "최원영",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.1,
+      "reviewCount": 67,
+      "studentCount": 1097,
+      "level": "입문",
+      "categories": [
+        "AI 기술",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "AI 개발 활용",
+        "AI 실무 활용"
+      ],
+      "skills": [
+        "인공지능(AI)"
+      ],
+      "runtimeMinutes": 32,
+      "publishedAt": "2026-02-27T05:00:00.000Z",
+      "updatedAt": "2026-02-27T06:18:36.692Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/30분-만에-나만의-ai-에이전트-만",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341135/cover/ai/2/ff040a20-6c82-450c-aa6c-9032328141d7.png"
+    },
+    {
+      "rank": 64,
+      "courseId": 324190,
+      "title": "대세는 쿠버네티스 (초급~중급편)",
+      "instructor": "일프로",
+      "price": "₩33,000",
+      "payPrice": 33000,
+      "regularPrice": 44000,
+      "discountRate": 25,
+      "rating": 4.9,
+      "reviewCount": 613,
+      "studentCount": 8342,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "데브옵스 · 인프라",
+        "풀스택",
+        "시스템 · 운영체제"
+      ],
+      "skills": [
+        "Docker",
+        "Kubernetes",
+        "devops",
+        "container",
+        "infrastructure-as-a-code"
+      ],
+      "runtimeMinutes": 425,
+      "publishedAt": "2019-09-10T15:00:00.000Z",
+      "updatedAt": "2025-11-19T05:23:15.024Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/쿠버네티스-기초",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/324190/cover/01jyde6jsc7wsnggc5tcvvwbby.gif"
+    },
+    {
+      "rank": 65,
+      "courseId": 343344,
+      "title": "AI 반도체 설계를 위한 필수 이론 — 뉴런에서 LLM까지",
+      "instructor": "EdgeChipLab",
+      "price": "₩5,940",
+      "payPrice": 5940,
+      "regularPrice": 9900,
+      "discountRate": 40,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 12,
+      "level": "입문",
+      "categories": [
+        "AI 기술",
+        "하드웨어"
+      ],
+      "subCategories": [
+        "딥러닝 · 머신러닝",
+        "컴퓨터 비전",
+        "반도체"
+      ],
+      "skills": [
+        "딥러닝",
+        "머신러닝",
+        "CNN",
+        "transformer",
+        "LLM",
+        "인공신경망",
+        "인공지능(AI)"
+      ],
+      "runtimeMinutes": 100,
+      "publishedAt": "2026-07-22T13:30:05.000Z",
+      "updatedAt": "2026-07-22T11:56:04.237Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/essential-theory-for",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343344/cover/01ky4vfzh18c5jkv1fsqq0t53z"
+    },
+    {
+      "rank": 66,
+      "courseId": 342654,
+      "title": "[Rookiss] 클로드 코드 입문 (인터랙티브 교재)",
+      "instructor": "Rookiss",
+      "price": "₩69,300",
+      "payPrice": 69300,
+      "regularPrice": 99000,
+      "discountRate": 30,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 21,
+      "level": "입문",
+      "categories": [
+        "AI 기술",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "인공지능 기타",
+        "AI 시작하기"
+      ],
+      "skills": [
+        "인공지능(AI)",
+        "claude",
+        "AX(에이전트 경험)"
+      ],
+      "runtimeMinutes": 176,
+      "publishedAt": "2026-07-20T05:00:30.000Z",
+      "updatedAt": "2026-07-17T08:27:29.492Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/rookiss-introduction-1",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342654/cover/01kxyyfgf2yvaknjja3v3ktrxq"
+    },
+    {
+      "rank": 67,
+      "courseId": 337714,
+      "title": "옵시디언 마스터 클래스: PKM·AI Second Brain·LLM WiKi 기초부터 실전까지",
+      "instructor": "조영수(데이먼)",
+      "price": "₩132,000",
+      "payPrice": 132000,
+      "regularPrice": 132000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 143,
+      "studentCount": 1006,
+      "level": "입문",
+      "categories": [
+        "업무 생산성",
+        "기획 · 경영 · 마케팅",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "생산성 도구",
+        "기획 · PM· PO",
+        "AI 실무 활용"
+      ],
+      "skills": [
+        "업무 생산성",
+        "obsidian"
+      ],
+      "runtimeMinutes": 455,
+      "publishedAt": "2025-06-25T12:30:00.000Z",
+      "updatedAt": "2026-05-08T00:00:00.000Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/옵시디언-마스터-클래스생산성을-바꾸는-1",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/337714/cover/01jyn838cx48pfk0hfh77c2k2q"
+    },
+    {
+      "rank": 68,
+      "courseId": 336953,
+      "title": "[2026] 비전공자도 한 번에 합격하는 SQLD 올인원",
+      "instructor": "알고런 데이터코드 연구소",
+      "price": "₩79,200",
+      "payPrice": 79200,
+      "regularPrice": 79200,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 65,
+      "studentCount": 484,
+      "level": "입문",
+      "categories": [
+        "데이터 사이언스"
+      ],
+      "subCategories": [
+        "데이터 엔지니어링",
+        "데이터 분석",
+        "데이터 사이언스 자격증"
+      ],
+      "skills": [
+        "SQL",
+        "빅데이터",
+        "데이터 엔지니어링",
+        "SQLD",
+        "코딩 테스트"
+      ],
+      "runtimeMinutes": 785,
+      "publishedAt": "2025-04-07T15:00:00.000Z",
+      "updatedAt": "2026-07-02T07:40:07.999Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/비전공자-sqld-자격증",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/336953/cover/01kfq68bzb04w1mydc92ysfads"
+    },
+    {
+      "rank": 69,
+      "courseId": 335940,
+      "title": "개발자를 위한 컴퓨터공학 2: 혼자 공부하는 네트워크",
+      "instructor": "강민철",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 174,
+      "studentCount": 5758,
+      "level": "입문",
+      "categories": [
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "네트워크"
+      ],
+      "skills": [
+        "네트워크",
+        "tcpip",
+        "routing"
+      ],
+      "runtimeMinutes": 779,
+      "publishedAt": "2025-01-14T15:00:00.000Z",
+      "updatedAt": "2025-04-29T09:27:31.006Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/개발자-컴퓨터공학-혼자공부하는-네트워크",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/335940/cover/ee8e8bd4-14bb-473a-8f90-a52db821ef75/335940.jpg"
+    },
+    {
+      "rank": 70,
+      "courseId": 335301,
+      "title": "38군데 합격 비법, 2026 코딩테스트 필수 알고리즘",
+      "instructor": "딩코딩코",
+      "price": "₩165,000",
+      "payPrice": 165000,
+      "regularPrice": 165000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 436,
+      "studentCount": 2784,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "커리어 · 자기계발"
+      ],
+      "subCategories": [
+        "알고리즘 · 자료구조",
+        "취업 · 이직"
+      ],
+      "skills": [
+        "Python",
+        "코딩 테스트",
+        "알고리즘",
+        "data-structure"
+      ],
+      "runtimeMinutes": 934,
+      "publishedAt": "2024-11-12T15:00:00.000Z",
+      "updatedAt": "2026-03-02T00:00:00.000Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/38군데-합격비법-코테-필수-알고리즘",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/335301/cover/01kq7k29wbkne81zn4brz8h6sn.gif"
+    },
+    {
+      "rank": 71,
+      "courseId": 335433,
+      "title": "비전공자도 이해할 수 있는 쿠버네티스 입문/실전",
+      "instructor": "JSCODE 박재성",
+      "price": "₩88,000",
+      "payPrice": 88000,
+      "regularPrice": 88000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 195,
+      "studentCount": 1610,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "데브옵스 · 인프라",
+        "백엔드",
+        "클라우드"
+      ],
+      "skills": [
+        "Kubernetes",
+        "Docker",
+        "infrastructure",
+        "MSA",
+        "container"
+      ],
+      "runtimeMinutes": 287,
+      "publishedAt": "2024-11-21T15:00:00.000Z",
+      "updatedAt": "2026-02-11T05:25:31.815Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/비전공자-쿠버네티스-입문-실전",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/335433/cover/01k0qnnww59bzv59s0htfwyxes"
+    },
+    {
+      "rank": 72,
+      "courseId": 326277,
+      "title": "모든 개발자를 위한 HTTP 웹 기본 지식",
+      "instructor": "김영한",
+      "price": "₩44,000",
+      "payPrice": 44000,
+      "regularPrice": 44000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 4012,
+      "studentCount": 36864,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "웹 개발",
+        "네트워크",
+        "개발 · 프로그래밍 기타"
+      ],
+      "skills": [
+        "네트워크"
+      ],
+      "runtimeMinutes": 341,
+      "publishedAt": "2020-12-19T15:00:00.000Z",
+      "updatedAt": "2025-05-13T07:23:13.295Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/http-웹-네트워크",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/326277/cover/52d4f143-b470-4109-96cb-a0b146fb42ed/http.png"
+    },
+    {
+      "rank": 73,
+      "courseId": 333796,
+      "title": "RAG를 활용한 LLM Application 개발 (feat. LangChain)",
+      "instructor": "제이쓴",
+      "price": "₩66,000",
+      "payPrice": 66000,
+      "regularPrice": 66000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 577,
+      "studentCount": 4685,
+      "level": "초급",
+      "categories": [
+        "AI 기술",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "개발 · 프로그래밍 기타"
+      ],
+      "skills": [
+        "LLM",
+        "RAG",
+        "LangChain",
+        "vector-database",
+        "openAI API"
+      ],
+      "runtimeMinutes": 217,
+      "publishedAt": "2024-06-27T15:00:00.000Z",
+      "updatedAt": "2025-11-15T11:12:24.826Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/rag-llm-application개발-langchain",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/333796/cover/97e4a8aa-06b4-4e6d-89c7-a6231062cedd/333796.png"
+    },
+    {
+      "rank": 74,
+      "courseId": 336312,
+      "title": "한 입 크기로 잘라먹는 React.js 실전 프로젝트 - SNS 편",
+      "instructor": "이정환 Winterlood",
+      "price": "₩41,250",
+      "payPrice": 41250,
+      "regularPrice": 55000,
+      "discountRate": 25,
+      "rating": 5,
+      "reviewCount": 146,
+      "studentCount": 1609,
+      "level": "고급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "웹 개발",
+        "프론트엔드",
+        "풀스택"
+      ],
+      "skills": [
+        "React",
+        "TypeScript",
+        "react-query",
+        "supabase",
+        "zustand"
+      ],
+      "runtimeMinutes": 1330,
+      "publishedAt": "2025-10-23T02:00:00.000Z",
+      "updatedAt": "2026-03-28T01:38:21.122Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/한-입-크기로-잘라먹는-실전-프로젝트",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/336312/cover/01k76bgew1ggd3yybfjzshs43m"
+    },
+    {
+      "rank": 75,
+      "courseId": 335334,
+      "title": "LangGraph를 활용한 AI Agent 개발 (feat. MCP)",
+      "instructor": "제이쓴",
+      "price": "₩69,300",
+      "payPrice": 69300,
+      "regularPrice": 69300,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 246,
+      "studentCount": 2710,
+      "level": "초급",
+      "categories": [
+        "AI 기술"
+      ],
+      "subCategories": [
+        "AI에이전트 개발"
+      ],
+      "skills": [
+        "프롬프트엔지니어링",
+        "LLM",
+        "AI Agent",
+        "LangGraph",
+        "MCP"
+      ],
+      "runtimeMinutes": 381,
+      "publishedAt": "2025-01-19T15:00:00.000Z",
+      "updatedAt": "2026-06-23T10:57:36.230Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/랭그래프-활용한-llm에이전트-개발",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5"
+    },
+    {
+      "rank": 76,
+      "courseId": 338212,
+      "title": "김영한의 실전 데이터베이스 - 기본편",
+      "instructor": "김영한",
+      "price": "₩61,600",
+      "payPrice": 61600,
+      "regularPrice": 88000,
+      "discountRate": 30,
+      "rating": 5,
+      "reviewCount": 471,
+      "studentCount": 4861,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "데이터 사이언스"
+      ],
+      "subCategories": [
+        "데이터베이스",
+        "백엔드",
+        "데이터 분석"
+      ],
+      "skills": [
+        "SQL",
+        "MySQL",
+        "DBMS/RDBMS",
+        "SQLD"
+      ],
+      "runtimeMinutes": 821,
+      "publishedAt": "2025-07-31T15:00:00.000Z",
+      "updatedAt": "2025-11-16T03:54:43.001Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/김영한-실전-데이터베이스-기본편",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/338212/cover/01k1fmpvkffxg3wp7q0f6vcv2c"
+    },
+    {
+      "rank": 77,
+      "courseId": 329416,
+      "title": "PM을 위한 데이터 리터러시(프로덕트 데이터 분석)",
+      "instructor": "카일스쿨",
+      "price": "₩132,000",
+      "payPrice": 132000,
+      "regularPrice": 132000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 179,
+      "studentCount": 2941,
+      "level": "초급",
+      "categories": [
+        "기획 · 경영 · 마케팅",
+        "데이터 사이언스"
+      ],
+      "subCategories": [
+        "기획 · PM· PO",
+        "데이터 분석"
+      ],
+      "skills": [
+        "데이터 리터러시",
+        "metric hierarchy",
+        "AB test"
+      ],
+      "runtimeMinutes": 935,
+      "publishedAt": "2023-02-20T15:00:00.000Z",
+      "updatedAt": "2026-07-04T14:10:56.757Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/pm-데이터-리터러시",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/329416/cover/32d4b07f-caf1-4ce8-83d0-e4fe8ed7eca6/329416-eng.png"
+    },
+    {
+      "rank": 78,
+      "courseId": 341212,
+      "title": "Spotfire 응용편 - 반도체",
+      "instructor": "피앤디솔루션",
+      "price": "₩84,700",
+      "payPrice": 84700,
+      "regularPrice": 84700,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 7,
+      "studentCount": 48,
+      "level": "고급",
+      "categories": [
+        "데이터 사이언스"
+      ],
+      "subCategories": [
+        "데이터 분석",
+        "데이터 엔지니어링",
+        "데이터 사이언스 기타"
+      ],
+      "skills": [
+        "Spotfire"
+      ],
+      "runtimeMinutes": 124,
+      "publishedAt": "2026-03-06T04:00:00.000Z",
+      "updatedAt": "2026-03-05T04:03:57.853Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/spotfire-advanced-ap",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341212/cover/01kjs0x6gx2sz3awwp274gapsh"
+    },
+    {
+      "rank": 79,
+      "courseId": 342052,
+      "title": "나만의 Claude Code  하네스 (SPEC·TDD·CI로 짓는 AI 개발 워크플로우)",
+      "instructor": "프롱트",
+      "price": "₩66,000",
+      "payPrice": 66000,
+      "regularPrice": 66000,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 39,
+      "studentCount": 420,
+      "level": "초급",
+      "categories": [
+        "AI 기술",
+        "개발 · 프로그래밍",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "웹 개발",
+        "AI 개발 활용"
+      ],
+      "skills": [
+        "React",
+        "TDD",
+        "AI Agent",
+        "claude",
+        "하네스"
+      ],
+      "runtimeMinutes": 438,
+      "publishedAt": "2026-05-06T09:00:00.000Z",
+      "updatedAt": "2026-05-21T16:24:41.523Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/my-own-claude-code-h",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342052/cover/01kqw7p11tbjge01n4ckdvf158"
+    },
+    {
+      "rank": 80,
+      "courseId": 326329,
+      "title": "고수가 되는 파이썬 : 동시성과 병렬성 문법 배우기 Feat. 멀티스레딩 vs 멀티프로세싱 (Inflearn Original)",
+      "instructor": "인프런",
+      "price": "₩60,500",
+      "payPrice": 60500,
+      "regularPrice": 60500,
+      "discountRate": 0,
+      "rating": 4.7,
+      "reviewCount": 115,
+      "studentCount": 3913,
+      "level": "고급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어"
+      ],
+      "skills": [
+        "Python",
+        "동시성"
+      ],
+      "runtimeMinutes": 471,
+      "publishedAt": "2021-03-24T15:00:00.000Z",
+      "updatedAt": "2025-05-13T07:43:34.188Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/프로그래밍-파이썬-완성-인프런-오리지널",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/326329/cover/5b3f2fcc-70a6-48cf-b5d8-4efe68c4c455"
+    },
+    {
+      "rank": 81,
+      "courseId": 326674,
+      "title": "스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술",
+      "instructor": "김영한",
+      "price": "₩99,000",
+      "payPrice": 99000,
+      "regularPrice": 99000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 2587,
+      "studentCount": 30987,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "백엔드",
+        "웹 개발"
+      ],
+      "skills": [
+        "MVC",
+        "Spring"
+      ],
+      "runtimeMinutes": 923,
+      "publishedAt": "2021-03-06T15:00:00.000Z",
+      "updatedAt": "2025-04-29T07:20:11.745Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/스프링-mvc-1",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/326674/cover/4657d793-56a4-42f3-9d44-dc88d125a49e"
+    },
+    {
+      "rank": 82,
+      "courseId": 343186,
+      "title": "확장성 있는 Flutter: Supabase, Clean Architecture & Riverpod",
+      "instructor": "조상욱",
+      "price": "₩108,900",
+      "payPrice": 108900,
+      "regularPrice": 108900,
+      "discountRate": 0,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 19,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "모바일 앱 개발",
+        "풀스택",
+        "데이터베이스"
+      ],
+      "skills": [
+        "Flutter",
+        "riverpod",
+        "clean-architecture",
+        "monorepo",
+        "supabase"
+      ],
+      "runtimeMinutes": 1217,
+      "publishedAt": "2026-07-13T09:00:32.000Z",
+      "updatedAt": "2026-07-10T06:09:52.285Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/scalable-flutter-sup",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343186/cover/01kx58h1htc18bs2ephq9eq8d2"
+    },
+    {
+      "rank": 83,
+      "courseId": 336672,
+      "title": "김영한의 실전 자바 - 고급 3편, 람다, 스트림, 함수형 프로그래밍",
+      "instructor": "김영한",
+      "price": "₩77,000",
+      "payPrice": 77000,
+      "regularPrice": 77000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 335,
+      "studentCount": 5154,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "웹 개발",
+        "프로그래밍 언어",
+        "백엔드"
+      ],
+      "skills": [
+        "Java",
+        "함수형 프로그래밍",
+        "Lambda",
+        "optional"
+      ],
+      "runtimeMinutes": 1001,
+      "publishedAt": "2025-03-24T15:00:00.000Z",
+      "updatedAt": "2025-09-14T05:27:02.800Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/김영한의-실전-자바-고급-3",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/336672/cover/01jps9j2kmxp7j0vgj3g9z6qmt"
+    },
+    {
+      "rank": 84,
+      "courseId": 340802,
+      "title": "프로젝트로 배우는 OpenAI Codex - AI를 이용한 바이브코딩 기초부터 심화까지",
+      "instructor": "AISchool",
+      "price": "₩66,000",
+      "payPrice": 66000,
+      "regularPrice": 66000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 40,
+      "studentCount": 227,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "AI 개발 활용",
+        "AI 실무 활용",
+        "AI 코딩"
+      ],
+      "skills": [
+        "업무 생산성",
+        "openai",
+        "codex",
+        "인공지능(AI)",
+        "바이브코딩"
+      ],
+      "runtimeMinutes": 520,
+      "publishedAt": "2026-03-05T21:30:00.000Z",
+      "updatedAt": "2026-07-26T14:29:55.471Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/learning-openai-code",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/340802/cover/01kjqj9qwdwp15cd53vep655hr"
+    },
+    {
+      "rank": 85,
+      "courseId": 342611,
+      "title": "실리콘밸리 엔지니어와 함께하는 OpenClaw",
+      "instructor": "미쿡엔지니어",
+      "price": "₩22,000",
+      "payPrice": 22000,
+      "regularPrice": 44000,
+      "discountRate": 50,
+      "rating": 5,
+      "reviewCount": 8,
+      "studentCount": 129,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "AI 실무 활용",
+        "AI 시작하기",
+        "AI 개발 활용"
+      ],
+      "skills": [
+        "인공지능(AI)",
+        "AI Agent",
+        "LLM"
+      ],
+      "runtimeMinutes": 182,
+      "publishedAt": "2026-07-01T02:30:05.000Z",
+      "updatedAt": "2026-07-01T03:15:17.565Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/openclaw-with-silico",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342611/cover/01kw54v3tjkmdcred5m362ftdn"
+    },
+    {
+      "rank": 86,
+      "courseId": 324482,
+      "title": "홍정모의 따라하며 배우는 C언어",
+      "instructor": "홍정모",
+      "price": "₩154,000",
+      "payPrice": 154000,
+      "regularPrice": 154000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 452,
+      "studentCount": 6009,
+      "level": "입문",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어"
+      ],
+      "skills": [
+        "C"
+      ],
+      "runtimeMinutes": 3066,
+      "publishedAt": "2019-12-01T15:00:00.000Z",
+      "updatedAt": "2025-08-10T19:48:02.565Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/following-c",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/324482/course_cover/aa45c1df-eb0f-4268-b141-3f9f7a45a5dd/hjm_following-c.png"
+    },
+    {
+      "rank": 87,
+      "courseId": 337392,
+      "title": "실전에서 바로 써먹는 Elasticsearch 입문 (검색 최적화편)",
+      "instructor": "JSCODE 박재성",
+      "price": "₩88,000",
+      "payPrice": 88000,
+      "regularPrice": 88000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 109,
+      "studentCount": 806,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "데브옵스 · 인프라",
+        "백엔드",
+        "데이터베이스"
+      ],
+      "skills": [
+        "Spring Boot",
+        "Elasticsearch",
+        "devops",
+        "elk",
+        "infrastructure"
+      ],
+      "runtimeMinutes": 417,
+      "publishedAt": "2025-05-13T15:00:00.000Z",
+      "updatedAt": "2026-02-11T05:23:55.839Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/실전-elasticsearch-입문",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/337392/cover/01k0qnrc31rydttp20pvw43m8g"
+    },
+    {
+      "rank": 88,
+      "courseId": 342120,
+      "title": "비전공자도 쉽게 배우는 클로드 디자인",
+      "instructor": "범쌤",
+      "price": "₩49,500",
+      "payPrice": 49500,
+      "regularPrice": 49500,
+      "discountRate": 0,
+      "rating": 4.7,
+      "reviewCount": 20,
+      "studentCount": 252,
+      "level": "입문",
+      "categories": [
+        "AI 활용(AX)",
+        "디자인 · 아트",
+        "업무 생산성"
+      ],
+      "subCategories": [
+        "AI 크리에이티브",
+        "UX/UI",
+        "생산성 도구"
+      ],
+      "skills": [
+        "Figma",
+        "terminal",
+        "figma-plugin",
+        "AI Agent",
+        "claude"
+      ],
+      "runtimeMinutes": 225,
+      "publishedAt": "2026-06-09T12:00:00.000Z",
+      "updatedAt": "2026-06-22T06:32:16.170Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/claude-design-for-no",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342120/cover/01krgbkwrjb0rerege8w2hdge9"
+    },
+    {
+      "rank": 89,
+      "courseId": 341504,
+      "title": "Claude Code Harness Engineering 클로드코드 심화 CLI 하네스 엔지니어링 실무",
+      "instructor": "미국달팽이",
+      "price": "₩88,000",
+      "payPrice": 88000,
+      "regularPrice": 88000,
+      "discountRate": 0,
+      "rating": 4.4,
+      "reviewCount": 36,
+      "studentCount": 574,
+      "level": "초급",
+      "categories": [
+        "AI 활용(AX)",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "AI 개발 활용",
+        "풀스택",
+        "AI 실무 활용"
+      ],
+      "skills": [
+        "인공지능(AI)",
+        "claude",
+        "바이브코딩",
+        "하네스"
+      ],
+      "runtimeMinutes": 314,
+      "publishedAt": "2026-04-24T22:00:00.000Z",
+      "updatedAt": "2026-07-28T01:47:25.569Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/claude-code-harness",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/341504/cover/01kpvp72sn4asjczdmvf8cfr6q"
+    },
+    {
+      "rank": 90,
+      "courseId": 343354,
+      "title": "AI 개발자 로드맵 2026",
+      "instructor": "장철원",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 0,
+      "reviewCount": 0,
+      "studentCount": 27,
+      "level": "입문",
+      "categories": [
+        "AI 기술"
+      ],
+      "subCategories": [
+        "AI에이전트 개발",
+        "딥러닝 · 머신러닝",
+        "인공지능 기타"
+      ],
+      "skills": [
+        "Python",
+        "머신러닝",
+        "딥러닝",
+        "빅데이터",
+        "Docker",
+        "인공지능(AI)",
+        "AI Agent"
+      ],
+      "runtimeMinutes": 10,
+      "publishedAt": "2026-07-23T08:00:05.000Z",
+      "updatedAt": "2026-07-23T06:37:11.677Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/ai-developer-roadmap",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/343354/cover/01ky6pj3p84w3p55cgqta1y7pc"
+    },
+    {
+      "rank": 91,
+      "courseId": 324510,
+      "title": "우리를 위한 프로그래밍 : 파이썬 중급 (Inflearn Original)",
+      "instructor": "인프런",
+      "price": "₩55,000",
+      "payPrice": 55000,
+      "regularPrice": 55000,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 433,
+      "studentCount": 38634,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어"
+      ],
+      "skills": [
+        "Python",
+        "Django"
+      ],
+      "runtimeMinutes": 646,
+      "publishedAt": "2020-01-21T15:00:00.000Z",
+      "updatedAt": "2025-05-13T07:39:58.507Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/프로그래밍-파이썬-중급-인프런-오리지널",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/324510/course_cover/91bed9c2-6ea2-48c8-8f2e-fa50cfd7284a/I_O_python_2.png"
+    },
+    {
+      "rank": 92,
+      "courseId": 326697,
+      "title": "설계독학맛비's 실전 FPGA를 이용한 HW 가속기 설계 (LED 제어부터 Fully Connected Layer 가속기 설계까지)",
+      "instructor": "설계독학맛비",
+      "price": "₩297,000",
+      "payPrice": 297000,
+      "regularPrice": 297000,
+      "discountRate": 0,
+      "rating": 5,
+      "reviewCount": 100,
+      "studentCount": 1240,
+      "level": "고급",
+      "categories": [
+        "하드웨어"
+      ],
+      "subCategories": [
+        "반도체",
+        "임베디드 · IoT"
+      ],
+      "skills": [
+        "FPGA",
+        "임베디드"
+      ],
+      "runtimeMinutes": 570,
+      "publishedAt": "2021-08-18T15:00:00.000Z",
+      "updatedAt": "2025-05-13T07:36:58.681Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/실전-가속기-설계",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/326697/cover/c6b237e2-2180-40e2-9a1b-bad14762da82/326697-eng.png"
+    },
+    {
+      "rank": 93,
+      "courseId": 342040,
+      "title": "미국 빅테크 프론트엔드 시스템 디자인 실전: 단순 구현자로 남지 않기 위한 프론트엔드 개발자를 위해",
+      "instructor": "미국달팽이",
+      "price": "₩74,250",
+      "payPrice": 74250,
+      "regularPrice": 99000,
+      "discountRate": 25,
+      "rating": 4.4,
+      "reviewCount": 14,
+      "studentCount": 359,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "AI 활용(AX)"
+      ],
+      "subCategories": [
+        "프론트엔드",
+        "AI 코딩",
+        "AI 개발 활용"
+      ],
+      "skills": [
+        "frontend",
+        "시스템 디자인",
+        "인공지능(AI)"
+      ],
+      "runtimeMinutes": 284,
+      "publishedAt": "2026-05-27T02:26:00.000Z",
+      "updatedAt": "2026-07-25T23:57:20.544Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/us-big-tech-frontend",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/342040/cover/01krmc9vn96s0wv98byakznq15"
+    },
+    {
+      "rank": 94,
+      "courseId": 324181,
+      "title": "노션(notion) 완벽 활용법",
+      "instructor": "보안프로젝트",
+      "price": "무료",
+      "payPrice": 0,
+      "regularPrice": 0,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 245,
+      "studentCount": 41534,
+      "level": "입문",
+      "categories": [
+        "기획 · 경영 · 마케팅"
+      ],
+      "subCategories": [
+        "기획 · PM· PO",
+        "기획 · 경영 · 마케팅 기타"
+      ],
+      "skills": [
+        "Notion",
+        "프로젝트 관리",
+        "업무 생산성",
+        "협업 툴"
+      ],
+      "runtimeMinutes": 345,
+      "publishedAt": "2019-08-13T15:00:00.000Z",
+      "updatedAt": "2025-04-29T06:46:00.668Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/노션-notion-활용",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/324181/course_cover/4f20d4ce-80a2-4334-a85b-429a55ce4bad/boan_notion.png"
+    },
+    {
+      "rank": 95,
+      "courseId": 328329,
+      "title": "[코드팩토리] [초급] Flutter 3.0 앱 개발 - 10개의 프로젝트로 오늘 초보 탈출!",
+      "instructor": "코드팩토리",
+      "price": "₩99,000",
+      "payPrice": 99000,
+      "regularPrice": 99000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 342,
+      "studentCount": 5517,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "모바일 앱 개발"
+      ],
+      "skills": [
+        "Flutter",
+        "클론코딩"
+      ],
+      "runtimeMinutes": 1993,
+      "publishedAt": "2022-03-01T15:00:00.000Z",
+      "updatedAt": "2025-05-13T00:00:00.000Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/플러터-프로젝트",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/328329/cover/72f06aa7-f5f1-422b-88a7-bca65e78dffd/328329.png"
+    },
+    {
+      "rank": 96,
+      "courseId": 328823,
+      "title": "CS 지식의 정석 | 디자인패턴 네트워크 운영체제 데이터베이스 자료구조",
+      "instructor": "큰돌",
+      "price": "₩165,000",
+      "payPrice": 165000,
+      "regularPrice": 165000,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 263,
+      "studentCount": 4127,
+      "level": "초급",
+      "categories": [
+        "커리어 · 자기계발",
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "취업 · 이직",
+        "개발 · 프로그래밍 기타",
+        "알고리즘 · 자료구조"
+      ],
+      "skills": [
+        "기술면접",
+        "면접",
+        "운영체제"
+      ],
+      "runtimeMinutes": 1511,
+      "publishedAt": "2022-06-13T15:00:00.000Z",
+      "updatedAt": "2026-01-19T23:41:04.371Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/개발자-면접-cs-특강",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/328823/cover/1081d7c2-64b4-4063-87f4-c40e11bb481f/KakaoTalk_20220517_140737840.jpg"
+    },
+    {
+      "rank": 97,
+      "courseId": 325780,
+      "title": "모두를 위한 파이썬 : 필수 문법 배우기 Feat. 오픈소스 패키지 배포 (Inflearn Original)",
+      "instructor": "인프런",
+      "price": "₩55,000",
+      "payPrice": 55000,
+      "regularPrice": 55000,
+      "discountRate": 0,
+      "rating": 4.8,
+      "reviewCount": 142,
+      "studentCount": 28443,
+      "level": "고급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어"
+      ],
+      "skills": [
+        "Python"
+      ],
+      "runtimeMinutes": 558,
+      "publishedAt": "2020-12-27T15:00:00.000Z",
+      "updatedAt": "2025-05-13T07:37:14.268Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/프로그래밍-파이썬-중고급",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/325780/cover/d3228e64-c822-422e-8e6a-d23082b65ae1/325780-eng.png"
+    },
+    {
+      "rank": 98,
+      "courseId": 330330,
+      "title": "프로그래밍 시작하기 : 도전! 45가지 파이썬 기초 문법 실습 (Inflearn Original)",
+      "instructor": "인프런",
+      "price": "₩33,000",
+      "payPrice": 33000,
+      "regularPrice": 33000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 192,
+      "studentCount": 39993,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍"
+      ],
+      "subCategories": [
+        "프로그래밍 언어"
+      ],
+      "skills": [
+        "Python"
+      ],
+      "runtimeMinutes": 667,
+      "publishedAt": "2023-03-02T15:00:00.000Z",
+      "updatedAt": "2025-05-13T07:37:48.153Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/프로그래밍-파이썬-문법-실습-인프런-오리지널",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/330330/cover/d31a6383-8b78-41b8-b1df-244512985ef1/330330-eng.png"
+    },
+    {
+      "rank": 99,
+      "courseId": 334085,
+      "title": "비전공자도 이해할 수 있는 Docker 입문/실전",
+      "instructor": "JSCODE 박재성",
+      "price": "₩88,000",
+      "payPrice": 88000,
+      "regularPrice": 88000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 672,
+      "studentCount": 14563,
+      "level": "초급",
+      "categories": [
+        "개발 · 프로그래밍",
+        "보안 · 네트워크"
+      ],
+      "subCategories": [
+        "데브옵스 · 인프라",
+        "백엔드",
+        "클라우드"
+      ],
+      "skills": [
+        "Docker",
+        "container",
+        "docker-compose",
+        "docker-volume",
+        "ecr",
+        "docker-image"
+      ],
+      "runtimeMinutes": 372,
+      "publishedAt": "2024-06-12T15:00:00.000Z",
+      "updatedAt": "2026-02-11T05:27:10.825Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/비전공자-docker-입문-실전",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/files/courses/334085/cover/01k0qnn19n56p5gtsphaqfmqz5"
+    },
+    {
+      "rank": 100,
+      "courseId": 324238,
+      "title": "[개정판] 파이썬 머신러닝 완벽 가이드",
+      "instructor": "권 철민",
+      "price": "₩99,000",
+      "payPrice": 99000,
+      "regularPrice": 99000,
+      "discountRate": 0,
+      "rating": 4.9,
+      "reviewCount": 486,
+      "studentCount": 8753,
+      "level": "초급",
+      "categories": [
+        "AI 기술"
+      ],
+      "subCategories": [
+        "딥러닝 · 머신러닝"
+      ],
+      "skills": [
+        "Python",
+        "머신러닝",
+        "통계"
+      ],
+      "runtimeMinutes": 2258,
+      "publishedAt": "2019-09-29T15:00:00.000Z",
+      "updatedAt": "2025-05-13T07:27:47.767Z",
+      "collectedAt": "2026-07-28T12:37:16+09:00",
+      "url": "https://www.inflearn.com/course/파이썬-머신러닝-완벽가이드",
+      "thumbnailUrl": "https://cdn.inflearn.com/public/courses/324238/cover/7e380aa0-48ba-4ee7-a6b2-8da7900568d6/324238-eng.png"
+    }
+  ]
+}
