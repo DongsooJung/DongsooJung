@@ -1,0 +1,29 @@
+{
+  "source": "승인 실매물 피드 연결 대기",
+  "mode": "waiting",
+  "updatedAt": "2026-08-16T02:07:44.091Z",
+  "nextRunAt": "2026-08-17T00:30:00.000Z",
+  "pageSize": 100,
+  "pageCount": 0,
+  "recordCount": 0,
+  "priceUnit": "만원",
+  "policy": {
+    "acquisition": "feed-not-connected",
+    "note": "승인된 실매물 피드가 연결되지 않아 가격 통계·매물 목록·CSV를 공개하지 않습니다."
+  },
+  "sampling": {
+    "design": "feed-not-connected",
+    "note": "실데이터 연결 후 공급 범위와 표본설계를 산정합니다."
+  },
+  "summary": {
+    "averagePrice": 0,
+    "medianPrice": 0,
+    "minPrice": 0,
+    "maxPrice": 0,
+    "meanPrice95CI": {
+      "lower": 0,
+      "upper": 0
+    }
+  },
+  "listings": []
+}

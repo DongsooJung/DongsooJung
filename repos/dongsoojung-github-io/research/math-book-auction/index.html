@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080c14">
+  <title>수학 중고책 경매장 | STARGATE Intelligence</title>
+  <meta name="description" content="대치동 KOI·올림피아드 수학 중고교재를 실시간 경매로 거래하는 연구 대시보드. 입찰·카운트다운·최고가 갱신에 초점.">
+  <link rel="canonical" href="https://stargateedu.co.kr/research/math-book-auction/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#080c14;--panel:#0e1420;--panel2:#141c2b;--line:#1e2839;
+      --text:#e6edf6;--dim:#8291a5;--dim2:#5f6f84;--accent:#4c9aff;
+      --accent2:#3ddc97;--ok:#3ddc97;--warn:#ffc857;--bad:#ff6b6b;--hot:#ff7a59;
+    }
+    *{box-sizing:border-box}
+    html{color-scheme:dark;scroll-behavior:smooth}
+    body{
+      margin:0;min-height:100vh;color:var(--text);
+      font:14px/1.55 "IBM Plex Sans KR","Malgun Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+      background:
+        radial-gradient(1000px 560px at 10% -10%,rgba(76,154,255,.16),transparent 58%),
+        radial-gradient(820px 480px at 92% 0%,rgba(61,220,151,.10),transparent 55%),
+        var(--bg);
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit}
+    button,input,select{font:inherit}
+    button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{
+      outline:2px solid var(--accent);outline-offset:3px
+    }
+    .wrap{width:min(1280px,100%);margin:0 auto;padding:0 clamp(16px,3vw,28px)}
+    .topbar{
+      position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);
+      background:rgba(8,12,20,.88);backdrop-filter:blur(12px)
+    }
+    .topbar .wrap{height:58px;display:flex;align-items:center;gap:16px}
+    .brand{display:flex;align-items:center;gap:9px;font-weight:800;text-decoration:none;letter-spacing:-.3px}
+    .brand-mark{
+      width:28px;height:28px;border-radius:8px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent),#1f6fd1);font-size:13px;font-weight:800
+    }
+    .brand small{display:block;color:var(--dim);font-size:10px;letter-spacing:1.1px}
+    .navlinks{margin-left:auto;display:flex;align-items:center;gap:18px}
+    .navlinks a{color:var(--dim);font-size:13px;font-weight:650;text-decoration:none}
+    .navlinks a:hover,.navlinks a[aria-current="page"]{color:var(--text)}
+    .hero{padding:36px 0 18px;display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:end}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:999px;
+      border:1px solid rgba(76,154,255,.32);background:rgba(76,154,255,.08);
+      color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase
+    }
+    h1{margin:14px 0 8px;font-size:clamp(26px,3.5vw,40px);line-height:1.18;letter-spacing:-1.2px}
+    h1 em{
+      font-style:normal;color:transparent;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      background-clip:text;-webkit-background-clip:text
+    }
+    .lede{max-width:620px;margin:0;color:var(--dim);font-size:14.5px}
+    .notice{
+      display:flex;align-items:center;gap:8px;margin-top:14px;color:var(--dim2);font-size:12px
+    }
+    .notice::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(61,220,151,.1)}
+    .live-panel{
+      border:1px solid var(--line);border-radius:16px;padding:16px 18px;
+      background:linear-gradient(160deg,rgba(20,28,43,.95),rgba(14,20,32,.8))
+    }
+    .live-panel .lab{color:var(--dim);font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+    .live-panel .clock{
+      margin-top:6px;font-family:"IBM Plex Mono",ui-monospace,monospace;
+      font-size:34px;font-weight:700;letter-spacing:-1px;color:var(--warn)
+    }
+    .live-panel .meta{margin-top:8px;color:var(--dim);font-size:12.5px}
+    .live-panel .meta b{color:var(--text)}
+    .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 22px}
+    .kpi{
+      position:relative;overflow:hidden;padding:15px 16px;border:1px solid var(--line);
+      border-radius:14px;background:linear-gradient(180deg,var(--panel),rgba(14,20,32,.55))
+    }
+    .kpi::before{
+      content:"";position:absolute;inset:0 0 auto;height:2px;
+      background:linear-gradient(90deg,var(--accent),transparent)
+    }
+    .kpi .v{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:26px;font-weight:700;letter-spacing:-.8px}
+    .kpi .l{margin-top:2px;color:var(--dim);font-size:12px}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start;padding-bottom:48px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+    .toolbar .spacer{flex:1}
+    .seg{display:flex;flex-wrap:wrap;gap:6px}
+    .seg button{
+      min-height:36px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;
+      background:var(--panel2);color:var(--dim);cursor:pointer;font-weight:650;font-size:12.5px
+    }
+    .seg button.on,.seg button[aria-pressed="true"]{
+      border-color:rgba(76,154,255,.45);background:rgba(76,154,255,.14);color:var(--text)
+    }
+    select,input[type="number"]{
+      min-height:40px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;
+      background:var(--panel2);color:var(--text)
+    }
+    button.ghost{
+      min-height:40px;padding:8px 14px;border:1px solid var(--line);border-radius:10px;
+      background:var(--panel2);color:var(--text);cursor:pointer;font-weight:700
+    }
+    button.primary{
+      min-height:40px;padding:8px 16px;border:0;border-radius:10px;cursor:pointer;font-weight:750;color:#071018;
+      background:linear-gradient(135deg,var(--accent),#2f7fe0)
+    }
+    button:disabled{opacity:.45;cursor:not-allowed}
+    .lot-list{display:grid;gap:12px}
+    .lot{
+      display:grid;grid-template-columns:88px minmax(0,1fr) 220px;gap:14px;
+      border:1px solid var(--line);border-radius:16px;padding:14px;
+      background:linear-gradient(165deg,rgba(20,28,43,.92),rgba(14,20,32,.72));
+      transition:border-color .18s,transform .18s,box-shadow .18s
+    }
+    .lot:hover{border-color:rgba(76,154,255,.35);transform:translateY(-1px)}
+    .lot.active{border-color:rgba(61,220,151,.45);box-shadow:0 0 0 1px rgba(61,220,151,.18)}
+    .lot.ending{border-color:rgba(255,122,89,.45)}
+    .lot.ended{opacity:.72}
+    .cover{
+      width:88px;height:112px;border-radius:10px;display:grid;place-items:center;
+      font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:700;
+      letter-spacing:.3px;text-align:center;line-height:1.3;padding:8px;color:#dce9ff;
+      border:1px solid rgba(255,255,255,.08)
+    }
+    .lot h2{margin:0;font-size:16px;letter-spacing:-.3px}
+    .lot .sub{margin:4px 0 8px;color:var(--dim);font-size:12.5px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px}
+    .tag{
+      padding:2px 8px;border-radius:6px;border:1px solid var(--line);
+      background:var(--panel2);color:var(--dim);font-size:11px;font-weight:650
+    }
+    .tag.hot{border-color:rgba(255,122,89,.4);color:var(--hot);background:rgba(255,122,89,.08)}
+    .bidbox{
+      border-left:1px solid var(--line);padding-left:14px;display:flex;flex-direction:column;gap:8px
+    }
+    .price{
+      font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:22px;font-weight:700;letter-spacing:-.6px
+    }
+    .price small{display:block;color:var(--dim);font-size:11px;font-weight:600;margin-bottom:2px;letter-spacing:0}
+    .countdown{
+      font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;font-weight:650;color:var(--warn)
+    }
+    .countdown.urgent{color:var(--hot);animation:pulse 1s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+    .bid-row{display:flex;gap:6px}
+    .bid-row input{width:100%;min-width:0}
+    .bid-row button{white-space:nowrap}
+    .hint{color:var(--dim2);font-size:11.5px}
+    .flash{animation:flash .7s ease}
+    @keyframes flash{
+      0%{box-shadow:0 0 0 0 rgba(61,220,151,.55)}
+      100%{box-shadow:0 0 0 12px rgba(61,220,151,0)}
+    }
+    .side{display:grid;gap:12px;position:sticky;top:74px}
+    .panel{
+      border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden
+    }
+    .panel h3{
+      margin:0;padding:13px 15px;border-bottom:1px solid var(--line);
+      font-size:13px;letter-spacing:.2px
+    }
+    .feed{max-height:360px;overflow:auto}
+    .feed-item{
+      display:grid;grid-template-columns:1fr auto;gap:8px;padding:11px 15px;
+      border-bottom:1px solid rgba(30,40,57,.85);font-size:12.5px
+    }
+    .feed-item:last-child{border-bottom:0}
+    .feed-item.new{background:rgba(61,220,151,.07)}
+    .feed-item .who{font-weight:700}
+    .feed-item .what{color:var(--dim);margin-top:2px}
+    .feed-item .amt{
+      font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:700;color:var(--accent2);white-space:nowrap
+    }
+    .feed-item .t{color:var(--dim2);font-size:11px;text-align:right;margin-top:2px}
+    .rules{padding:14px 15px;color:var(--dim);font-size:12.5px}
+    .rules li{margin:6px 0}
+    .toast{
+      position:fixed;right:18px;bottom:18px;z-index:60;min-width:220px;max-width:340px;
+      padding:12px 14px;border-radius:12px;border:1px solid rgba(61,220,151,.35);
+      background:rgba(12,24,20,.94);color:var(--text);font-size:13px;font-weight:650;
+      transform:translateY(20px);opacity:0;pointer-events:none;transition:.22s ease
+    }
+    .toast.show{transform:translateY(0);opacity:1}
+    .toast.err{border-color:rgba(255,107,107,.4);background:rgba(32,14,16,.94)}
+    footer{border-top:1px solid var(--line);padding:18px 0 28px;color:var(--dim2);font-size:12px}
+    footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer a{color:var(--accent);text-decoration:none}
+    @media(max-width:980px){
+      .hero,.layout{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
+      .side{position:static}
+      .lot{grid-template-columns:72px 1fr}
+      .bidbox{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding:12px 0 0;padding-left:0}
+      .cover{width:72px;height:96px}
+    }
+    @media(max-width:560px){
+      .navlinks a:not(.keep){display:none}
+      .kpis{grid-template-columns:1fr 1fr}
+      .live-panel .clock{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="/research/">
+        <span class="brand-mark">R</span>
+        <span>STARGATE<small>RESEARCH · AUCTION</small></span>
+      </a>
+      <nav class="navlinks" aria-label="주요 메뉴">
+        <a href="/research/">연구 대시보드</a>
+        <a href="/research/math-book-auction/" aria-current="page" class="keep">경매장</a>
+        <a href="/math-library/">교재 라이브러리</a>
+        <a href="/" class="keep">← 포털</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Live Auction Floor</div>
+        <h1>수학 중고책<br><em>실시간 경매장</em></h1>
+        <p class="lede">대치동 KOI·올림피아드·내신 수학 교재를 입찰 중심으로 거래합니다. 카운트다운, 최고가 갱신, 입찰 피드가 한 화면에 맞춰져 있습니다.</p>
+        <div class="notice">데모 경매 · 입찰은 이 브라우저(localStorage)에만 저장됩니다</div>
+      </div>
+      <aside class="live-panel" aria-live="polite">
+        <div class="lab">가장 임박한 마감</div>
+        <div class="clock" id="next-clock">--:--:--</div>
+        <div class="meta" id="next-meta">경매를 불러오는 중…</div>
+      </aside>
+    </section>
+
+    <section class="kpis" aria-label="경매 현황">
+      <div class="kpi"><div class="v" id="kpi-live">0</div><div class="l">진행 중 경매</div></div>
+      <div class="kpi"><div class="v" id="kpi-bids">0</div><div class="l">누적 입찰</div></div>
+      <div class="kpi"><div class="v" id="kpi-ending">0</div><div class="l">1시간 내 마감</div></div>
+      <div class="kpi"><div class="v" id="kpi-premium">0%</div><div class="l">평균 프리미엄</div></div>
+    </section>
+
+    <section class="layout">
+      <div>
+        <div class="toolbar">
+          <div class="seg" id="filters" role="group" aria-label="카테고리 필터">
+            <button type="button" data-cat="all" aria-pressed="true" class="on">전체</button>
+            <button type="button" data-cat="중등" aria-pressed="false">중등</button>
+            <button type="button" data-cat="고등" aria-pressed="false">고등</button>
+            <button type="button" data-cat="올림피아드" aria-pressed="false">올림피아드</button>
+            <button type="button" data-cat="대학" aria-pressed="false">대학</button>
+          </div>
+          <div class="spacer"></div>
+          <select id="sort" aria-label="정렬">
+            <option value="ending">마감 임박순</option>
+            <option value="bids">입찰 많은순</option>
+            <option value="price">현재가 높은순</option>
+            <option value="premium">프리미엄 높은순</option>
+          </select>
+          <button class="ghost" type="button" id="btn-sim">라이브 입찰 시뮬레이션</button>
+          <button class="ghost" type="button" id="btn-reset">초기화</button>
+        </div>
+        <div class="lot-list" id="lots" aria-live="polite"></div>
+      </div>
+
+      <aside class="side">
+        <div class="panel">
+          <h3>실시간 입찰 피드</h3>
+          <div class="feed" id="feed"></div>
+        </div>
+        <div class="panel">
+          <h3>경매 규칙</h3>
+          <ul class="rules">
+            <li>최소 입찰 단위: <b>1,000원</b></li>
+            <li>마감 2분 전 입찰 시 <b>+2분 연장</b> (스나이핑 방지)</li>
+            <li>현재가보다 높아야 입찰 성립</li>
+            <li>상태: 최상 / 상 / 중 — 필기·낙서 여부 표기</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Stargate Corporation · Research Auction Demo</span>
+      <span><a href="/research/">연구 대시보드</a> · <a href="/math-library/">수학 교재 라이브러리</a></span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (() => {
+    const STORAGE_KEY = "stargate-math-book-auction-v1";
+    const MIN_STEP = 1000;
+    const NAMES = ["대수탐험가", "기하닌자", "KOI예비생", "대치러너", "적분고양이", "벡터토끼", "수능파이터", "해석학입문"];
+
+    const SEED = [
+      { id:"mb-01", title:"수학의 정석 기본편 상", author:"홍성대", cat:"고등", grade:"고1–고2", condition:"상", note:"풀이 필기 약간", start:18000, cover:["#1f3b73","#2f6fed"], endsInMin:47 },
+      { id:"mb-02", title:"하이퍼수학 중2-1", author:"디딤돌", cat:"중등", grade:"중2", condition:"최상", note:"거의 새책", start:12000, cover:["#0f3d36","#2bb673"], endsInMin:95 },
+      { id:"mb-03", title:"KMO 기출문제집 2014–2023", author:"한국수학올림피아드", cat:"올림피아드", grade:"중·고", condition:"중", note:"풀이 메모 다수", start:35000, cover:["#3a2140","#c46bff"], endsInMin:18 },
+      { id:"mb-04", title:"블랙라벨 미적분", author:"진학사", cat:"고등", grade:"고3", condition:"상", note:"표지 미세 스크래치", start:14000, cover:["#1a1f2e","#5b6cff"], endsInMin:160 },
+      { id:"mb-05", title:"해석개론 (김김계)", author:"김김계", cat:"대학", grade:"대학 1–2", condition:"상", note:"연습문제 체크", start:22000, cover:["#2a2114","#e0a45a"], endsInMin:210 },
+      { id:"mb-06", title:"라이트센스 기하", author:"개념원리", cat:"중등", grade:"중3", condition:"최상", note:"보관용", start:9000, cover:["#14283d","#4c9aff"], endsInMin:72 },
+      { id:"mb-07", title:"서울대 수리논술 기출해설", author:"시대인재", cat:"고등", grade:"고3", condition:"중", note:"형광펜 밑줄", start:16000, cover:["#301818","#ff7a59"], endsInMin:33 },
+      { id:"mb-08", title:"조합론의 맛", author:"경문사", cat:"올림피아드", grade:"고등·대학", condition:"상", note:"여백 필기 소량", start:28000, cover:["#123028","#3ddc97"], endsInMin:125 }
+    ];
+
+    const state = {
+      lots: [],
+      feed: [],
+      filter: "all",
+      sort: "ending",
+      simTimer: null,
+      clockTimer: null
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const won = (n) => new Intl.NumberFormat("ko-KR").format(n) + "원";
+    const now = () => Date.now();
+
+    function seedLots() {
+      return SEED.map((item, idx) => {
+        const endsAt = now() + item.endsInMin * 60 * 1000 + idx * 17 * 1000;
+        const bids = 2 + ((idx * 3) % 7);
+        const current = item.start + bids * MIN_STEP * (1 + (idx % 3));
+        return {
+          ...item,
+          current,
+          bids,
+          endsAt,
+          highBidder: NAMES[idx % NAMES.length],
+          status: "live"
+        };
+      });
+    }
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return false;
+        const data = JSON.parse(raw);
+        if (!Array.isArray(data.lots) || !data.lots.length) return false;
+        state.lots = data.lots;
+        state.feed = Array.isArray(data.feed) ? data.feed : [];
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        lots: state.lots,
+        feed: state.feed.slice(0, 40)
+      }));
+    }
+
+    function remaining(endsAt) {
+      return Math.max(0, endsAt - now());
+    }
+
+    function fmtRemain(ms) {
+      const s = Math.floor(ms / 1000);
+      const h = Math.floor(s / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const ss = s % 60;
+      if (h > 0) return `${h}:${String(m).padStart(2,"0")}:${String(ss).padStart(2,"0")}`;
+      return `${String(m).padStart(2,"0")}:${String(ss).padStart(2,"0")}`;
+    }
+
+    function toast(msg, err=false) {
+      const el = $("toast");
+      el.textContent = msg;
+      el.classList.toggle("err", !!err);
+      el.classList.add("show");
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => el.classList.remove("show"), 2200);
+    }
+
+    function pushFeed(entry) {
+      state.feed.unshift({ ...entry, t: now(), id: `${now()}-${Math.random().toString(16).slice(2,7)}` });
+      state.feed = state.feed.slice(0, 40);
+    }
+
+    function ensureStatuses() {
+      state.lots.forEach((lot) => {
+        if (remaining(lot.endsAt) <= 0) lot.status = "ended";
+        else if (lot.status === "ended") lot.status = "live";
+      });
+    }
+
+    function placeBid(lotId, amount, bidder, opts={}) {
+      const lot = state.lots.find((x) => x.id === lotId);
+      if (!lot) return { ok:false, msg:"경매를 찾을 수 없습니다." };
+      if (remaining(lot.endsAt) <= 0 || lot.status === "ended") {
+        lot.status = "ended";
+        return { ok:false, msg:"이미 마감된 경매입니다." };
+      }
+      const min = lot.current + MIN_STEP;
+      if (!Number.isFinite(amount) || amount < min) {
+        return { ok:false, msg:`최소 ${won(min)} 이상 입찰하세요.` };
+      }
+      lot.current = Math.floor(amount);
+      lot.bids += 1;
+      lot.highBidder = bidder;
+      if (remaining(lot.endsAt) <= 2 * 60 * 1000) {
+        lot.endsAt += 2 * 60 * 1000;
+        if (!opts.silent) toast("마감 임박 입찰 → 2분 연장");
+      }
+      pushFeed({
+        lotId: lot.id,
+        title: lot.title,
+        who: bidder,
+        amount: lot.current,
+        auto: !!opts.auto
+      });
+      save();
+      return { ok:true, lot };
+    }
+
+    function visibleLots() {
+      ensureStatuses();
+      let list = state.lots.slice();
+      if (state.filter !== "all") list = list.filter((x) => x.cat === state.filter);
+      const rank = {
+        ending: (a,b) => remaining(a.endsAt) - remaining(b.endsAt),
+        bids: (a,b) => b.bids - a.bids,
+        price: (a,b) => b.current - a.current,
+        premium: (a,b) => (b.current/a.start) - (a.current/a.start)
+      };
+      list.sort(rank[state.sort] || rank.ending);
+      // ended last
+      list.sort((a,b) => Number(a.status==="ended") - Number(b.status==="ended"));
+      return list;
+    }
+
+    function renderKpis() {
+      ensureStatuses();
+      const live = state.lots.filter((x) => x.status !== "ended");
+      const ending = live.filter((x) => remaining(x.endsAt) <= 60*60*1000);
+      const bids = state.lots.reduce((s,x) => s + x.bids, 0);
+      const premium = live.length
+        ? Math.round(live.reduce((s,x) => s + (x.current / x.start - 1), 0) / live.length * 100)
+        : 0;
+      $("kpi-live").textContent = String(live.length);
+      $("kpi-bids").textContent = String(bids);
+      $("kpi-ending").textContent = String(ending.length);
+      $("kpi-premium").textContent = `${premium}%`;
+
+      const next = live.slice().sort((a,b) => remaining(a.endsAt) - remaining(b.endsAt))[0];
+      if (!next) {
+        $("next-clock").textContent = "00:00:00";
+        $("next-meta").textContent = "진행 중인 경매가 없습니다.";
+        return;
+      }
+      $("next-clock").textContent = fmtRemain(remaining(next.endsAt));
+      $("next-meta").innerHTML = `<b>${next.title}</b> · 현재가 ${won(next.current)} · ${next.highBidder}`;
+    }
+
+    function renderFeed() {
+      const box = $("feed");
+      if (!state.feed.length) {
+        box.innerHTML = `<div class="feed-item"><div><div class="who">대기 중</div><div class="what">첫 입찰이 나오면 여기에 표시됩니다.</div></div><div></div></div>`;
+        return;
+      }
+      box.innerHTML = state.feed.slice(0, 18).map((f, i) => `
+        <div class="feed-item${i===0?" new":""}">
+          <div>
+            <div class="who">${f.who}${f.auto ? " · auto" : ""}</div>
+            <div class="what">${f.title}</div>
+          </div>
+          <div>
+            <div class="amt">${won(f.amount)}</div>
+            <div class="t">${new Date(f.t).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",second:"2-digit"})}</div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function coverStyle(colors) {
+      return `background:linear-gradient(155deg,${colors[0]},${colors[1]})`;
+    }
+
+    function renderLots() {
+      const box = $("lots");
+      const list = visibleLots();
+      if (!list.length) {
+        box.innerHTML = `<div class="panel" style="padding:28px;text-align:center;color:var(--dim)">해당 카테고리 경매가 없습니다.</div>`;
+        return;
+      }
+      box.innerHTML = list.map((lot) => {
+        const ms = remaining(lot.endsAt);
+        const ended = lot.status === "ended" || ms <= 0;
+        const urgent = !ended && ms <= 15*60*1000;
+        const ending = !ended && ms <= 60*60*1000;
+        const minNext = lot.current + MIN_STEP;
+        const premium = Math.round((lot.current / lot.start - 1) * 100);
+        return `
+          <article class="lot${ended?" ended":""}${ending && !ended?" ending":""}" data-id="${lot.id}" id="lot-${lot.id}">
+            <div class="cover" style="${coverStyle(lot.cover)}">${lot.cat}<br>${lot.grade}</div>
+            <div>
+              <h2>${lot.title}</h2>
+              <div class="sub">${lot.author} · 상태 ${lot.condition} · ${lot.note}</div>
+              <div class="tags">
+                <span class="tag">${lot.cat}</span>
+                <span class="tag">시작가 ${won(lot.start)}</span>
+                <span class="tag">${lot.bids}회 입찰</span>
+                <span class="tag${premium>=40?" hot":""}">+${premium}%</span>
+                ${urgent ? `<span class="tag hot">마감 임박</span>` : ""}
+                ${ended ? `<span class="tag">낙찰 종료</span>` : ""}
+              </div>
+            </div>
+            <div class="bidbox">
+              <div class="price"><small>현재 최고가</small>${won(lot.current)}</div>
+              <div class="countdown${urgent?" urgent":""}">${ended ? "마감됨" : "남은 시간 " + fmtRemain(ms)}</div>
+              <div class="hint">최고입찰자 · ${lot.highBidder}</div>
+              ${ended ? `<button class="ghost" type="button" disabled>경매 종료</button>` : `
+                <div class="bid-row">
+                  <input type="number" min="${minNext}" step="${MIN_STEP}" value="${minNext}" aria-label="${lot.title} 입찰가">
+                  <button class="primary" type="button" data-bid="${lot.id}">입찰</button>
+                </div>
+                <div class="hint">최소 ${won(minNext)}</div>
+              `}
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function render() {
+      renderKpis();
+      renderLots();
+      renderFeed();
+    }
+
+    function tick() {
+      const before = state.lots.map((x) => x.status).join("|");
+      ensureStatuses();
+      const after = state.lots.map((x) => x.status).join("|");
+      renderKpis();
+      // refresh countdowns without full re-render of inputs when possible
+      document.querySelectorAll(".lot").forEach((el) => {
+        const lot = state.lots.find((x) => x.id === el.dataset.id);
+        if (!lot) return;
+        const ms = remaining(lot.endsAt);
+        const cd = el.querySelector(".countdown");
+        if (cd) {
+          const ended = lot.status === "ended" || ms <= 0;
+          cd.textContent = ended ? "마감됨" : "남은 시간 " + fmtRemain(ms);
+          cd.classList.toggle("urgent", !ended && ms <= 15*60*1000);
+        }
+      });
+      if (before !== after) renderLots();
+    }
+
+    function randomBidder(exclude) {
+      const pool = NAMES.filter((n) => n !== exclude);
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function simulateOnce() {
+      const live = state.lots.filter((x) => x.status !== "ended" && remaining(x.endsAt) > 0);
+      if (!live.length) return;
+      const lot = live[Math.floor(Math.random() * live.length)];
+      const bump = MIN_STEP * (1 + Math.floor(Math.random() * 3));
+      const res = placeBid(lot.id, lot.current + bump, randomBidder(lot.highBidder), { auto:true, silent:true });
+      if (res.ok) {
+        render();
+        const card = document.getElementById(`lot-${lot.id}`);
+        if (card) {
+          card.classList.add("active", "flash");
+          setTimeout(() => card.classList.remove("active", "flash"), 700);
+        }
+      }
+    }
+
+    function bind() {
+      $("filters").addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-cat]");
+        if (!btn) return;
+        state.filter = btn.dataset.cat;
+        $("filters").querySelectorAll("button").forEach((b) => {
+          const on = b === btn;
+          b.classList.toggle("on", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        renderLots();
+      });
+
+      $("sort").addEventListener("change", (e) => {
+        state.sort = e.target.value;
+        renderLots();
+      });
+
+      $("lots").addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-bid]");
+        if (!btn) return;
+        const lotId = btn.dataset.bid;
+        const row = btn.closest(".bid-row");
+        const input = row && row.querySelector("input");
+        const amount = Number(input && input.value);
+        const res = placeBid(lotId, amount, "나");
+        if (!res.ok) {
+          toast(res.msg, true);
+          return;
+        }
+        toast(`입찰 성공 · ${won(res.lot.current)}`);
+        render();
+        const card = document.getElementById(`lot-${lotId}`);
+        if (card) {
+          card.classList.add("active", "flash");
+          setTimeout(() => card.classList.remove("active", "flash"), 700);
+        }
+      });
+
+      $("btn-reset").addEventListener("click", () => {
+        localStorage.removeItem(STORAGE_KEY);
+        state.lots = seedLots();
+        state.feed = [];
+        // seed a few opening bids into feed
+        state.lots.slice(0, 3).forEach((lot) => {
+          pushFeed({ lotId: lot.id, title: lot.title, who: lot.highBidder, amount: lot.current, auto:true });
+        });
+        save();
+        render();
+        toast("경매장을 초기화했습니다.");
+      });
+
+      $("btn-sim").addEventListener("click", () => {
+        if (state.simTimer) {
+          clearInterval(state.simTimer);
+          state.simTimer = null;
+          $("btn-sim").textContent = "라이브 입찰 시뮬레이션";
+          toast("시뮬레이션 중지");
+          return;
+        }
+        $("btn-sim").textContent = "시뮬레이션 중지";
+        simulateOnce();
+        state.simTimer = setInterval(simulateOnce, 3500);
+        toast("라이브 입찰 시뮬레이션 시작");
+      });
+    }
+
+    function init() {
+      if (!load()) {
+        state.lots = seedLots();
+        state.feed = [];
+        state.lots.slice(0, 4).forEach((lot) => {
+          pushFeed({ lotId: lot.id, title: lot.title, who: lot.highBidder, amount: lot.current, auto:true });
+        });
+        save();
+      }
+      bind();
+      render();
+      state.clockTimer = setInterval(tick, 1000);
+    }
+
+    init();
+  })();
+  </script>
+</body>
+</html>
