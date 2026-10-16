@@ -19,6 +19,7 @@
 | [`airport-infrastructure-analytics`](packages/airport-infrastructure-analytics/) | 군공항 이전 정책 | DID, 공간 헤도닉, 네트워크 분석 |
 | [`credit-survival-analysis`](packages/credit-survival-analysis/) | 기업신용 리스크 | Cox PH, Random Survival Forest |
 | [`real-estate-molit-api`](packages/real-estate-molit-api/) | 부동산 가격모형 | 헤도닉 가격, MOLIT API, 공간적 자기상관 |
+| [`korea-data-hub`](packages/korea-data-hub/) | 통합 데이터 허브 | 법원경매 · 공공데이터 · 환율 · DART · Streamlit |
 
 ## 구조
 
@@ -29,7 +30,8 @@ ds-research-urban-analytics/
 │   ├── smart-city-gis/
 │   ├── airport-infrastructure-analytics/
 │   ├── credit-survival-analysis/
-│   └── real-estate-molit-api/
+│   ├── real-estate-molit-api/
+│   └── korea-data-hub/
 └── README.md
 ```
 
