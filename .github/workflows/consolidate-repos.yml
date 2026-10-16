@@ -1,24 +1,19 @@
-name: Consolidate Repositories
+name: Verify Repository Bundles
 
 on:
   workflow_dispatch:
-    inputs:
-      dry_run:
-        description: 'Dry run (번들 검증만)'
-        required: false
-        default: 'false'
-        type: choice
-        options:
-          - 'true'
-          - 'false'
   push:
     branches: [main]
     paths:
       - 'repos/**'
       - 'consolidation/**'
+      - '.github/workflows/consolidate-repos.yml'
+
+permissions:
+  contents: read
 
 jobs:
-  consolidate:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,17 +26,3 @@ jobs:
           done
           echo "Staging dirs:"
           ls -la repos/
-
-      - name: Publish merges
-        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run != 'true')
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          if [[ -z "$GH_TOKEN" ]]; then
-            echo "::warning::GH_PAT secret not configured — skipping cross-repo deploy."
-            echo "통합 소스는 repos/ 에 스테이징되어 있습니다."
-            echo "배포: Settings → Secrets → GH_PAT 등록 후 workflow 재실행"
-            exit 0
-          fi
-          chmod +x consolidation/publish-all.sh
-          ./consolidation/publish-all.sh
