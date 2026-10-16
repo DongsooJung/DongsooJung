@@ -14,18 +14,18 @@ This file defines the only repositories authorized to deploy the current Stargat
 1. Make production changes only in the repository listed above.
 2. Do not deploy a `repos/*` snapshot or `mirror/*` branch to a production repository.
 3. Legacy repositories may redirect to the current service but must not contain an independently maintained production copy.
-4. While the shop custom domain remains attached to `DongsooJung/stargate-shop-redirect`, treat `DongsooJung/stargateedu-shop` as a staged replacement rather than a production deployment source.
+4. While the live shop domain serves content from `DongsooJung/stargate-shop-redirect`, treat `DongsooJung/stargateedu-shop` as a staged replacement rather than a production deployment source.
 5. Secrets belong in repository or deployment-provider secret stores, never in committed files.
 6. A repository migration requires updating this file, the target repository policy, and the Notion repository dashboard in the same change window.
 
 ## Staged replacement
 
-- `DongsooJung/stargateedu-shop` contains a prepared storefront and payment implementation, but its GitHub Pages deployment is inactive and it is not authorized to deploy `shop.stargateedu.co.kr` until the custom-domain and Pages migration is explicitly completed.
+- `DongsooJung/stargateedu-shop` contains a prepared storefront and payment implementation. It is not the current live source or an authorized deployment source for `shop.stargateedu.co.kr` until the custom-domain and Pages migration is explicitly completed.
 
 ## Legacy mapping
 
 - `stargate.github.io` → legacy Stargate site
 - `stargate-blog` → replaced by `stargate-blog-hub`
-- `stargate-shop` → replaced by `stargateedu-shop`
+- `stargate-shop` → legacy shop repository; `stargate-shop-redirect` is the current live source
 
-Last verified: 2026-09-20.
+Last verified: 2026-10-16 (live homepage matched `stargate-shop-redirect/main/index.html`).
