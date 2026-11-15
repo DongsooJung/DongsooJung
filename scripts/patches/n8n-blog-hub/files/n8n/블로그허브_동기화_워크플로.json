@@ -1,0 +1,128 @@
+{
+  "name": "STARGATE · 블로그 허브 동기화",
+  "nodes": [
+    {
+      "parameters": { "inputSource": "passthrough" },
+      "id": "a1f0c0de-0001-4000-8000-000000000001",
+      "name": "블로그 자동화에서 호출",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {},
+      "id": "a1f0c0de-0002-4000-8000-000000000002",
+      "name": "수동 테스트",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 220]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"title\": \"[테스트] n8n → 블로그 허브 연동 확인\",\n  \"url\": \"https://dongsoo.tistory.com/\",\n  \"channel\": \"티스토리\",\n  \"publishedAt\": \"{{ $now.toISO() }}\",\n  \"summary\": \"n8n 연동 테스트 글입니다. 확인 후 action=unpublish 로 제거하세요.\",\n  \"tags\": [\"n8n\", \"자동화\"]\n}",
+        "options": {}
+      },
+      "id": "a1f0c0de-0003-4000-8000-000000000003",
+      "name": "샘플 글",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [220, 220]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 상위 블로그 자동화 워크플로의 출력 필드명을 허브 스키마로 정규화합니다.\n// 지원 필드: title/subject, url/link/postUrl/permalink, channel/platform,\n//           publishedAt/date, summary/excerpt, tags, thumbnail/image, action(publish|unpublish)\nconst pick = (o, keys) => keys.map((k) => o[k]).find((v) => v !== undefined && v !== null && v !== '');\nconst posts = $input.all().map(({ json }) => ({\n  id: pick(json, ['id', 'postId']),\n  title: pick(json, ['title', 'subject', 'name']),\n  url: pick(json, ['url', 'link', 'postUrl', 'permalink']),\n  channel: pick(json, ['channel', 'platform', 'source']) || 'n8n 자동발행',\n  publishedAt: pick(json, ['publishedAt', 'published_at', 'date']) || new Date().toISOString(),\n  summary: pick(json, ['summary', 'excerpt', 'description']) || '',\n  thumbnail: pick(json, ['thumbnail', 'image', 'imageUrl']) || '',\n  tags: json.tags || [],\n  action: json.action || 'publish',\n  workflow: $workflow.name,\n})).filter((p) => p.title && (p.url || p.action === 'unpublish'));\n\nif (posts.length === 0) throw new Error('허브로 보낼 글이 없습니다 (title/url 누락).');\n// 웹훅 1회 최대 50건\nconst chunks = [];\nfor (let i = 0; i < posts.length; i += 50) chunks.push({ json: { posts: posts.slice(i, i + 50) } });\nreturn chunks;"
+      },
+      "id": "a1f0c0de-0004-4000-8000-000000000004",
+      "name": "허브 페이로드 정리",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://stargate-reading-blog.vercel.app/api/n8n-blog-webhook",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "timeout": 20000,
+          "response": { "response": { "neverError": true, "fullResponse": true } }
+        }
+      },
+      "id": "a1f0c0de-0005-4000-8000-000000000005",
+      "name": "허브 웹훅 전송",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, 100],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "httpHeaderAuth": { "id": "REPLACE_ME", "name": "Stargate Hub Webhook Key" }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            {
+              "id": "c0nd-0001",
+              "leftValue": "={{ $json.statusCode }}",
+              "rightValue": 200,
+              "operator": { "type": "number", "operation": "equals" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1f0c0de-0006-4000-8000-000000000006",
+      "name": "성공 여부",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [880, 100]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ JSON.stringify({ ok: true, published: $json.body.published, unpublished: $json.body.unpublished, count: $json.body.count, hub: 'https://blog.stargateedu.co.kr/' }) }}",
+        "options": {}
+      },
+      "id": "a1f0c0de-0007-4000-8000-000000000007",
+      "name": "동기화 완료",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1100, 0]
+    },
+    {
+      "parameters": {
+        "errorMessage": "={{ '블로그 허브 동기화 실패: HTTP ' + $json.statusCode + ' ' + JSON.stringify($json.body) }}"
+      },
+      "id": "a1f0c0de-0008-4000-8000-000000000008",
+      "name": "실패 알림",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [1100, 200]
+    }
+  ],
+  "connections": {
+    "블로그 자동화에서 호출": { "main": [[{ "node": "허브 페이로드 정리", "type": "main", "index": 0 }]] },
+    "수동 테스트": { "main": [[{ "node": "샘플 글", "type": "main", "index": 0 }]] },
+    "샘플 글": { "main": [[{ "node": "허브 페이로드 정리", "type": "main", "index": 0 }]] },
+    "허브 페이로드 정리": { "main": [[{ "node": "허브 웹훅 전송", "type": "main", "index": 0 }]] },
+    "허브 웹훅 전송": { "main": [[{ "node": "성공 여부", "type": "main", "index": 0 }]] },
+    "성공 여부": {
+      "main": [
+        [{ "node": "동기화 완료", "type": "main", "index": 0 }],
+        [{ "node": "실패 알림", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1", "timezone": "Asia/Seoul" },
+  "pinData": {}
+}
