@@ -106,6 +106,36 @@ async function call(body, headers = { "x-stargate-webhook-key": "test-n8n-key" }
   res = await call({ title: "XSS", url: "javascript:alert(1)" });
   assert.equal(res.statusCode, 422);
 
+  // 9) n8n WordPress 노드 응답 원형 그대로 수용 (title.rendered, date_gmt, 숫자 태그, HTML 요약)
+  res = await call({
+    id: 512,
+    link: "https://stargate815.wordpress.com/2026/11/15/koi-dp/",
+    title: { rendered: "KOI &#8211; DP &amp; 그리디" },
+    excerpt: { rendered: "<p>점화식 세우는 법 [&hellip;]</p>\n" },
+    date_gmt: "2026-11-15T01:00:00",
+    status: "publish",
+    tags: [12, 34],
+  });
+  assert.equal(res.statusCode, 200);
+  const wp = stored.posts.find((post) => post.link.includes("wordpress.com/2026"));
+  assert.equal(wp.channel, "워드프레스");
+  assert.equal(wp.id, "워드프레스:512");
+  assert.equal(wp.title, "KOI – DP & 그리디");
+  assert.equal(wp.summary, "점화식 세우는 법 …");
+  assert.equal(wp.date, "2026-11-15T01:00:00.000Z");
+  assert.deepEqual(wp.tags, []);
+
+  // 10) WordPress status=trash → 허브에서 제거
+  res = await call({ id: 512, link: wp.link, title: { rendered: "x" }, status: "trash" });
+  assert.equal(res.body.unpublished, 1);
+
+  // 11) 네이버 개인/법인 채널 자동 판별
+  const { inferChannel } = handler._internal;
+  assert.equal(inferChannel("https://blog.naver.com/stargate8224/2240"), "네이버 개인");
+  assert.equal(inferChannel("https://m.blog.naver.com/stargate8225/1"), "네이버 법인");
+  assert.equal(inferChannel("https://dongsoo.tistory.com/9"), "티스토리");
+  assert.equal(inferChannel("https://example.com/"), "");
+
   console.log("n8n-blog-webhook: ok");
 })().catch((error) => {
   console.error(error);

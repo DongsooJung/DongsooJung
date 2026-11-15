@@ -27,9 +27,45 @@ function safeEqual(left, right) {
   return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
+// WordPress REST 응답의 { rendered } / { raw } 객체와 HTML 태그·엔티티를 평문으로 변환
+function plain(value) {
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    value = value.rendered ?? value.raw ?? value.value ?? "";
+  }
+  return String(value ?? "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;|&#8217;|&#8216;/g, "'")
+    .replace(/&#8220;|&#8221;/g, '"')
+    .replace(/&#8211;/g, "–")
+    .replace(/&#8212;/g, "—")
+    .replace(/&#8230;|\[&hellip;\]|&hellip;/g, "…");
+}
+
+// URL 호스트로 허브 채널명 판별 (build_hub_index.py FEEDS 키와 동일)
+function inferChannel(link) {
+  try {
+    const url = new URL(link);
+    const host = url.hostname.replace(/^m\./, "");
+    if (host === "blog.naver.com") {
+      if (/^\/stargate8225(\/|$)/.test(url.pathname)) return "네이버 법인";
+      if (/^\/stargate8224(\/|$)/.test(url.pathname)) return "네이버 개인";
+      return "네이버 블로그";
+    }
+    if (host.endsWith(".tistory.com")) return "티스토리";
+    if (host.endsWith(".wordpress.com") || host.endsWith(".wordpress.org")) return "워드프레스";
+    if (host.endsWith("youtube.com") || host === "youtu.be") return "YouTube 우주인";
+  } catch {}
+  return "";
+}
+
 function text(value, max) {
   if (value == null) return "";
-  const out = String(Array.isArray(value) ? value.join(", ") : value)
+  const out = (Array.isArray(value) ? value.map(plain).join(", ") : plain(value))
     .replace(/[\u0000-\u001f\u007f]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -64,27 +100,33 @@ function isoDate(value) {
 }
 
 // n8n 에서 오는 다양한 필드명을 하나의 스키마로 정규화
+// (n8n WordPress 노드 응답: id·link·title.rendered·excerpt.rendered·date_gmt·status 그대로 수용)
+const HIDE_STATUSES = ["unpublish", "delete", "deleted", "remove", "draft", "trash", "private", "future", "pending"];
+
 function toPost(raw) {
   const item = raw && typeof raw === "object" && raw.json && typeof raw.json === "object" ? raw.json : raw || {};
   const link = httpUrl(item.url || item.link || item.postUrl || item.permalink);
   const title = text(item.title || item.subject || item.name, 200);
   const action = String(item.action || item.status || "publish").toLowerCase();
-  const tags = Array.isArray(item.tags)
-    ? item.tags.map((tag) => text(tag, 30)).filter(Boolean).slice(0, 10)
-    : text(item.tags, 300).split(",").map((tag) => tag.trim()).filter(Boolean).slice(0, 10);
-  const id = text(item.id || item.postId, 100)
-    || crypto.createHash("sha256").update(normalizeLink(link) || title).digest("hex").slice(0, 32);
+  const rawTags = Array.isArray(item.tags) ? item.tags : text(item.tags, 300).split(",");
+  // WordPress 응답의 숫자 태그 ID 는 제외
+  const tags = rawTags.map((tag) => text(tag, 30)).filter((tag) => tag && !/^\d+$/.test(tag)).slice(0, 10);
+  const channel = text(item.channel || item.platform || item.source, 40) || inferChannel(link) || "n8n 자동발행";
+  const sourceId = text(item.postId || item.id, 100);
+  const id = sourceId
+    ? `${channel}:${sourceId}`
+    : crypto.createHash("sha256").update(normalizeLink(link) || title).digest("hex").slice(0, 32);
   return {
     id,
     title,
     link,
-    channel: text(item.channel || item.platform || item.source, 40) || "n8n 자동발행",
-    date: isoDate(item.publishedAt || item.date || item.published_at || item.createdAt),
+    channel,
+    date: isoDate(item.publishedAt || item.published_at || (item.date_gmt ? `${item.date_gmt}Z` : "") || item.date || item.createdAt),
     summary: text(item.summary || item.excerpt || item.description, 300),
-    thumbnail: httpUrl(item.thumbnail || item.image || item.imageUrl),
+    thumbnail: httpUrl(item.thumbnail || item.image || item.imageUrl || item.jetpack_featured_media_url),
     tags,
     workflow: text(item.workflow || item.workflowName, 80),
-    unpublish: ["unpublish", "delete", "deleted", "remove", "draft"].includes(action),
+    unpublish: HIDE_STATUSES.includes(action),
   };
 }
 
@@ -224,4 +266,4 @@ module.exports = async function handler(req, res) {
   }
 };
 
-module.exports._internal = { toPost, merge, normalizeLink };
+module.exports._internal = { toPost, merge, normalizeLink, inferChannel };
