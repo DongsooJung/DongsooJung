@@ -21,12 +21,13 @@
 
 1. Nav (Stargate 로고 + 쇼핑몰 CTA)
 2. Hero (뱃지 + 타이틀 + 4-통계 그리드)
-3. Programs (KOI / AI / 과고입시 3-카드)
-4. Credentials (정동수 9-항 프로필)
-5. Process (4-단계 상담→결제→개강)
-6. FAQ (6개 details)
-7. Final CTA (쇼핑몰 링크)
-8. Footer (법적 고지)
+3. Philosophy (교육 철학: "한 문제를 일주일간 골몰히 고민할 수 있는가" + 7일 루틴)
+4. Programs (KOI / AI / 과고입시 3-카드)
+5. Credentials (정동수 9-항 프로필)
+6. Process (4-단계 상담→결제→개강)
+7. FAQ (6개 details)
+8. Final CTA (쇼핑몰 링크)
+9. Footer (법적 고지)
 
 ## 배포
 
