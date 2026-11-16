@@ -1,0 +1,278 @@
+<title>한입수학 기획 보드</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: 모눈종이 위 기획 보드 — 상단 경쟁 분석 표, 하단 휴대폰 와이어프레임 5종 가로 그리드 */
+:root{
+  --paper:#F5F7FB; --grid:#E3E8F2; --ink:#18213A; --muted:#5B6683; --line:#C9D1E2;
+  --surface:#FFFFFF; --accent:#2E59E6; --accent-soft:#E4EBFF; --mark:#D9482B; --ok:#1F8A5B; --warn:#B7791F;
+  --phone:#1E2540; --screen:#FFFFFF; --screen-2:#F1F4FA;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#10141F; --grid:#1A2030; --ink:#E6EAF4; --muted:#9AA4BE; --line:#2D3550;
+  --surface:#171D2C; --accent:#7D9BFF; --accent-soft:#1F2A4D; --mark:#FF7A5C; --ok:#4CC28A; --warn:#E0A84A;
+  --phone:#05070C; --screen:#1B2233; --screen-2:#232B3F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#10141F; --grid:#1A2030; --ink:#E6EAF4; --muted:#9AA4BE; --line:#2D3550;
+  --surface:#171D2C; --accent:#7D9BFF; --accent-soft:#1F2A4D; --mark:#FF7A5C; --ok:#4CC28A; --warn:#E0A84A;
+  --phone:#05070C; --screen:#1B2233; --screen-2:#232B3F; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.wrap{max-width:1240px;margin:0 auto;padding-block:40px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:48px}
+header h1{font-size:32px;line-height:1.25;margin:0 0 8px;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:68ch}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+h2{font-size:22px;margin:0 0 6px;text-wrap:balance}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.04em;color:var(--muted);font-weight:600;background:var(--screen-2)}
+tr:last-child td{border-bottom:0}
+td b{display:block}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:11px;padding:1px 6px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin-top:4px}
+.unv{color:var(--warn);font-size:12px}
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:18px}
+.ins{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;min-width:0}
+.ins h3{margin:0 0 6px;font-size:15px}
+.ins p{margin:0;color:var(--muted);font-size:14px}
+.ins.gap{border-color:var(--accent)}
+.ins.risk{border-color:var(--mark)}
+.phones{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px 24px}
+figure{margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.phone{width:100%;max-width:270px;aspect-ratio:9/18.5;background:var(--phone);border-radius:34px;padding:10px;margin:0 auto;box-shadow:0 10px 30px rgba(20,30,60,.18)}
+.scr{height:100%;background:var(--screen);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;position:relative;font-size:12px}
+.sb{display:flex;justify-content:space-between;padding:8px 18px 4px;font-family:var(--f-mono);font-size:10px;color:var(--muted)}
+.ttl{padding:4px 14px 8px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.ttl small{font-weight:400;color:var(--muted);font-size:11px}
+figcaption{font-size:13px;color:var(--muted)}
+figcaption b{color:var(--ink);font-size:14px;display:block;margin-bottom:2px}
+figcaption ul{margin:6px 0 0;padding-left:18px}
+.nav{margin-top:auto;display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:8px 0 12px;font-size:10px;color:var(--muted)}
+.nav .on{color:var(--accent);font-weight:700}
+/* 1 feed */
+.video{flex:1;margin:0;background:linear-gradient(160deg,#24315E,#121a33);color:#fff;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
+.video .board{position:absolute;top:30px;left:14px;right:52px;font-family:var(--f-mono);font-size:13px;line-height:1.7;color:#DCE4FF}
+.rail{position:absolute;right:10px;bottom:90px;display:flex;flex-direction:column;gap:14px;font-size:10px;text-align:center}
+.rail span{display:block;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.18);margin:0 auto 2px}
+.vt{font-weight:700;font-size:14px}
+.chips{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.chip{font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.18)}
+.prog{height:3px;background:rgba(255,255,255,.25);border-radius:2px;margin-top:10px}
+.prog i{display:block;height:100%;width:62%;background:#fff;border-radius:2px}
+.next{position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:10px;background:#fff;color:#18213A;padding:3px 10px;border-radius:10px;font-weight:600;white-space:nowrap}
+/* 2 quiz */
+.q{padding:4px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
+.timer{height:5px;background:var(--screen-2);border-radius:3px}.timer i{display:block;height:100%;width:45%;background:var(--accent);border-radius:3px}
+.qbox{background:var(--screen-2);border-radius:10px;padding:12px;font-size:13px}
+.qbox code{font-family:var(--f-mono);font-size:14px;color:var(--ink)}
+.opt{border:1px solid var(--line);border-radius:10px;padding:9px 12px;display:flex;gap:10px;align-items:center}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt em{font-style:normal;font-family:var(--f-mono);color:var(--muted)}
+.btn{margin-top:auto;background:var(--accent);color:#fff;border-radius:10px;text-align:center;padding:10px;font-weight:700}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent);margin-top:0}
+.row{display:flex;gap:8px}
+.row>*{flex:1}
+/* 3 clinic */
+.diag{margin:0 14px;border-left:3px solid var(--mark);background:var(--screen-2);padding:10px 12px;border-radius:0 8px 8px 0}
+.diag b{color:var(--mark)}
+.bars{padding:10px 14px 0;display:flex;flex-direction:column;gap:6px}
+.bar{display:grid;grid-template-columns:62px 1fr 30px;gap:6px;align-items:center;font-size:11px}
+.bar span{height:6px;background:var(--screen-2);border-radius:3px;overflow:hidden}
+.bar span i{display:block;height:100%;background:var(--mark)}
+.list{padding:10px 14px;display:flex;flex-direction:column;gap:6px}
+.li{display:flex;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:11px}
+.li em{font-style:normal;color:var(--muted)}
+.sched{display:flex;gap:6px;padding:0 14px}
+.sched div{flex:1;text-align:center;border-radius:8px;padding:6px 0;background:var(--accent-soft);color:var(--accent);font-family:var(--f-mono);font-size:11px}
+/* 4 tree */
+.tree{flex:1;padding:0 8px}
+.tree svg{width:100%;height:100%}
+.legend{display:flex;gap:10px;justify-content:center;font-size:10px;color:var(--muted);padding:4px 0}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+/* 5 parent */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px}
+.kpi{background:var(--screen-2);border-radius:10px;padding:10px}
+.kpi small{color:var(--muted);font-size:10px;display:block}
+.kpi strong{font-size:18px;font-variant-numeric:tabular-nums}
+.ex{font-size:9px;font-family:var(--f-mono);color:var(--warn);padding:0 14px 4px}
+.mst{padding:10px 14px 0;display:flex;flex-direction:column;gap:6px}
+.mst .bar span i{background:var(--accent)}
+.tog{margin:10px 14px 0;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:11px}
+.sw{width:30px;height:16px;border-radius:8px;background:var(--ok);position:relative}
+.sw::after{content:"";position:absolute;right:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#fff}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+footer a{color:var(--accent)}
+@media (max-width:480px){header h1{font-size:26px}}
+@media print{figure,.ins,tr,.insights{break-inside:avoid}.phone{box-shadow:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">교육 쇼츠 플랫폼 · 기획 2단계</div>
+  <h1>한입수학 경쟁 분석과 핵심 화면 와이어프레임</h1>
+  <p>국내외 경쟁 서비스 6곳을 비교해 남아 있는 시장 공백을 정리하고, MVP 핵심 화면 5종을 저해상도 와이어프레임으로 그렸습니다. 검증되지 않은 수치는 따로 표시해 두었습니다.</p>
+</header>
+
+<section>
+  <div class="eyebrow">A. 경쟁 분석</div>
+  <h2>누가 이미 이 시장에 있는가</h2>
+  <p class="lead">국내 강자는 "문제 풀이·문제은행"에, 해외 신생 서비스는 "자료를 피드로 바꾸는 것"에 집중합니다. 올림피아드·코딩 심화 과정을 쇼츠 피드로 만든 서비스는 이번 조사에서 찾지 못했습니다.</p>
+  <div class="tablebox">
+  <table>
+    <thead><tr><th>서비스</th><th>핵심 기능</th><th>고객·수익 구조</th><th>강점</th><th>약점 (한입수학의 기회)</th></tr></thead>
+    <tbody>
+      <tr><td><b>콴다 (매스프레소)</b><span class="tag">국내 · B2C</span></td><td>사진을 찍으면 AI가 풀이를 제공, 노트와 1:1 과외</td><td>프리미엄 구독 월 18,500원(블로그 기준), KT 제휴 시 약 50% 할인 <div class="unv">게시 시점 미확인</div></td><td>인지도, 대규모 풀이 데이터</td><td>정답을 "찾는" 앱이라 개념 학습 흐름이 약함, 심화 경시 콘텐츠 부족</td></tr>
+      <tr><td><b>매쓰플랫 (프리윌린)</b><span class="tag">국내 · B2B</span></td><td>AI 수학 문제은행, 교재 3,984권 지원, 내신 기출·오답 학습지</td><td>학원 가입형, 요금은 상담으로 결정 <div class="unv">공개 요금 없음</div></td><td>학원 유통망, 교재 커버리지</td><td>영상·쇼츠가 없음, 학생이 스스로 쓰는 동기 장치가 약함</td></tr>
+      <tr><td><b>ScrollEd</b><span class="tag">미국 · B2C+B2B</span></td><td>PDF·교재를 AI가 세로 피드(영상·오디오·퀴즈)로 변환</td><td>기관이 배포 비용을 내고 참여·진도 리포트를 받음. 2026년 10월 TechCrunch Disrupt에서 소비자용 출시</td><td>콘텐츠 자동 생성</td><td>범용 서비스라 수학 심화·코드 채점이 없음, 한국어 미지원</td></tr>
+      <tr><td><b>Coursera 쇼츠 피드</b><span class="tag">글로벌</span></td><td>기존 강의에서 잘라 낸 약 90초 세로 영상 + 퀴즈</td><td>기존 Coursera 구독에 포함</td><td>방대한 강의 라이브러리</td><td>성인·대학 과정 중심, 초·중등 대상이 아님</td></tr>
+      <tr><td><b>Krumbit · Brainjuice</b><span class="tag">해외 · 초기</span></td><td>마이크로러닝 영상 + 퀴즈 / 자료를 올리면 학습 피드 생성</td><td>Brainjuice는 Pro 구독에서 피드 생성</td><td>쉬운 시작</td><td>교양 중심이라 깊이가 얕고 학습 효과 측정이 없음</td></tr>
+      <tr><td><b>유튜브 쇼츠 교육 채널</b><span class="tag">플랫폼</span></td><td>무료 짧은 강의</td><td>광고 수익</td><td>도달 범위, 무료</td><td>풀이·복습·진도 추적이 없음, 학습 중 다른 영상으로 이탈</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="insights">
+    <div class="ins gap"><h3>시장 공백</h3><p>초5~중3 영재·올림피아드 수학과 KOI 코딩을 쇼츠로 가르치고, 문제를 풀어야 다음 영상으로 넘어가는 서비스는 국내에서 확인되지 않았습니다.</p></div>
+    <div class="ins"><h3>포지셔닝</h3><p>콴다의 "AI 풀이"와 매쓰플랫의 "학원 문제은행" 사이에서 강사가 만든 심화 쇼츠, 문제 풀이, AI 오답 클리닉을 하나로 묶습니다. B2C로 시작하고 학원 B2B로 확장합니다.</p></div>
+    <div class="ins risk"><h3>핵심 리스크: 리텐션</h3><p>피드는 쉽게 소비되지만 어려운 연습은 건너뛰기 쉽다는 지적이 있습니다(Indie Hackers 댓글). 그래서 "풀어야 넘어가는 피드"와 복습 큐를 MVP 필수 기능으로 둡니다.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">B. 핵심 화면 와이어프레임</div>
+  <h2>MVP 화면 5종</h2>
+  <p class="lead">예시 주제는 정수론의 페르마 소정리입니다. 화면 속 수치는 모두 설명을 위한 예시 데이터입니다.</p>
+  <div class="phones">
+
+    <figure>
+      <div class="phone"><div class="scr">
+        <div class="video">
+          <div class="next">퀴즈까지 영상 1개</div>
+          <div class="board">a<sup>p−1</sup> ≡ 1 (mod p)<br>p는 소수, gcd(a,p)=1<br><br>7<sup>10</sup> ≡ 1 (mod 11)</div>
+          <div class="rail"><div><span></span>저장</div><div><span></span>노트</div><div><span></span>질문</div></div>
+          <div class="vt">페르마 소정리, 60초 만에</div>
+          <div style="font-size:11px;opacity:.8">KOI 강사 채널</div>
+          <div class="chips"><span class="chip">정수론</span><span class="chip">Lv.3</span><span class="chip">0:37 / 0:60</span></div>
+          <div class="prog"><i></i></div>
+        </div>
+        <div class="nav"><span class="on">피드</span><span>복습</span><span>스킬맵</span><span>내 정보</span></div>
+      </div></div>
+      <figcaption><b>① 학습 피드</b>세로로 스와이프하는 60초 개념 영상입니다.<ul><li>상단 배지로 다음 퀴즈까지 남은 영상 수를 보여 줍니다</li><li>오른쪽 레일은 저장, 노트, 질문입니다. 좋아요와 댓글은 없습니다</li><li>개념 태그와 난이도를 항상 표시합니다</li></ul></figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>9:41</span><span>문제 2/3</span></div>
+        <div class="ttl">확인 문제 <small>남은 시간 0:27</small></div>
+        <div class="q">
+          <div class="timer"><i></i></div>
+          <div class="qbox"><code>7<sup>222</sup></code>을 <code>11</code>로 나눈 나머지는?</div>
+          <div class="opt"><em>A</em>3</div>
+          <div class="opt sel"><em>B</em>5</div>
+          <div class="opt"><em>C</em>7</div>
+          <div class="opt"><em>D</em>9</div>
+          <div class="row" style="margin-top:auto"><div class="btn ghost">힌트</div><div class="btn" style="margin-top:0">제출</div></div>
+        </div>
+        <div style="height:12px"></div>
+      </div></div>
+      <figcaption><b>② 문제 카드</b>영상 3개마다 끼어드는 확인 문제입니다. 풀어야 피드가 이어집니다.<ul><li>정답 B: 7<sup>10</sup>≡1이므로 7<sup>222</sup>≡7<sup>2</sup>=49≡5</li><li>타이머로 풀이 시간을 기록해 진단에 씁니다</li><li>KOI 문제는 객관식 대신 코드 빈칸 채우기를 씁니다</li></ul></figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>9:41</span><span>AI 클리닉</span></div>
+        <div class="ttl">오답 클리닉 <small>A 선택 · 오답</small></div>
+        <div class="diag"><b>개념 부족</b><br>지수 222를 φ(11)=10으로 줄이지 않고 계산을 시도했습니다.</div>
+        <div class="bars">
+          <div class="bar">개념 부족<span><i style="width:60%"></i></span>60%</div>
+          <div class="bar">계산 실수<span><i style="width:30%"></i></span>30%</div>
+          <div class="bar">문제 오독<span><i style="width:10%"></i></span>10%</div>
+        </div>
+        <div class="list">
+          <div class="li">변형 ① 3<sup>100</sup> mod 7<em>쉬움</em></div>
+          <div class="li">변형 ② 2<sup>2026</sup> mod 13<em>보통</em></div>
+          <div class="li">변형 ③ 5<sup>3<sup>10</sup></sup> mod 11<em>도전</em></div>
+        </div>
+        <div style="padding:0 14px 4px;font-size:11px;color:var(--muted)">복습 예약</div>
+        <div class="sched"><div>D+1</div><div>D+3</div><div>D+7</div></div>
+        <div class="nav"><span>피드</span><span class="on">복습</span><span>스킬맵</span><span>내 정보</span></div>
+      </div></div>
+      <figcaption><b>③ AI 오답 클리닉</b>오답 원인을 세 가지로 나누고 같은 유형의 변형 문제를 만듭니다.<ul><li>원인 비율은 그 학생의 누적 오답 기준입니다</li><li>변형 문제는 쉬움부터 도전까지 3단계입니다</li><li>틀린 개념은 간격 반복 큐(D+1/3/7)에 자동으로 들어갑니다</li></ul></figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>9:41</span><span>정수론</span></div>
+        <div class="ttl">스킬 트리 <small>6개 중 3개 숙련</small></div>
+        <div class="tree">
+          <svg viewBox="0 0 240 330" role="img" aria-label="정수론 개념 스킬 트리">
+            <g stroke="var(--line)" stroke-width="2" fill="none">
+              <path d="M120 40 L60 110"/><path d="M120 40 L180 110"/>
+              <path d="M60 110 L60 190"/><path d="M180 110 L180 190"/>
+              <path d="M60 190 L120 270"/><path d="M180 190 L120 270"/>
+            </g>
+            <g font-family="IBM Plex Sans KR, sans-serif" font-size="10" text-anchor="middle">
+              <circle cx="120" cy="40" r="22" fill="var(--ok)"/><text x="120" y="44" fill="#fff">나머지</text>
+              <text x="120" y="76" fill="var(--muted)">95%</text>
+              <circle cx="60" cy="110" r="22" fill="var(--ok)"/><text x="60" y="114" fill="#fff">합동식</text>
+              <text x="60" y="146" fill="var(--muted)">88%</text>
+              <circle cx="180" cy="110" r="22" fill="var(--ok)"/><text x="180" y="114" fill="#fff">유클리드</text>
+              <text x="180" y="146" fill="var(--muted)">81%</text>
+              <circle cx="60" cy="190" r="22" fill="var(--warn)"/><text x="60" y="194" fill="#fff">페르마</text>
+              <text x="60" y="226" fill="var(--muted)">54%</text>
+              <circle cx="180" cy="190" r="22" fill="var(--screen-2)" stroke="var(--line)"/><text x="180" y="186" fill="var(--ink)">모듈러</text><text x="180" y="198" fill="var(--ink)">역원</text>
+              <text x="180" y="226" fill="var(--muted)">20%</text>
+              <circle cx="120" cy="270" r="22" fill="var(--screen-2)" stroke="var(--line)" stroke-dasharray="3 3"/><text x="120" y="274" fill="var(--muted)">오일러</text>
+              <text x="120" y="306" fill="var(--muted)">잠김</text>
+            </g>
+          </svg>
+        </div>
+        <div class="legend"><span><i style="background:var(--ok)"></i>숙련</span><span><i style="background:var(--warn)"></i>학습 중</span><span><i style="background:var(--line)"></i>미시작</span></div>
+        <div class="nav"><span>피드</span><span>복습</span><span class="on">스킬맵</span><span>내 정보</span></div>
+      </div></div>
+      <figcaption><b>④ 스킬 트리</b>개념 사이의 선후 관계를 그래프로 보여 줍니다.<ul><li>노드를 누르면 해당 개념의 쇼츠와 문제만 모은 피드가 열립니다</li><li>선행 개념이 모두 70% 이상이면 다음 노드가 열립니다</li><li>추천 알고리즘은 숙련도가 가장 낮은 열린 노드부터 노출합니다</li></ul></figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>9:41</span><span>보호자</span></div>
+        <div class="ttl">이번 주 리포트 <small>11.10 – 11.16</small></div>
+        <div class="ex">예시 데이터</div>
+        <div class="kpis">
+          <div class="kpi"><small>학습 시간</small><strong>3시간 20분</strong></div>
+          <div class="kpi"><small>푼 문제</small><strong>84문제</strong></div>
+          <div class="kpi"><small>정답률</small><strong>72%</strong></div>
+          <div class="kpi"><small>복습 완료</small><strong>9/11</strong></div>
+        </div>
+        <div class="mst">
+          <div class="bar">합동식<span><i style="width:88%"></i></span>88%</div>
+          <div class="bar">페르마<span><i style="width:54%"></i></span>54%</div>
+          <div class="bar">모듈러 역원<span><i style="width:20%"></i></span>20%</div>
+        </div>
+        <div class="tog">하루 사용 한도 40분<span class="sw"></span></div>
+        <div class="tog">밤 10시 이후 잠금<span class="sw"></span></div>
+        <div class="nav"><span class="on">리포트</span><span>자녀 관리</span><span>설정</span></div>
+      </div></div>
+      <figcaption><b>⑤ 학부모 대시보드</b>시청 시간보다 학습 성과를 먼저 보여 줍니다.<ul><li>만 14세 미만 가입 시 보호자 동의 절차와 연동됩니다</li><li>사용 한도와 야간 잠금은 보호자만 바꿀 수 있습니다</li><li>주간 리포트는 푸시와 이메일로 발송합니다</li></ul></figcaption>
+    </figure>
+
+  </div>
+</section>
+
+<footer>
+  출처: <a href="https://funissu.com/kt-quanda-premium-lite/">KT 콴다 요금제 정리(funissu)</a> ·
+  <a href="https://apps.apple.com/kr/app/%EC%BD%B4%EB%8B%A4-ai-%EC%88%98%ED%95%99-%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4-%EA%B3%B5%EB%B6%80-%EC%95%B1/id1270676408">콴다 App Store</a> ·
+  <a href="https://www.venturesquare.net/1002432/">매쓰플랫 3,984권 지원(벤처스퀘어)</a> ·
+  <a href="https://www.techrepublic.com/article/news-scrolled-ai-infinite-scroll-learning-tool/">ScrollEd(TechRepublic)</a> ·
+  <a href="https://www.tubefilter.com/2026/09/21/scrolled-turns-textbooks-into-tiktok-feeds-new-app/amp/">ScrollEd(Tubefilter)</a> ·
+  <a href="https://apps.apple.com/us/app/id6747910126">Krumbit</a> ·
+  <a href="https://apps.apple.com/app/id6759610120">Brainjuice</a> ·
+  <a href="https://www.indiehackers.com/product/speakylex">Indie Hackers 리텐션 논의</a>
+</footer>
+</div>
