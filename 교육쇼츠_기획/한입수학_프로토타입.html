@@ -1,0 +1,456 @@
+<title>한입수학 프로토타입</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: 데스크톱은 왼쪽 안내 패널 + 오른쪽 휴대폰 프레임, 폰 폭에서는 앱 화면만 전체 폭으로 */
+:root{
+  --paper:#F5F7FB; --grid:#E3E8F2; --ink:#18213A; --muted:#5B6683; --line:#C9D1E2;
+  --surface:#FFFFFF; --surface-2:#F1F4FA; --accent:#2E59E6; --accent-ink:#FFFFFF; --accent-soft:#E4EBFF;
+  --mark:#D9482B; --mark-soft:#FDEBE6; --ok:#1F8A5B; --ok-soft:#E3F4EC; --warn:#B7791F;
+  --board:#1D2850; --board-ink:#DCE4FF; --frame:#1E2540;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#10141F; --grid:#1A2030; --ink:#E6EAF4; --muted:#9AA4BE; --line:#2D3550;
+  --surface:#171D2C; --surface-2:#212839; --accent:#7D9BFF; --accent-ink:#0E1430; --accent-soft:#1F2A4D;
+  --mark:#FF7A5C; --mark-soft:#3A2019; --ok:#4CC28A; --ok-soft:#173326; --warn:#E0A84A;
+  --board:#0F1730; --board-ink:#C9D5FF; --frame:#05070C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#10141F; --grid:#1A2030; --ink:#E6EAF4; --muted:#9AA4BE; --line:#2D3550;
+  --surface:#171D2C; --surface-2:#212839; --accent:#7D9BFF; --accent-ink:#0E1430; --accent-soft:#1F2A4D;
+  --mark:#FF7A5C; --mark-soft:#3A2019; --ok:#4CC28A; --ok-soft:#173326; --warn:#E0A84A;
+  --board:#0F1730; --board-ink:#C9D5FF; --frame:#05070C; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.page{min-height:100%;display:flex;gap:48px;align-items:center;justify-content:center;padding-block:32px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.side{max-width:360px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.side h1{margin:0;font-size:28px;line-height:1.25;text-wrap:balance}
+.side p{margin:0;color:var(--muted)}
+.side ol{margin:0;padding-left:20px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.side .tools{display:flex;gap:8px;flex-wrap:wrap}
+.chipbtn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 12px;font-size:13px}
+.frame{width:390px;height:min(820px,calc(100vh - 64px));min-height:640px;background:var(--frame);border-radius:44px;padding:12px;flex:none;box-shadow:0 20px 50px rgba(20,30,60,.22)}
+.app{height:100%;background:var(--surface);border-radius:34px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+@media (max-width:860px){
+  .page{flex-direction:column;align-items:stretch;gap:20px;padding-block:16px}
+  .side{max-width:none}
+  .frame{width:100%;max-width:430px;margin:0 auto;height:760px;min-height:0;border-radius:0;padding:0;background:none;box-shadow:none}
+  .app{border-radius:16px;border:1px solid var(--line)}
+}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px 8px;gap:8px}
+.top b{font-size:16px}
+.top small{color:var(--muted);font-size:12px;font-family:var(--f-mono)}
+.body{flex:1;overflow-y:auto;display:flex;flex-direction:column;min-height:0}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:var(--surface)}
+.tabs button{background:none;border:0;padding:10px 0 14px;font-size:12px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;position:relative}
+.tabs button[aria-selected="true"]{color:var(--accent);font-weight:700}
+.tabs svg{width:20px;height:20px}
+.badge{position:absolute;top:6px;right:calc(50% - 20px);background:var(--mark);color:#fff;font-size:10px;border-radius:8px;padding:0 5px;font-family:var(--f-mono)}
+/* feed */
+.card{flex:1;margin:0 12px 12px;border-radius:20px;background:var(--board);color:#fff;position:relative;display:flex;flex-direction:column;padding:18px;overflow:hidden;min-height:0}
+.gate{align-self:center;font-size:12px;background:var(--surface);color:var(--ink);padding:3px 12px;border-radius:12px;font-weight:600}
+.boardtxt{margin-top:28px;font-family:var(--f-mono);font-size:15px;line-height:1.9;color:var(--board-ink);white-space:pre-wrap;flex:1;min-height:0}
+.boardtxt span{display:block;opacity:0;transform:translateY(4px);transition:opacity .4s,transform .4s}
+.boardtxt span.on{opacity:1;transform:none}
+.meta .t{font-weight:700;font-size:17px}
+.meta .c{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.meta .c span{font-size:11px;padding:2px 9px;border-radius:10px;background:rgba(255,255,255,.16)}
+.pbar{height:4px;background:rgba(255,255,255,.22);border-radius:2px;margin-top:12px;overflow:hidden}
+.pbar i{display:block;height:100%;background:#fff;width:0}
+.rail{position:absolute;right:12px;bottom:110px;display:flex;flex-direction:column;gap:14px}
+.rail button{background:rgba(255,255,255,.14);border:0;color:#fff;width:44px;height:44px;border-radius:50%;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.rail button[aria-pressed="true"]{background:#fff;color:var(--board)}
+.feednav{display:flex;gap:8px;padding:0 12px 12px}
+.btn{flex:1;border:0;border-radius:12px;padding:12px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+/* quiz */
+.pad{padding:4px 18px 18px;display:flex;flex-direction:column;gap:12px}
+.timer{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}.timer i{display:block;height:100%;background:var(--accent);transition:width 1s linear}
+.qbox{background:var(--surface-2);border-radius:14px;padding:16px;font-size:16px}
+.qbox code,.code{font-family:var(--f-mono)}
+.code{display:block;white-space:pre;font-size:12.5px;line-height:1.6;background:var(--board);color:var(--board-ink);border-radius:10px;padding:12px;margin-top:10px;overflow-x:auto}
+.opt{display:flex;gap:12px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface);text-align:left;width:100%}
+.opt em{font-style:normal;font-family:var(--f-mono);color:var(--muted);width:16px}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--mark);background:var(--mark-soft)}
+.hint{font-size:13px;color:var(--muted);background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.result{border-radius:12px;padding:12px 14px;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)}
+.result.no{background:var(--mark-soft);color:var(--mark)}
+.result p{margin:4px 0 0;color:var(--ink)}
+/* clinic */
+.diag{border-left:4px solid var(--mark);background:var(--surface-2);border-radius:0 12px 12px 0;padding:12px 14px}
+.diag b{color:var(--mark)}
+.lbl{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.bars{display:flex;flex-direction:column;gap:7px}
+.bar{display:grid;grid-template-columns:72px 1fr 40px;gap:8px;align-items:center;font-size:12px;font-variant-numeric:tabular-nums}
+.bar span{height:8px;background:var(--surface-2);border-radius:4px;overflow:hidden}
+.bar span i{display:block;height:100%;background:var(--mark);border-radius:4px}
+.bar.acc span i{background:var(--accent)}
+.var{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.var .h{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.var .q{font-size:14px}
+.var form{display:flex;gap:8px}
+.var input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--surface);color:var(--ink);font:inherit;font-family:var(--f-mono)}
+.var button{border:0;border-radius:8px;padding:8px 14px;background:var(--accent);color:var(--accent-ink);font-weight:700}
+.var .fb{font-size:12px}
+.var .fb.ok{color:var(--ok)}.var .fb.no{color:var(--mark)}
+/* review */
+.empty{margin:auto;text-align:center;color:var(--muted);padding:24px}
+.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.rq{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px 14px;gap:10px}
+.rq .d{font-family:var(--f-mono);font-size:12px;padding:2px 8px;border-radius:8px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.rq .d.due{background:var(--mark-soft);color:var(--mark)}
+/* tree */
+.tree svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;justify-content:center;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.node{cursor:pointer}
+.node:focus-visible circle{stroke:var(--accent);stroke-width:3}
+/* parent */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{background:var(--surface-2);border-radius:12px;padding:12px}
+.kpi small{display:block;color:var(--muted);font-size:11px}
+.kpi strong{font-size:20px;font-variant-numeric:tabular-nums}
+.tog{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px;background:var(--surface);width:100%;text-align:left}
+.sw{width:40px;height:22px;border-radius:11px;background:var(--line);position:relative;flex:none;transition:background .2s}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.tog[aria-checked="true"] .sw{background:var(--ok)}
+.tog[aria-checked="true"] .sw::after{left:21px}
+.note{font-size:11px;color:var(--warn);font-family:var(--f-mono)}
+.toast{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:8px 16px;border-radius:20px;font-size:13px;white-space:nowrap;pointer-events:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="page">
+  <aside class="side">
+    <div class="eyebrow">교육 쇼츠 플랫폼 · 클릭 프로토타입</div>
+    <h1>한입수학</h1>
+    <p>60초 개념 영상을 보고, 문제를 풀어야 다음으로 넘어가는 학습 피드입니다. 정수론 단원 9편과 확인 문제 3개가 들어 있습니다.</p>
+    <ol>
+      <li>피드에서 영상을 넘깁니다. 3편마다 확인 문제가 나옵니다.</li>
+      <li>오답을 고르면 AI 오답 클리닉이 원인과 변형 문제를 보여 줍니다.</li>
+      <li>틀린 문제는 복습 탭에 D+1로 예약됩니다.</li>
+      <li>스킬맵과 보호자 탭은 풀이 기록에 따라 바로 바뀝니다.</li>
+    </ol>
+    <p style="font-size:13px">영상은 칠판 애니메이션으로 대신했고 재생 시간은 8초로 줄였습니다. 진행 상황은 이 브라우저에만 저장됩니다.</p>
+    <div class="tools"><button class="chipbtn" id="resetBtn" type="button">처음부터 다시</button></div>
+  </aside>
+  <div class="frame"><div class="app" id="app"></div></div>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ---------------- 콘텐츠 ---------------- */
+const CONCEPTS = {
+  mod:    {name:"나머지 연산", x:120, y:40,  pre:[]},
+  cong:   {name:"합동식",     x:60,  y:120, pre:["mod"]},
+  gcd:    {name:"유클리드",   x:180, y:120, pre:["mod"]},
+  fermat: {name:"페르마",     x:60,  y:200, pre:["cong"]},
+  inv:    {name:"모듈러 역원", x:180, y:200, pre:["gcd","fermat"]},
+  euler:  {name:"오일러",     x:120, y:280, pre:["fermat","inv"]}
+};
+const INIT_MASTERY = {mod:.95, cong:.62, gcd:.80, fermat:.30, inv:.10, euler:0};
+
+const VIDEOS = [
+  {c:"mod",  t:"나머지는 더해도 나머지", lv:1, b:["(a+b) mod m","= ((a mod m)+(b mod m)) mod m","","(17+25) mod 7","= (3+4) mod 7 = 0"]},
+  {c:"cong", t:"합동식 한 줄 정의", lv:2, b:["a ≡ b (mod m)","⇔ m | (a − b)","","38 ≡ 3 (mod 7)","∵ 38 − 3 = 35 = 7·5"]},
+  {c:"cong", t:"합동식은 거듭제곱해도 된다", lv:2, b:["a ≡ b ⇒ aᵏ ≡ bᵏ (mod m)","","10 ≡ 3 (mod 7)","10² ≡ 3² = 9 ≡ 2"]},
+  {c:"gcd",  t:"유클리드 호제법 60초", lv:2, b:["gcd(a,b) = gcd(b, a mod b)","","gcd(252,105)","→ gcd(105,42)","→ gcd(42,21) → 21"]},
+  {c:"fermat", t:"페르마 소정리", lv:3, b:["p 소수, gcd(a,p)=1","aᵖ⁻¹ ≡ 1 (mod p)","","7¹⁰ ≡ 1 (mod 11)"]},
+  {c:"fermat", t:"큰 지수는 p−1로 줄인다", lv:3, b:["2¹⁰⁰ mod 7","2⁶ ≡ 1, 100 = 6·16 + 4","⇒ 2¹⁰⁰ ≡ 2⁴ = 16 ≡ 2"]},
+  {c:"inv",  t:"모듈러 역원이란", lv:3, b:["a·x ≡ 1 (mod m) 인 x","","3·5 = 15 ≡ 1 (mod 7)","⇒ 3⁻¹ ≡ 5 (mod 7)"]},
+  {c:"inv",  t:"역원 = 페르마로 한 번에", lv:4, b:["p 소수면 a⁻¹ ≡ aᵖ⁻² (mod p)","","3⁻¹ ≡ 3⁵ = 243","≡ 5 (mod 7) ✓"]},
+  {c:"inv",  t:"KOI 필수: 빠른 거듭제곱", lv:4, b:["def power(a, e, m):","  r = 1","  while e:","    if e & 1: r = r*a % m","    a = a*a % m; e >>= 1","  return r"]}
+];
+
+const QUIZZES = [
+  {id:"q1", c:"cong", body:"<code>100</code>을 <code>7</code>로 나눈 나머지는?", opts:["1","2","3","5"], ans:"2",
+   exp:"100 = 7×14 + 2 이므로 나머지는 2입니다.",
+   hint:"7의 배수 중 100에 가장 가까운 수를 찾아보세요.",
+   diag:{"1":["calculation","7×14를 99로 계산했습니다. 곱셈을 다시 확인하세요."],
+         "3":["concept","몫(14)과 나머지를 혼동했을 가능성이 있습니다."],
+         "5":["misread","100을 103으로 잘못 읽고 계산한 오독 패턴입니다."]},
+   vars:[{lv:"쉬움", q:"50 mod 6 = ?", a:"2"},{lv:"보통", q:"123 mod 9 = ?", a:"6"},{lv:"도전", q:"2¹⁰ mod 7 = ?", a:"2"}]},
+  {id:"q2", c:"fermat", body:"<code>7<sup>222</sup></code>을 <code>11</code>로 나눈 나머지는?", opts:["3","5","7","9"], ans:"5",
+   exp:"7¹⁰ ≡ 1 (mod 11)이고 222 = 10·22 + 2 이므로 7²²² ≡ 7² = 49 ≡ 5 입니다.",
+   hint:"페르마 소정리로 지수 222를 10으로 줄여 보세요.",
+   diag:{"3":["concept","지수 222를 φ(11)=10으로 줄이지 않고 계산을 시도했습니다."],
+         "7":["misread","남은 지수 2를 1로 읽어 7¹을 답으로 골랐습니다."],
+         "9":["calculation","49 mod 11 계산에서 실수했습니다. 49 − 44 = 5 입니다."]},
+   vars:[{lv:"쉬움", q:"3¹⁰⁰ mod 7 = ?", a:"4"},{lv:"보통", q:"2²⁰²⁶ mod 13 = ?", a:"10"},{lv:"도전", q:"5^(3¹⁰) mod 11 = ?", a:"9"}]},
+  {id:"q3", c:"inv", code:true, body:"빠른 거듭제곱에서 <code>e</code>가 홀수일 때 실행해야 하는 줄은?",
+   src:"def power(a, e, m):\n  r = 1\n  while e:\n    if e & 1: ______\n    a = a*a % m\n    e >>= 1\n  return r",
+   opts:["r = r*a % m","a = a*a % m","e = e - 1","r = a % m"], ans:"r = r*a % m",
+   exp:"현재 비트가 1이면 결과 r에 a를 곱해 둡니다. a 제곱은 매 반복 공통으로 실행됩니다.",
+   hint:"결과값 r이 바뀌는 곳은 어디일까요?",
+   diag:{"a = a*a % m":["concept","매 반복 실행되는 줄과 조건부 줄을 구분하지 못했습니다."],
+         "e = e - 1":["concept","선형 거듭제곱(e를 1씩 감소)과 이진 거듭제곱을 혼동했습니다."],
+         "r = a % m":["calculation","누적 곱 대신 덮어쓰기를 해 이전 결과가 사라집니다."]},
+   vars:[{lv:"쉬움", q:"power(3, 5, 7) 의 반환값은?", a:"5"},{lv:"보통", q:"power(2, 10, 1000) 의 반환값은?", a:"24"},{lv:"도전", q:"e = 13 일 때 while 반복 횟수는?", a:"4"}]}
+];
+const ERR_LABEL = {concept:"개념 부족", calculation:"계산 실수", misread:"문제 오독"};
+
+/* 피드 순서: 영상 3편마다 퀴즈 1개 */
+const FEED = [];
+VIDEOS.forEach((v,i)=>{ FEED.push({type:"video", i}); if(i%3===2) FEED.push({type:"quiz", i:(i-2)/3}); });
+
+/* ---------------- 상태 ---------------- */
+const KEY = "hanip-proto-v1";
+function fresh(){ return {tab:"feed", pos:0, watched:{}, saved:{}, attempts:[], mastery:{...INIT_MASTERY},
+  review:{}, quiz:null, clinic:null, varIn:{}, varFb:{}, limits:{daily:true, night:true}, startedAt:Date.now()}; }
+let S = load();
+function load(){ try{ const raw = localStorage.getItem(KEY); if(raw){ const s = JSON.parse(raw); return Object.assign(fresh(), s, {quiz:null}); } }catch(e){} return fresh(); }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+/* ---------------- 유틸 ---------------- */
+const $app = document.getElementById("app");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct = x => Math.round(x*100) + "%";
+const DAY = 86400000;
+let toastTimer, videoTimer, quizTimer;
+function toast(msg){ clearTimeout(toastTimer); const old = $app.querySelector(".toast"); if(old) old.remove();
+  const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; $app.appendChild(t);
+  toastTimer = setTimeout(()=>t.remove(), 1800); }
+function unlocked(id){ return CONCEPTS[id].pre.every(p => S.mastery[p] >= .7); }
+function dueCount(){ const now = Date.now(); return Object.values(S.review).filter(r => r.due <= now).length; }
+
+const ICON = {
+  feed:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 9l4 3-4 3z" fill="currentColor"/></svg>',
+  review:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/><path d="M12 8v4l3 2"/></svg>',
+  map:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2.5"/><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><path d="M11 7l-4 8M13 7l4 8"/></svg>',
+  parent:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>'
+};
+
+/* ---------------- 렌더 ---------------- */
+function render(){
+  clearInterval(videoTimer); clearInterval(quizTimer);
+  let title = "", sub = "", body = "";
+  if(S.clinic){ [title, sub, body] = viewClinic(); }
+  else if(S.tab === "feed"){ [title, sub, body] = viewFeed(); }
+  else if(S.tab === "review"){ [title, sub, body] = viewReview(); }
+  else if(S.tab === "map"){ [title, sub, body] = viewMap(); }
+  else { [title, sub, body] = viewParent(); }
+  const due = dueCount();
+  const tab = (id, label) => `<button role="tab" aria-selected="${S.tab===id && !S.clinic}" data-act="tab" data-v="${id}">${ICON[id]}${label}${id==="review"&&due?`<span class="badge">${due}</span>`:""}</button>`;
+  $app.innerHTML = `<div class="top"><b>${title}</b><small>${sub}</small></div>
+    <div class="body">${body}</div>
+    <nav class="tabs" role="tablist">${tab("feed","피드")}${tab("review","복습")}${tab("map","스킬맵")}${tab("parent","보호자")}</nav>`;
+  after();
+  save();
+}
+
+function viewFeed(){
+  const item = FEED[S.pos];
+  if(!item) return ["학습 피드", "완료", `<div class="empty"><b>이번 단원 피드를 모두 봤습니다</b>복습 탭에서 틀린 문제를 다시 풀거나 처음부터 다시 볼 수 있습니다.<div style="margin-top:14px"><button class="btn" data-act="restartFeed" type="button">피드 처음으로</button></div></div>`];
+  if(item.type === "quiz") return viewQuiz(QUIZZES[item.i], `확인 문제 ${item.i+1}/3`);
+  const v = VIDEOS[item.i];
+  let left = 0; for(let k=S.pos; k<FEED.length && FEED[k].type!=="quiz"; k++) left++;
+  const gate = left === 1 ? "이 영상 다음은 확인 문제" : `확인 문제까지 영상 ${left}편`;
+  const watched = S.watched[item.i];
+  return ["학습 피드", `${S.pos+1} / ${FEED.length}`, `
+    <div class="card" id="card">
+      <div class="gate">${gate}</div>
+      <div class="boardtxt">${v.b.map(l=>`<span>${esc(l)||"&nbsp;"}</span>`).join("")}</div>
+      <div class="rail">
+        <button type="button" data-act="save" aria-pressed="${!!S.saved[item.i]}">저장</button>
+        <button type="button" data-act="toast" data-v="노트에 이 장면을 담았습니다">노트</button>
+        <button type="button" data-act="toast" data-v="질문을 강사에게 보냈습니다">질문</button>
+      </div>
+      <div class="meta"><div class="t">${esc(v.t)}</div>
+        <div class="c"><span>${CONCEPTS[v.c].name}</span><span>Lv.${v.lv}</span><span>KOI 강사 채널</span></div>
+        <div class="pbar"><i id="pbar" style="width:${watched?100:0}%"></i></div></div>
+    </div>
+    <div class="feednav">
+      <button class="btn ghost" type="button" data-act="prev" ${S.pos===0?"disabled":""}>이전</button>
+      <button class="btn" type="button" data-act="next">${watched?"다음":"건너뛰기"}</button>
+    </div>`];
+}
+
+function viewQuiz(q, sub){
+  if(!S.quiz || S.quiz.id !== q.id) S.quiz = {id:q.id, sel:null, done:false, hint:false, start:Date.now(), left:45};
+  const st = S.quiz;
+  const opts = q.opts.map((o,k)=>{
+    let cls = "opt";
+    if(st.done){ if(o===q.ans) cls += " right"; else if(o===st.sel) cls += " wrong"; }
+    return `<button type="button" class="${cls}" data-act="pick" data-v="${esc(o)}" aria-pressed="${st.sel===o}" ${st.done?"disabled":""}><em>${"ABCD"[k]}</em>${q.code?`<code class="qbox-code" style="font-family:var(--f-mono)">${esc(o)}</code>`:esc(o)}</button>`;
+  }).join("");
+  let foot;
+  if(!st.done){
+    foot = `<div style="display:flex;gap:8px"><button class="btn ghost" type="button" data-act="hint" ${st.hint?"disabled":""}>힌트</button><button class="btn" type="button" data-act="submit" ${st.sel?"":"disabled"}>제출</button></div>`;
+  } else if(st.sel === q.ans){
+    foot = `<div class="result ok"><b>정답입니다</b><p>${esc(q.exp)}</p></div><button class="btn" type="button" data-act="next">다음 영상</button>`;
+  } else {
+    foot = `<div class="result no"><b>아쉽습니다. 정답은 ${esc(q.ans)}</b><p>이 문제는 내일 복습 목록에 다시 나옵니다.</p></div><button class="btn" type="button" data-act="openClinic">AI 오답 클리닉 보기</button>`;
+  }
+  return ["확인 문제", sub, `<div class="pad">
+    <div class="timer"><i id="qtimer" style="width:${st.done?0:st.left/45*100}%"></i></div>
+    <div class="qbox">${q.body}${q.code?`<span class="code">${esc(q.src)}</span>`:""}</div>
+    ${opts}
+    ${st.hint && !st.done ? `<div class="hint">${esc(q.hint)}</div>`:""}
+    ${foot}</div>`];
+}
+
+function viewClinic(){
+  const {qid, sel} = S.clinic; const q = QUIZZES.find(x=>x.id===qid);
+  const [type, why] = q.diag[sel] || ["concept","선택한 답의 풀이 과정을 다시 확인하세요."];
+  const wrong = S.attempts.filter(a=>!a.ok && a.err);
+  const cnt = {concept:0, calculation:0, misread:0}; wrong.forEach(a=>cnt[a.err]++);
+  const tot = wrong.length || 1;
+  const bars = Object.keys(cnt).map(k=>`<div class="bar">${ERR_LABEL[k]}<span><i style="width:${cnt[k]/tot*100}%"></i></span>${Math.round(cnt[k]/tot*100)}%</div>`).join("");
+  const vars = q.vars.map((v,k)=>{
+    const key = qid+"-"+k, fb = S.varFb[key];
+    return `<div class="var"><div class="h"><span>변형 ${k+1}</span><span>${v.lv}</span></div><div class="q">${esc(v.q)}</div>
+      <form data-act="var" data-k="${key}" data-a="${esc(v.a)}"><label class="lbl" for="in-${key}" hidden>답 입력</label><input id="in-${key}" inputmode="numeric" autocomplete="off" placeholder="답 입력" value="${esc(S.varIn[key]||"")}"><button type="submit">확인</button></form>
+      ${fb?`<div class="fb ${fb==="ok"?"ok":"no"}">${fb==="ok"?"정답입니다. 숙련도가 올랐습니다.":"다시 생각해 보세요."}</div>`:""}</div>`;
+  }).join("");
+  return ["AI 오답 클리닉", `${esc(sel)} 선택`, `<div class="pad">
+    <div class="diag"><b>${ERR_LABEL[type]}</b><br>${esc(why)}</div>
+    <div class="lbl">내 누적 오답 원인 (${wrong.length}건)</div><div class="bars">${bars}</div>
+    <div class="lbl">같은 유형 변형 문제</div>${vars}
+    <div class="lbl">복습 예약</div>
+    <div style="display:flex;gap:8px">${["D+1","D+3","D+7"].map(d=>`<span class="rq" style="flex:1;justify-content:center;padding:8px"><span class="d">${d}</span></span>`).join("")}</div>
+    <button class="btn" type="button" data-act="closeClinic">피드로 돌아가기</button></div>`];
+}
+
+function viewReview(){
+  const now = Date.now();
+  const list = Object.entries(S.review).sort((a,b)=>a[1].due-b[1].due);
+  if(!list.length) return ["복습", "간격 반복", `<div class="empty"><b>예약된 복습이 없습니다</b>확인 문제를 틀리면 하루 뒤 이곳에 다시 나옵니다.</div>`];
+  const rows = list.map(([id,r])=>{
+    const q = QUIZZES.find(x=>x.id===id); const days = Math.ceil((r.due-now)/DAY);
+    const due = r.due <= now;
+    return `<div class="rq"><div><div style="font-size:14px">${q.body}</div><div style="font-size:12px;color:var(--muted)">${CONCEPTS[q.c].name} · 간격 ${r.iv}일</div></div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><span class="d ${due?"due":""}">${due?"오늘":"D+"+days}</span>
+      <button class="chipbtn" type="button" data-act="doReview" data-v="${id}">${due?"풀기":"미리 풀기"}</button></div></div>`;
+  }).join("");
+  return ["복습", `${list.length}문항 예약`, `<div class="pad"><div class="hint">틀린 문제는 1일 뒤, 맞히면 3일, 7일로 간격이 늘어납니다. 데모에서는 "미리 풀기"로 바로 풀 수 있습니다.</div>${rows}</div>`];
+}
+
+function viewMap(){
+  const edges = [], nodes = [];
+  Object.entries(CONCEPTS).forEach(([id,c])=>c.pre.forEach(p=>{ const a = CONCEPTS[p]; edges.push(`<line x1="${a.x}" y1="${a.y}" x2="${c.x}" y2="${c.y}" stroke="var(--line)" stroke-width="2"/>`); }));
+  Object.entries(CONCEPTS).forEach(([id,c])=>{
+    const m = S.mastery[id], open = unlocked(id);
+    const fill = !open ? "var(--surface-2)" : m >= .7 ? "var(--ok)" : m > 0 ? "var(--warn)" : "var(--surface-2)";
+    const tc = (!open || m === 0) ? "var(--ink)" : "#fff";
+    const words = c.name.split(" ");
+    const label = words.length > 1 ? words.map((w,k)=>`<text x="${c.x}" y="${c.y-3+k*12}" fill="${tc}" font-size="10" text-anchor="middle">${w}</text>`).join("") : `<text x="${c.x}" y="${c.y+4}" fill="${tc}" font-size="10" text-anchor="middle">${c.name}</text>`;
+    nodes.push(`<g class="node" tabindex="0" role="button" aria-label="${c.name} 숙련도 ${pct(m)}" data-act="node" data-v="${id}">
+      <circle cx="${c.x}" cy="${c.y}" r="25" fill="${fill}" stroke="var(--line)" ${open?"":'stroke-dasharray="4 3"'}/>${label}
+      <text x="${c.x}" y="${c.y+40}" fill="var(--muted)" font-size="10" text-anchor="middle" font-family="JetBrains Mono, monospace">${open?pct(m):"잠김"}</text></g>`);
+  });
+  const done = Object.keys(CONCEPTS).filter(k=>S.mastery[k]>=.7).length;
+  return ["스킬 트리", `정수론 · ${done}/6 숙련`, `<div class="pad tree">
+    <svg viewBox="0 0 240 330" role="img" aria-label="정수론 개념 스킬 트리" font-family="IBM Plex Sans KR, sans-serif">${edges.join("")}${nodes.join("")}</svg>
+    <div class="legend"><span><i style="background:var(--ok)"></i>숙련 70%+</span><span><i style="background:var(--warn)"></i>학습 중</span><span><i style="background:var(--surface-2);border:1px solid var(--line)"></i>미시작·잠김</span></div>
+    <div class="hint">선행 개념이 모두 70% 이상이면 다음 개념이 열립니다. 노드를 누르면 그 개념의 영상으로 이동합니다.</div></div>`];
+}
+
+function viewParent(){
+  const n = S.attempts.length, ok = S.attempts.filter(a=>a.ok).length;
+  const mins = S.attempts.reduce((s,a)=>s+a.ms,0)/60000 + Object.keys(S.watched).length;
+  const bars = Object.entries(CONCEPTS).map(([id,c])=>`<div class="bar acc">${c.name}<span><i style="width:${S.mastery[id]*100}%"></i></span>${pct(S.mastery[id])}</div>`).join("");
+  const tog = (k, label) => `<button type="button" class="tog" role="switch" aria-checked="${S.limits[k]}" data-act="limit" data-v="${k}">${label}<span class="sw"></span></button>`;
+  return ["보호자 리포트", "이번 세션", `<div class="pad">
+    <div class="note">이 프로토타입에서 쌓은 기록으로 계산합니다. 영상 1편은 1분으로 셉니다.</div>
+    <div class="kpis">
+      <div class="kpi"><small>학습 시간</small><strong>${mins.toFixed(1)}분</strong></div>
+      <div class="kpi"><small>본 영상</small><strong>${Object.keys(S.watched).length}편</strong></div>
+      <div class="kpi"><small>푼 문제</small><strong>${n}문제</strong></div>
+      <div class="kpi"><small>정답률</small><strong>${n?Math.round(ok/n*100)+"%":"-"}</strong></div>
+    </div>
+    <div class="lbl">개념별 숙련도</div><div class="bars">${bars}</div>
+    <div class="lbl">사용 제한 (보호자만 변경)</div>
+    ${tog("daily","하루 사용 한도 40분")}${tog("night","밤 10시 이후 잠금")}</div>`];
+}
+
+/* ---------------- 동작 ---------------- */
+function after(){
+  const item = FEED[S.pos];
+  if(S.tab==="feed" && !S.clinic && item && item.type==="video"){
+    const spans = [...$app.querySelectorAll(".boardtxt span")], bar = document.getElementById("pbar");
+    const already = !!S.watched[item.i];
+    if(already){ spans.forEach(s=>s.classList.add("on")); return; }
+    const start = Date.now(), dur = 8000;
+    const tick = () => {
+      const p = Math.min(1, (Date.now()-start)/dur);
+      if(bar) bar.style.width = (p*100) + "%";
+      spans.forEach((s,k)=>{ if(p >= k/(spans.length+1)) s.classList.add("on"); });
+      if(p >= 1){ clearInterval(videoTimer); S.watched[item.i] = true; const nb = $app.querySelector('[data-act="next"]'); if(nb) nb.textContent = "다음"; save(); }
+    };
+    tick(); videoTimer = setInterval(tick, 200);
+  }
+  if(S.tab==="feed" && !S.clinic && item && item.type==="quiz" && S.quiz && !S.quiz.done){
+    quizTimer = setInterval(()=>{ S.quiz.left = Math.max(0, 45 - (Date.now()-S.quiz.start)/1000);
+      const t = document.getElementById("qtimer"); if(t) t.style.width = (S.quiz.left/45*100)+"%";
+      if(S.quiz.left <= 0) clearInterval(quizTimer); }, 1000);
+  }
+}
+
+function grade(q, sel){
+  const ok = sel === q.ans, ms = Date.now() - S.quiz.start;
+  const err = ok ? null : (q.diag[sel] ? q.diag[sel][0] : "concept");
+  S.attempts.push({q:q.id, sel, ok, ms, err, at:Date.now()});
+  S.mastery[q.c] = Math.round((S.mastery[q.c]*.7 + (ok?.3:0))*1000)/1000;   // SQL 과 같은 EWMA
+  const r = S.review[q.id];
+  if(!r){ if(!ok) S.review[q.id] = {due:Date.now()+DAY, iv:1, rep:0}; }
+  else if(ok){ r.rep++; r.iv = r.rep===1?3:r.rep===2?7:Math.ceil(r.iv*2.5); r.due = Date.now()+r.iv*DAY; }
+  else { r.rep = 0; r.iv = 1; r.due = Date.now()+DAY; }
+  S.quiz.done = true;
+}
+
+$app.addEventListener("click", e=>{
+  const el = e.target.closest("[data-act]"); if(!el || el.tagName==="FORM") return;
+  const act = el.dataset.act, v = el.dataset.v;
+  if(act==="tab"){ S.tab = v; S.clinic = null; if(v!=="feed") S.quiz = null; render(); }
+  else if(act==="next"){ const it = FEED[S.pos]; if(it && it.type==="video") S.watched[it.i] = true; S.pos++; S.quiz = null; render(); }
+  else if(act==="prev"){ S.pos = Math.max(0, S.pos-1); while(S.pos>0 && FEED[S.pos].type==="quiz") S.pos--; S.quiz=null; render(); }
+  else if(act==="restartFeed"){ S.pos = 0; render(); }
+  else if(act==="save"){ const it = FEED[S.pos]; S.saved[it.i] = !S.saved[it.i]; el.setAttribute("aria-pressed", S.saved[it.i]); toast(S.saved[it.i]?"저장했습니다":"저장을 취소했습니다"); save(); }
+  else if(act==="toast"){ toast(v); }
+  else if(act==="pick"){ S.quiz.sel = v; render(); }
+  else if(act==="hint"){ S.quiz.hint = true; render(); }
+  else if(act==="submit"){ const q = currentQuiz(); grade(q, S.quiz.sel); render(); }
+  else if(act==="openClinic"){ S.clinic = {qid:S.quiz.id, sel:S.quiz.sel}; render(); }
+  else if(act==="closeClinic"){ S.clinic = null; S.tab = "feed"; render(); }
+  else if(act==="doReview"){ const i = QUIZZES.findIndex(q=>q.id===v); S.reviewMode = v; S.tab = "feed"; S.pos = FEED.findIndex(f=>f.type==="quiz"&&f.i===i); S.quiz = null; render(); }
+  else if(act==="node"){ const i = VIDEOS.findIndex(x=>x.c===v); if(!unlocked(v)){ toast("선행 개념을 먼저 70% 이상 익혀야 합니다"); return; } S.tab="feed"; S.pos = FEED.findIndex(f=>f.type==="video"&&f.i===i); render(); }
+  else if(act==="limit"){ S.limits[v] = !S.limits[v]; render(); toast(S.limits[v]?"제한을 켰습니다":"제한을 껐습니다"); }
+});
+$app.addEventListener("keydown", e=>{ const g = e.target.closest(".node"); if(g && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); g.dispatchEvent(new MouseEvent("click",{bubbles:true})); } });
+$app.addEventListener("input", e=>{ const f = e.target.closest("form[data-act=var]"); if(f) S.varIn[f.dataset.k] = e.target.value; });
+$app.addEventListener("submit", e=>{
+  const f = e.target.closest("form[data-act=var]"); if(!f) return; e.preventDefault();
+  const key = f.dataset.k, val = (f.querySelector("input").value||"").trim();
+  const ok = val === f.dataset.a; S.varFb[key] = ok ? "ok" : "no";
+  if(ok){ const q = QUIZZES.find(x=>x.id===S.clinic.qid); S.mastery[q.c] = Math.min(1, Math.round((S.mastery[q.c]*.7+.3)*1000)/1000); }
+  render(); const inp = document.getElementById("in-"+key); if(inp && !ok) inp.focus();
+});
+function currentQuiz(){ return QUIZZES.find(q=>q.id===S.quiz.id); }
+
+/* 스와이프·휠·키보드로 피드 넘기기 */
+let ty = null;
+$app.addEventListener("touchstart", e=>{ if(e.target.closest(".card")) ty = e.touches[0].clientY; }, {passive:true});
+$app.addEventListener("touchend", e=>{ if(ty===null) return; const dy = ty - e.changedTouches[0].clientY; ty = null;
+  if(Math.abs(dy) > 50){ const b = $app.querySelector(dy>0?'[data-act="next"]':'[data-act="prev"]'); if(b && !b.disabled) b.click(); } });
+let wheelLock = 0;
+$app.addEventListener("wheel", e=>{ if(!e.target.closest(".card")) return; e.preventDefault(); if(Date.now()<wheelLock) return; wheelLock = Date.now()+700;
+  const b = $app.querySelector(e.deltaY>0?'[data-act="next"]':'[data-act="prev"]'); if(b && !b.disabled) b.click(); }, {passive:false});
+document.addEventListener("keydown", e=>{ if(S.tab!=="feed"||S.clinic||e.target.closest("input")) return;
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){ const b = $app.querySelector(e.key==="ArrowDown"?'.feednav [data-act="next"]':'[data-act="prev"]'); if(b && !b.disabled){ e.preventDefault(); b.click(); } } });
+
+document.getElementById("resetBtn").addEventListener("click", ()=>{ S = fresh(); render(); toast("처음 상태로 되돌렸습니다"); });
+render();
+})();
+</script>
