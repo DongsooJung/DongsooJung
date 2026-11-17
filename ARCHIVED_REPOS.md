@@ -1,17 +1,26 @@
-# 아카이브된 레포 안내
+# 저장소 통합·아카이브 상태
 
-다음 레포는 **DongsooJung/DongsooJung** 프로필 레포로 통합되었습니다.
+> 2026-11-17 GitHub 저장소 메타데이터 기준으로 **현재 아카이브된 저장소는 없습니다.** 이 문서는 과거 통합 구상과 실제 저장소 상태를 구분합니다.
 
-| 아카이브 대상 | 통합 위치 | 미러 브랜치 |
-|-------------|----------|------------|
-| `urban-spatial-analysis` | `repos/ds-research-urban-analytics/packages/urban-spatial-analysis/` | `mirror/ds-research-urban-analytics` |
-| `smart-city-gis` | `repos/ds-research-urban-analytics/packages/smart-city-gis/` | `mirror/ds-research-urban-analytics` |
-| `airport-infrastructure-analytics` | `repos/ds-research-urban-analytics/packages/airport-infrastructure-analytics/` | `mirror/ds-research-urban-analytics` |
-| `credit-survival-analysis` | `repos/ds-research-urban-analytics/packages/credit-survival-analysis/` | `mirror/ds-research-urban-analytics` |
-| `real-estate-molit-api` | `repos/ds-research-urban-analytics/packages/real-estate-molit-api/` | `mirror/ds-research-urban-analytics` |
-| `stargate-lp` | `repos/stargateedu-lp/` | `mirror/stargateedu` |
-| `stargate-blog` | `repos/stargate-main-sites/sites/blog/` | `mirror/stargate-blog` |
-| `stargate-shop` | `repos/stargate-main-sites/sites/shop/` | `mirror/stargate-shop` |
-| `dongsoojung.github.io` | `repos/dongsoojung-github-io/` | `mirror/dongsoojung-github-io` |
+## 현재 상태와 후속 검토
 
-**Canonical URL:** https://github.com/DongsooJung/DongsooJung/tree/main/repos
+| 저장소 | 현재 상태 | 후속 조치 |
+|---|---|---|
+| `urban-spatial-analysis` | 활성·아카이브 아님 | 연구 모노레포 반영 내용과 Git 이력 비교 후 결정 |
+| `smart-city-gis` | 활성·아카이브 아님 | 연구 모노레포 반영 내용과 Git 이력 비교 후 결정 |
+| `airport-infrastructure-analytics` | 활성·아카이브 아님 | 연구 모노레포 반영 내용과 Git 이력 비교 후 결정 |
+| `credit-survival-analysis` | 활성·아카이브 아님 | 연구 모노레포 반영 내용과 Git 이력 비교 후 결정 |
+| `real-estate-molit-api` | 활성·아카이브 아님 | 연구 모노레포 반영 내용과 Git 이력 비교 후 결정 |
+| `stargate-lp` | 활성·아카이브 아님 | `stargateedu`와의 중복 및 배포 연결 확인 후 결정 |
+| `stargate-blog` | 활성·아카이브 아님 | 운영 원본은 `stargate-blog-hub`; Pages·CNAME 확인 후 legacy 전환 검토 |
+| `stargate-shop` | 활성·아카이브 아님 | 현재 운영 원본은 `stargate-shop-redirect`; 배포 연결 확인 후 legacy 전환 검토 |
+| `dongsoojung.github.io` | **운영 원본** | `www.stargateedu.co.kr` 및 apex를 제공하므로 아카이브 대상 아님 |
+
+## 스냅숏과 미러의 역할
+
+- `repos/*` 스냅숏과 `mirror/*` 브랜치는 비교·복구 참고용입니다.
+- 스냅숏 또는 미러를 운영 저장소의 `main`에 덮어쓰거나 프로덕션에 배포하지 않습니다.
+- 실제 통합을 완료하기 전에는 소스 저장소를 아카이브 완료로 기록하지 않습니다.
+- 아카이브와 삭제는 별도 승인 후 진행하며, 삭제 전에는 배포·외부 연동·이슈·PR·Git 이력의 보존 필요성을 확인합니다.
+
+**운영 원본 기준:** [DOMAIN_SOURCES.md](DOMAIN_SOURCES.md)
