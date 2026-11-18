@@ -1,0 +1,38 @@
+--- a/scripts/update-portfolio-blog-from-notion.mjs
++++ b/scripts/update-portfolio-blog-from-notion.mjs
+@@
+ const DATA_SOURCE_ID = process.env.NOTION_DATA_SOURCE_ID || '';
+-const NOTION_VERSION = process.env.NOTION_VERSION || '2022-06-28';
++// data_sources 엔드포인트는 2025-09-03 이상에서만 제공됩니다.
++const NOTION_VERSION =
++  process.env.NOTION_VERSION || (DATA_SOURCE_ID ? '2025-09-03' : '2022-06-28');
++const SORT_PROPERTY = process.env.NOTION_SORT_PROPERTY || '완독일';
+@@
+-    public: checkbox(properties['웹공개']) || !('웹공개' in properties),
++    // 웹공개 체크가 확인된 항목만 발행합니다.
++    public: checkbox(properties['웹공개']),
+@@
+       const payload = await notionFetch(`/data_sources/${DATA_SOURCE_ID}/query`, {
+         filter: { property: '웹공개', checkbox: { equals: true } },
+-        sorts: [{ property: '완독일', direction: 'descending' }],
++        sorts: [{ property: SORT_PROPERTY, direction: 'descending' }],
+@@
+     const payload = await notionFetch(`/databases/${DATABASE_ID}/query`, {
+       filter: { property: '웹공개', checkbox: { equals: true } },
+-      sorts: [{ property: '완독일', direction: 'descending' }],
++      sorts: [{ property: SORT_PROPERTY, direction: 'descending' }],
+@@
+-  // 공개 체크박스가 아직 없는 신규 DB도 허용: 공개 결과가 없으면 최근 페이지를 제한적으로 포함
+-  if (!pages.length) {
+-    const fallback = await notionFetch(`/databases/${DATABASE_ID}/query`, {
+-      page_size: 20,
+-      sorts: [{ timestamp: 'last_edited_time', direction: 'descending' }],
+-    });
+-    pages.push(...fallback.results.filter((item) => item.object === 'page'));
+-  }
+-
+   return pages;
+ }
+@@
+-    publicFilter: '웹공개 = true (없으면 최근 항목)',
++    publicFilter: '웹공개 = true',
