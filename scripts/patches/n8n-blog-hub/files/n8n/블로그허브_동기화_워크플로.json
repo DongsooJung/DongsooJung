@@ -1,0 +1,274 @@
+{
+  "name": "STARGATE · 블로그 허브 동기화",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "a1f0c0de-0001-4000-8000-000000000001",
+      "name": "블로그 자동화에서 호출",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a1f0c0de-0002-4000-8000-000000000002",
+      "name": "수동 테스트",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"title\": \"[테스트] n8n → 블로그 허브 연동 확인\",\n  \"url\": \"https://dongsoo.tistory.com/\",\n  \"channel\": \"티스토리\",\n  \"publishedAt\": \"{{ $now.toISO() }}\",\n  \"summary\": \"n8n 연동 테스트 글입니다. 확인 후 action=unpublish 로 제거하세요.\",\n  \"tags\": [\"n8n\", \"자동화\"]\n}",
+        "options": {}
+      },
+      "id": "a1f0c0de-0003-4000-8000-000000000003",
+      "name": "샘플 글",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 상위 블로그 발행 워크플로의 출력을 그대로 허브로 전달합니다.\n// - n8n WordPress 노드 응답(id·link·title.rendered·excerpt.rendered·date_gmt·status)은 변환 없이 수용\n// - 네이버/기타 채널은 title·url(또는 link)만 있으면 됨. channel 은 URL 로 자동 판별\n// - 필드 정규화·HTML 제거·채널 판별은 웹훅(api/n8n-blog-webhook.js)이 담당\nconst posts = $input.all()\n  .map(({ json }) => ({ ...json, workflow: json.workflow || $workflow.name }))\n  .filter((p) => (p.title || p.subject) && (p.url || p.link || p.postUrl || p.permalink || ['unpublish', 'trash', 'draft'].includes(String(p.action || p.status))));\n\nif (posts.length === 0) throw new Error('허브로 보낼 글이 없습니다 (title/url 누락).');\n// 웹훅 1회 최대 50건\nconst chunks = [];\nfor (let i = 0; i < posts.length; i += 50) chunks.push({ json: { posts: posts.slice(i, i + 50) } });\nreturn chunks;"
+      },
+      "id": "a1f0c0de-0004-4000-8000-000000000004",
+      "name": "허브 페이로드 정리",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://stargate-reading-blog.vercel.app/api/n8n-blog-webhook",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": {
+              "neverError": true,
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "a1f0c0de-0005-4000-8000-000000000005",
+      "name": "허브 웹훅 전송",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        100
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_ME",
+          "name": "Stargate Hub Webhook Key"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "c0nd-0001",
+              "leftValue": "={{ $json.statusCode }}",
+              "rightValue": 200,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1f0c0de-0006-4000-8000-000000000006",
+      "name": "성공 여부",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ JSON.stringify({ ok: true, published: $json.body.published, unpublished: $json.body.unpublished, count: $json.body.count, hub: 'https://blog.stargateedu.co.kr/' }) }}",
+        "options": {}
+      },
+      "id": "a1f0c0de-0007-4000-8000-000000000007",
+      "name": "동기화 완료",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1100,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "stargate8225@gmail.com",
+        "subject": "=[n8n] 블로그 허브 동기화 실패 · HTTP {{ $json.statusCode ?? 'network' }}",
+        "emailType": "text",
+        "message": "=워크플로: {{ $workflow.name }}\n실행 ID: {{ $execution.id }}\n시각: {{ $now.setZone('Asia/Seoul').toFormat('yyyy-LL-dd HH:mm') }} KST\nHTTP: {{ $json.statusCode ?? 'network' }}\n응답: {{ JSON.stringify($json.body ?? $json.error ?? {}) }}\n\n전송한 글:\n{{ $('허브 페이로드 정리').item.json.posts.map(p => '- ' + (p.title?.rendered || p.title) + ' ' + (p.url || p.link || '')).join('\\n') }}\n\n조치: 401=N8N_WEBHOOK_KEY 불일치, 422=title/url 누락, 502=GITHUB_CONTENTS_TOKEN 확인",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "a1f0c0de-0009-4000-8000-000000000009",
+      "name": "실패 메일 알림",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1100,
+        200
+      ],
+      "webhookId": "a1f0c0de-0009-4000-8000-0000000000a9",
+      "continueOnFail": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "REPLACE_ME",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "errorMessage": "={{ '블로그 허브 동기화 실패: HTTP ' + ($('허브 웹훅 전송').item.json.statusCode ?? 'network') + ' ' + JSON.stringify($('허브 웹훅 전송').item.json.body ?? $('허브 웹훅 전송').item.json.error ?? {}) }}"
+      },
+      "id": "a1f0c0de-0008-4000-8000-000000000008",
+      "name": "실패 알림",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "블로그 자동화에서 호출": {
+      "main": [
+        [
+          {
+            "node": "허브 페이로드 정리",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "수동 테스트": {
+      "main": [
+        [
+          {
+            "node": "샘플 글",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "샘플 글": {
+      "main": [
+        [
+          {
+            "node": "허브 페이로드 정리",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "허브 페이로드 정리": {
+      "main": [
+        [
+          {
+            "node": "허브 웹훅 전송",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "허브 웹훅 전송": {
+      "main": [
+        [
+          {
+            "node": "성공 여부",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "성공 여부": {
+      "main": [
+        [
+          {
+            "node": "동기화 완료",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "실패 메일 알림",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "실패 메일 알림": {
+      "main": [
+        [
+          {
+            "node": "실패 알림",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Seoul",
+    "saveDataErrorExecution": "all"
+  },
+  "pinData": {}
+}
